@@ -1,0 +1,17 @@
+Lorenzo Chavarria- COMS 327- Assignment 1.02
+
+For this assignment I decided to use the Professor Scheaffer solution from the last
+assignment. The reason that I decided to use his is because his generated the dungeon
+a little bit quicker than mine and he had hardness implemented and I didn't, which
+saved me some time. For this assignment, the switches --save and --load. The --save 
+switch saves the information of the current game to a file named dungeon, and the 
+--load switch loads the information from a file. Both of these switches can also be 
+inputed at the same time, doing what they both do. To implement these switches into 
+the game, I first had conditions in the main function to check if the arguments were
+okay and if they aren't then a message is printed saying that "The inputs are 
+incorrect.". After this if --save was inputed then the the function 
+saveGame(FILE *f, dungeon_t *d) was called and this saved the game to a file named 
+dungeon. If --load was inputed then a file was read and from the information from the
+file a game was generated. For this function I also used code from firmcodes.com as 
+a reference. If both switches were called at the same time then both functions of the
+switches were called.

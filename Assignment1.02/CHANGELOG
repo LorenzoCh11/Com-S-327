@@ -1,0 +1,7 @@
+9/8: I decided to use the professors solution because mine was slower than his at printing out the board
+and I did not have the hardness implemented and he did.
+9/9:I was able to input and check if the --save and --load switch were inputted correctly
+9/10:I was able to get the --save switch to work correctly and was able to get the --load switch to input the
+board from a file with a few bugs
+9/11:I was able to get both the --save switch and --loaded switch to work. They both also work when combining them
+and the output was correct with no know bugs.

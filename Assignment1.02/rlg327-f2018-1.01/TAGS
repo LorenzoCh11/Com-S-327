@@ -1,0 +1,141 @@
+
+heap.c,1009
+#undef min4,39
+struct heap_node 6,51
+  heap_node_t *next;next7,70
+  heap_node_t *prev;prev8,91
+  heap_node_t *parent;parent9,112
+  heap_node_t *child;child10,135
+  void *datum;datum11,157
+  uint32_t degree;12,172
+  uint32_t mark;13,191
+#define splice_heap_node_lists(16,212
+#define insert_heap_node_in_list(25,524
+#define remove_heap_node_from_list(32,748
+void print_heap_node(37,881
+void print_heap(53,1203
+void print_heap_node_list(70,1505
+void heap_init(86,1704
+void heap_node_delete(96,1940
+void heap_delete(114,2244
+heap_node_t *heap_insert(heap_insert125,2409
+void *heap_peek_min(heap_peek_min145,2725
+static void heap_link(150,2801
+static void heap_consolidate(164,3123
+void *heap_remove_min(heap_remove_min205,4056
+int heap_combine(240,4590
+static void heap_cut(269,5241
+static void heap_cascading_cut(283,5522
+int heap_decrease_key(297,5748
+int heap_decrease_key_no_replace(311,5990
+int32_t compare(335,6564
+char *print_int(print_int340,6663
+int main(349,6781
+
+heap.h,245
+# define HEAP_H2,15
+typedef struct heap_node heap_node_t;11,114
+typedef struct heap 13,153
+  heap_node_t *min;min14,175
+  uint32_t size;15,195
+  int32_t (*compare)compare16,212
+  void (*datum_delete)datum_delete17,269
+} heap_t;18,301
+
+macros.h,611
+# define MACROS_H2,17
+#  define dprintf(16,213
+#  define dfprintf(17,256
+#  define dprintf(19,320
+#  define dfprintf(20,343
+# define fieldwidth(23,382
+# define exit(37,1201
+# define fopen(42,1441
+#  define malloc(76,3348
+#  define calloc(92,4430
+#  define strdup(107,5435
+#  define free(117,6055
+# define swap(125,6303
+# define memswap(131,6415
+# define structdup(137,6543
+# define datacmp(144,6927
+# define max2(153,7400
+# define min2(160,7576
+# define max 167,7752
+# define min 168,7770
+# define max3(170,7789
+# define min3(171,7830
+# define frand(173,7872
+# define structdup(180,7984
+
+rlg327.c,2059
+# define rand_under(17,352
+# define rand_range(21,495
+# define UNUSED(22,568
+typedef struct corridor_path 24,599
+  heap_node_t *hn;hn25,630
+  uint8_t pos[pos26,649
+  uint8_t from[from27,667
+  int32_t cost;28,686
+} corridor_path_t;29,702
+typedef enum dim 31,722
+  dim_x,32,741
+  dim_y,33,750
+  num_dims34,759
+} dim_t;35,770
+typedef int16_t pair_t[pair_t37,780
+#define DUNGEON_X 39,815
+#define DUNGEON_Y 40,849
+#define MIN_ROOMS 41,883
+#define MAX_ROOMS 42,916
+#define ROOM_MIN_X 43,949
+#define ROOM_MIN_Y 44,982
+#define ROOM_MAX_X 45,1015
+#define ROOM_MAX_Y 46,1049
+#define mappair(48,1083
+#define mapxy(49,1140
+#define hardnesspair(50,1175
+#define hardnessxy(51,1242
+typedef enum __attribute__ ((__packed__)) terrain_type 53,1288
+  ter_debug,54,1345
+  ter_wall,55,1358
+  ter_wall_immutable,56,1370
+  ter_floor,57,1392
+  ter_floor_room,58,1405
+  ter_floor_hall,59,1423
+} terrain_type_t;60,1441
+typedef struct room 62,1460
+  pair_t position;63,1482
+  pair_t size;64,1501
+} room_t;65,1516
+typedef struct dungeon 67,1527
+  uint32_t num_rooms;68,1552
+  room_t rooms[rooms69,1574
+  terrain_type_t map[map70,1601
+  uint8_t hardness[hardness79,2254
+} dungeon_t;80,2296
+static uint32_t in_room(82,2310
+static uint32_t adjacent_to_room(98,2701
+static uint32_t is_open_space(106,2962
+static int32_t corridor_path_cmp(111,3061
+static void dijkstra_corridor(115,3211
+static void dijkstra_corridor_inv(214,6948
+#define hardnesspair_inv(267,8270
+static int connect_two_rooms(317,10941
+static int create_cycle(336,11593
+static int connect_rooms(378,13158
+int gaussian[gaussian391,13351
+typedef struct queue_node 399,13507
+  int x,400,13535
+  int x, y;400,13535
+  struct queue_node *next;next401,13547
+} queue_node_t;402,13574
+static int smooth_hardness(404,13591
+static int empty_dungeon(558,17765
+static int place_rooms(577,18141
+static int make_rooms(614,19328
+int gen_dungeon(638,19876
+void render_dungeon(650,20019
+void delete_dungeon(678,20626
+void init_dungeon(682,20665
+int main(687,20722

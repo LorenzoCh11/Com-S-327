@@ -1,0 +1,10 @@
+For this assignment I created a function that would capture every tour made by
+ a Knight in a board. The board would be 5 x 5, and each square would be a 
+different number starting from 1 and ending at 25. To create the board 2D Array
+ was used and each place in the array represented a number just like the board
+ did. To get the tour of each of the squares, each square would be put into a 
+for loop and would be put through the tour function. The tour function was a
+ recursive function that would check every possible move and add it to an 
+array called “visited” that would keep track of each move, then after the
+ array of the visited squares was full then it would be printed out. This was
+ done to each square to find out every tour.

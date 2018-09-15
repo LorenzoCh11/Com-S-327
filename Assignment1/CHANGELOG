@@ -1,0 +1,10 @@
+-9/1 : Created the boarder of the game by using. decided to use shruggs
+-9/2 : have started creating the rooms using rand, having a bug that doesnt
+	allow me to create a room
+-9/3 : was able to create the roomm at random places, only bugs were that
+	sometimes it didnt print 5 and
+that sometimes some of the rooms printed were not a space away from each other
+-9/4 : was able to create the rooms at random sizes and random places, was also
+able to add the corridors that connected each other, there are no bugs
+so far. There is only a slight problem and that is that the board is printed
+out at a kind of slow time

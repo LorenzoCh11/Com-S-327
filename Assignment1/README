@@ -1,0 +1,15 @@
+Lorenzo Chavarria- ComS 327- Assignment 1.01
+
+For this assignment, a board that is 80 x 24 generated for a Dungeon game
+ using an array made up of structs named square. Each square and has a type
+ and a pic which is shown in the board(- and|). The area that is 80 X 21 is
+ surrounded by a border that is made with the method fillBoarder(struct square
+ array[24][80]). The last 3 rows are left empty for a future assignment. After
+ the boarder is filled random rooms(.) are generated using the method 
+fillRooms(struct square array[24][80). The method fillRooms generates random 
+coordinates and random sizes using random integers, and each room is checked if
+ valid(is not overlapping other rooms and is in a valid place) by using the
+ method checkSpace(int row, int col, int height, int width). After the rooms 
+are added, the corridors(#) are then added. Thise corridors connect every room 
+and are added by the fillCorridors(struct square board[24][80]). Each corridor
+ is made by the method fillC(struct square board[24][80], int roomNum).
