@@ -1113,8 +1113,6 @@ static int32_t pc_path_cmp(const void *key, const void *with) {
 }
 
 
-
-
 static void dijkstra_pc_tunnel(dungeon_t *d)
 {
   static pc_path_t path[DUNGEON_Y][DUNGEON_X], *p;
@@ -1223,7 +1221,7 @@ static void dijkstra_pc_tunnel(dungeon_t *d)
       if(path[y1][x1].cost != 0){
 	printf("%d", path[y1][x1].cost % 10);
       }
-      else{
+      else {
 	printf("%c", '@');
       }
     }
@@ -1263,7 +1261,7 @@ static void dijkstra_pc_nontunnel(dungeon_t *d)
 
   for (y = 0; y < DUNGEON_Y; y++) {
     for (x = 0; x < DUNGEON_X; x++) {
-      if (mapxy(x, y) != ter_wall_immutable) {
+      if (mapxy(x,y) != ter_wall && mapxy(x, y) != ter_wall_immutable) {
         path[y][x].hn = heap_insert(&h, &path[y][x]);
       } else {
         path[y][x].hn = NULL;
@@ -1339,12 +1337,18 @@ static void dijkstra_pc_nontunnel(dungeon_t *d)
   int x1;
   for(y1 = 1; y1 < DUNGEON_Y-1; y1++){
     for(x1 = 1; x1<DUNGEON_X-1; x1++){
-      if(path[y1][x1].cost != 0){
-	printf("%d", path[y1][x1].cost % 10);
+
+      if (d->hardness[y1][x1] == 0) {
+              if(path[y1][x1].cost != 0){
+		printf("%d", path[y1][x1].cost % 10);
+	      }
+	      else{
+		printf("%c", '@');
+	      }
+      } else{
+	printf("%c", ' ');
       }
-      else{
-	printf("%c", '@');
-      }
+
     }
     printf("\n");
   }
