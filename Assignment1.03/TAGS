@@ -163,5 +163,5 @@ int read_pgm(1014,28844
 void usage(1099,31247
 static int32_t pc_path_cmp(1111,31499
 static void dijkstra_pc_tunnel(1116,31632
-static void dijkstra_pc_nontunnel(1235,35761
-int main(1364,40017
+static void dijkstra_pc_nontunnel(1234,35863
+int main(1362,40223

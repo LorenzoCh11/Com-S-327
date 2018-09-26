@@ -1115,10 +1115,10 @@ static int32_t pc_path_cmp(const void *key, const void *with) {
 
 static void dijkstra_pc_tunnel(dungeon_t *d)
 {
+  uint32_t addCost,x, y;
   static pc_path_t path[DUNGEON_Y][DUNGEON_X], *p;
   static uint32_t initialized = 0;
   heap_t h;
-  uint32_t x, y, addCost;
 
   if (!initialized) {
     for (y = 0; y < DUNGEON_Y; y++) {
@@ -1137,7 +1137,6 @@ static void dijkstra_pc_tunnel(dungeon_t *d)
   }
 
   path[d->pc[dim_y]][d->pc[dim_x]].cost = 0;
-
   heap_init(&h, pc_path_cmp, NULL);
 
   for (y = 0; y < DUNGEON_Y; y++) {
@@ -1156,28 +1155,28 @@ static void dijkstra_pc_tunnel(dungeon_t *d)
    
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x]    ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x]    ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x]    ].cost = p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x]    ].hn);
     }
     if ((path[p->pos[dim_y]    ][p->pos[dim_x] - 1].hn) &&
         (path[p->pos[dim_y]    ][p->pos[dim_x] - 1].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y]    ][p->pos[dim_x] - 1].cost = p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y]    ]
                                            [p->pos[dim_x] - 1].hn);
     }
     if ((path[p->pos[dim_y]    ][p->pos[dim_x] + 1].hn) &&
         (path[p->pos[dim_y]    ][p->pos[dim_x] + 1].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y]    ][p->pos[dim_x] + 1].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y]    ]
                                            [p->pos[dim_x] + 1].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x]    ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x]    ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x]    ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x]    ].hn);
@@ -1185,28 +1184,28 @@ static void dijkstra_pc_tunnel(dungeon_t *d)
     //New directions
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x]- 1  ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x]- 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x] - 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x] - 1  ].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x] + 1  ].hn);
     }
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x] + 1].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x] - 1  ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x] - 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x] - 1 ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x] - 1].hn);
@@ -1234,10 +1233,10 @@ static void dijkstra_pc_tunnel(dungeon_t *d)
 
 static void dijkstra_pc_nontunnel(dungeon_t *d)
 {
+  uint32_t addCost, x, y; 
   static pc_path_t path[DUNGEON_Y][DUNGEON_X], *p;
   static uint32_t initialized = 0;
   heap_t h;
-  uint32_t x, y, addCost;
 
   if (!initialized) {
     for (y = 0; y < DUNGEON_Y; y++) {
@@ -1256,7 +1255,6 @@ static void dijkstra_pc_nontunnel(dungeon_t *d)
   }
 
   path[d->pc[dim_y]][d->pc[dim_x]].cost = 0;
-
   heap_init(&h, pc_path_cmp, NULL);
 
   for (y = 0; y < DUNGEON_Y; y++) {
@@ -1275,28 +1273,28 @@ static void dijkstra_pc_nontunnel(dungeon_t *d)
    
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x]    ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x]    ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x]    ].cost = p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x]    ].hn);
     }
     if ((path[p->pos[dim_y]    ][p->pos[dim_x] - 1].hn) &&
         (path[p->pos[dim_y]    ][p->pos[dim_x] - 1].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y]    ][p->pos[dim_x] - 1].cost = p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y]    ]
                                            [p->pos[dim_x] - 1].hn);
     }
     if ((path[p->pos[dim_y]    ][p->pos[dim_x] + 1].hn) &&
         (path[p->pos[dim_y]    ][p->pos[dim_x] + 1].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y]    ][p->pos[dim_x] + 1].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y]    ]
                                            [p->pos[dim_x] + 1].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x]    ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x]    ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x]    ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x]    ].hn);
@@ -1304,28 +1302,28 @@ static void dijkstra_pc_nontunnel(dungeon_t *d)
     //New directions
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x]- 1  ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x]- 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x] - 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x] - 1  ].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x] + 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x] + 1  ].hn);
     }
     if ((path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].hn) &&
         (path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] - 1][p->pos[dim_x] + 1  ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] - 1]
                                            [p->pos[dim_x] + 1].hn);
     }
     if ((path[p->pos[dim_y] + 1][p->pos[dim_x] - 1  ].hn) &&
         (path[p->pos[dim_y] + 1][p->pos[dim_x] - 1  ].cost >
-         p->cost + addCost)) {
+         p->cost + hardnesspair(p->pos))) {
       path[p->pos[dim_y] + 1][p->pos[dim_x] - 1 ].cost =  p->cost + addCost;
       heap_decrease_key_no_replace(&h, path[p->pos[dim_y] + 1]
                                            [p->pos[dim_x] - 1].hn);
@@ -1497,10 +1495,9 @@ int main(int argc, char *argv[])
 
   render_dungeon(&d);
 
+  //Code by LC
   dijkstra_pc_tunnel(&d);
-
   printf("\n");
- 
   dijkstra_pc_nontunnel(&d);
 
   if (do_save) {

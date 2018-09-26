@@ -1,0 +1,10 @@
+9/15: Decided to use the professors solution from 1.02 because he had already had the dijkstra algorithm implemented for his corridors.
+9/16: I began to work on the map for tunneling monsters using, the dijkstra algorithm from the corridors. Have not created a successful map yet.
+9/17: Was not able to work on the assignment.
+9/18: Was able to incorporate the dijkstra algorithm to the tunneling monsters map method, but I get a segmentation fault error.
+9/19: Was able to get the map for the tunneling monstors to work and print out correctly.
+9/20: Was not able to work on the assignment
+9/21: Have started working on the map for non-tunneling monsters, using the same dijkstra algorithm used for tunneling monsters.
+9/22: Have the algorithm complete for the non-tunneling monster's map, but have a bug where prints out numbers for the open space.
+9/23: Have completed the map for non-tunneling monsters with no known bugs.
+9/24: Have completed both maps for tunneling and non-tunneling monsters, with no known bugs and they both are able to print out correctly.
