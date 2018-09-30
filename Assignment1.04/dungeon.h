@@ -39,7 +39,17 @@ typedef struct room {
 
 typedef struct pc {
   pair_t position;
+  int speed; //Was added by LC
 } pc_t;
+
+/* This was added by Lorenzo Chavarria */
+typedef struct monster {
+  uint8_t x;
+  uint8_t y;
+  int speed;
+  uint8_t type;
+  char pic;
+} monster_t;
 
 typedef struct dungeon {
   uint32_t num_rooms;
@@ -57,6 +67,7 @@ typedef struct dungeon {
   uint8_t pc_distance[DUNGEON_Y][DUNGEON_X];
   uint8_t pc_tunnel[DUNGEON_Y][DUNGEON_X];
   pc_t pc;
+  monster_t monster[DUNGEON_Y][DUNGEON_X]; //This was added by LC
 } dungeon_t;
 
 void init_dungeon(dungeon_t *d);

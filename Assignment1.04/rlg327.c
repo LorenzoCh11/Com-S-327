@@ -17,6 +17,9 @@ void usage(char *name)
   exit(-1);
 }
 
+
+
+
 int main(int argc, char *argv[])
 {
   dungeon_t d;
@@ -28,6 +31,10 @@ int main(int argc, char *argv[])
   char *save_file;
   char *load_file;
   char *pgm_file;
+
+  /* Variables added by Lorenzo Chavarria*/
+  uint32_t  numMonster;
+
 
   /* Quiet a false positive from valgrind. */
   memset(&d, 0, sizeof (d));
@@ -115,6 +122,20 @@ int main(int argc, char *argv[])
             pgm_file = argv[++i];
           }
           break;
+	  /* Case added by LC */
+        case 'n':
+          if ((!long_arg && argv[i][2]) ||
+              (long_arg && strcmp(argv[i], "-nummon"))) {
+            usage(argv[0]);
+          }
+	  // do_save = 1;
+          if ((argc > i + 1) && argv[i + 1][0] != '-') {
+	    sscanf(argv[i+1], "%u", &numMonster);
+	    printf("%u", numMonster);
+	    printf("\n");
+
+          }
+          break;
         default:
           usage(argv[0]);
         }
@@ -152,10 +173,93 @@ int main(int argc, char *argv[])
                             (rand() % d.rooms[0].size[dim_y]));
   }
 
+
   printf("PC is at (y, x): %d, %d\n",
          d.pc.position[dim_y], d.pc.position[dim_x]);
 
+ 
+
+
+ /* This is added by LC */
+  //place_monster(&d, 10);
+  int mon;
+  uint8_t id;
+
+  uint8_t x2, y2;
+
+  for (mon = 0; mon < 11; mon++){
+    x2 = rand() % 80;
+    y2 = rand() % 21;
+    while (d.map[y2][x2] != ter_floor_room){
+     x2 = rand() % 80;
+     y2 = rand() % 21;
+    }
+
+    id = rand() % 16;
+
+    d.monster[y2][x2].x = x2;
+    d.monster[y2][x2].y = y2;
+    d.monster[y2][x2].speed = 5 + (rand() % 15);
+    d.monster[y2][x2].type = id;
+
+    switch (id) {
+    case 1:
+      d.monster[y2][x2].pic = 'a';
+      break;
+    case 2:
+      d.monster[y2][x2].pic = 'b';
+      break;
+    case 3:
+      d.monster[y2][x2].pic = 'c';
+      break;
+    case 4:
+      d.monster[y2][x2].pic = 'd';
+      break;
+    case 5:
+      d.monster[y2][x2].pic = 'e';
+      break;
+    case 6:
+      d.monster[y2][x2].pic = 'f';
+      break;
+    case 7:
+      d.monster[y2][x2].pic = 'g';
+      break;
+    case 8:
+      d.monster[y2][x2].pic = 'h';
+      break;
+    case 9:
+      d.monster[y2][x2].pic = 'i';
+      break;
+    case 10:
+      d.monster[y2][x2].pic = 'j';
+      break;
+    case 11:
+      d.monster[y2][x2].pic = 'k';
+      break;
+    case 12:
+      d.monster[y2][x2].pic = 'l';
+      break;
+    case 13:
+      d.monster[y2][x2].pic = 'm';
+      break;
+    case 14:
+      d.monster[y2][x2].pic = 'n';
+      break;
+    case 15:
+      d.monster[y2][x2].pic = 'o';
+      break;
+    case 16:
+      d.monster[y2][x2].pic = 'p';
+      break;
+    }
+
+
+  }
+
+
+
   render_dungeon(&d);
+
 
   dijkstra(&d);
   dijkstra_tunnel(&d);
@@ -192,3 +296,4 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+

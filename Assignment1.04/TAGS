@@ -8,7 +8,7 @@ typedef enum dim 7,190
 } dim_t;11,238
 typedef int16_t pair_t[pair_t13,248
 
-dungeon.c,1425
+dungeon.c,1426
 #define DUMP_HARDNESS_IMAGES 13,202
 typedef struct corridor_path 15,234
   heap_node_t *hn;hn16,265
@@ -16,44 +16,44 @@ typedef struct corridor_path 15,234
   uint8_t from[from18,302
   int32_t cost;19,321
 } corridor_path_t;20,337
-static uint32_t adjacent_to_room(22,357
-static uint32_t is_open_space(30,618
-static int32_t corridor_path_cmp(35,717
-static void dijkstra_corridor(39,867
-static void dijkstra_corridor_inv(138,4604
-#define hardnesspair_inv(191,5926
-static int connect_two_rooms(241,8597
-static int create_cycle(260,9249
-static int connect_rooms(302,10814
-int gaussian[gaussian315,11007
-typedef struct queue_node 323,11163
-  int x,324,11191
-  int x, y;324,11191
-  struct queue_node *next;next325,11203
-} queue_node_t;326,11230
-static int smooth_hardness(328,11247
-static int empty_dungeon(487,15516
-static int place_rooms(506,15892
-static int make_rooms(543,17079
-int gen_dungeon(566,17640
-void render_dungeon(578,17783
-void delete_dungeon(611,18565
-void init_dungeon(616,18622
-int write_dungeon_map(621,18679
-int write_rooms(634,18908
-uint32_t calculate_dungeon_size(654,19327
-int write_dungeon(661,19574
-int read_dungeon_map(724,21087
-int read_rooms(747,21685
-int calculate_num_rooms(801,23502
-int read_dungeon(809,23742
-int read_pgm(888,25644
-void render_hardness_map(973,28047
-void render_movement_cost_map(996,28574
-void render_distance_map(1018,29079
-void render_tunnel_distance_map(1054,30030
+static uint32_t adjacent_to_room(23,358
+static uint32_t is_open_space(31,619
+static int32_t corridor_path_cmp(36,718
+static void dijkstra_corridor(40,868
+static void dijkstra_corridor_inv(139,4605
+#define hardnesspair_inv(192,5927
+static int connect_two_rooms(242,8598
+static int create_cycle(261,9250
+static int connect_rooms(303,10815
+int gaussian[gaussian316,11008
+typedef struct queue_node 324,11164
+  int x,325,11192
+  int x, y;325,11192
+  struct queue_node *next;next326,11204
+} queue_node_t;327,11231
+static int smooth_hardness(329,11248
+static int empty_dungeon(488,15517
+static int place_rooms(507,15893
+static int make_rooms(544,17080
+int gen_dungeon(567,17641
+void render_dungeon(582,17787
+void delete_dungeon(619,18680
+void init_dungeon(624,18737
+int write_dungeon_map(629,18794
+int write_rooms(642,19023
+uint32_t calculate_dungeon_size(662,19442
+int write_dungeon(669,19689
+int read_dungeon_map(732,21202
+int read_rooms(755,21800
+int calculate_num_rooms(809,23617
+int read_dungeon(817,23857
+int read_pgm(896,25759
+void render_hardness_map(981,28162
+void render_movement_cost_map(1004,28689
+void render_distance_map(1026,29194
+void render_tunnel_distance_map(1062,30145
 
-dungeon.h,1142
+dungeon.h,1360
 # define DUNGEON_H2,18
 #define DUNGEON_X 8,98
 #define DUNGEON_Y 9,132
@@ -85,16 +85,25 @@ typedef struct room 35,905
 } room_t;38,961
 typedef struct pc 40,972
   pair_t position;41,992
-} pc_t;42,1011
-typedef struct dungeon 44,1020
-  uint32_t num_rooms;45,1045
-  room_t *rooms;rooms46,1067
-  terrain_type_t map[map47,1084
-  uint8_t hardness[hardness56,1737
-  uint8_t pc_distance[pc_distance57,1779
-  uint8_t pc_tunnel[pc_tunnel58,1824
-  pc_t pc;59,1867
-} dungeon_t;60,1878
+  int speed;42,1011
+} pc_t;43,1042
+typedef struct monster 46,1093
+  uint8_t x;47,1118
+  uint8_t y;48,1131
+  int speed;49,1144
+  uint8_t type;50,1157
+  char pic;51,1173
+} monster_t;52,1185
+typedef struct dungeon 54,1199
+  uint32_t num_rooms;55,1224
+  room_t *rooms;rooms56,1246
+  terrain_type_t map[map57,1263
+  uint8_t hardness[hardness66,1916
+  uint8_t pc_distance[pc_distance67,1958
+  uint8_t pc_tunnel[pc_tunnel68,2003
+  pc_t pc;69,2046
+  monster_t monster[monster70,2057
+} dungeon_t;71,2123
 
 heap.c,1009
 #undef min4,39
@@ -184,7 +193,7 @@ typedef struct dungeon dungeon_t;6,63
 
 rlg327.c,36
 void usage(10,135
-int main(20,345
+int main(23,348
 
 utils.c,25
 int makedirectory(9,124

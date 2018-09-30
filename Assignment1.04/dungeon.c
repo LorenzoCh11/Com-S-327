@@ -19,6 +19,7 @@ typedef struct corridor_path {
   int32_t cost;
 } corridor_path_t;
 
+
 static uint32_t adjacent_to_room(dungeon_t *d, int16_t y, int16_t x)
 {
   return (mapxy(x - 1, y) == ter_floor_room ||
@@ -575,6 +576,9 @@ int gen_dungeon(dungeon_t *d)
   return 0;
 }
 
+
+
+
 void render_dungeon(dungeon_t *d){
 
   pair_t p;
@@ -584,7 +588,11 @@ void render_dungeon(dungeon_t *d){
       if (p[dim_x] ==  d->pc.position[dim_x] &&
           p[dim_y] ==  d->pc.position[dim_y]) {
         putchar('@');
-      } else {
+      }
+      else if(d->monster[p[dim_y]][p[dim_x]].x != 0){
+	  putchar(d->monster[p[dim_y]][p[dim_x]].pic);
+	}
+      else {
         switch (mappair(p)) {
         case ter_wall:
         case ter_wall_immutable:
@@ -1086,3 +1094,23 @@ void render_tunnel_distance_map(dungeon_t *d)
     putchar('\n');
   }
 }
+
+
+/* Added by LC
+   Add monsters to the dungeon. */
+/*
+void place_monster(dungeon_t *d, int numMonsters) {
+  int i, x, y;
+
+  for (i = 0; i < numMonsters; i++){
+    x = rand() % 80;
+    y = rand() % 21;
+    while (d->map[x][y] != ter_floor_room){
+      x = rand() % 80;
+      y = rand() % 21;
+    }
+    d->monster[x][y].x = x;
+    d->monster[x][y].y = y;
+  }
+}
+*/
