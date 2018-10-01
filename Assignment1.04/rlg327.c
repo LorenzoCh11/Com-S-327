@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
+//Added by LC
+#include <math.h>
 
 /* Very slow seed: 686846853 */
 
 #include "dungeon.h"
 #include "path.h"
+
+
+ /* Variables added by Lorenzo Chavarria*/
+  uint32_t  numMonster = 10;
+ 
+
+
 
 void usage(char *name)
 {
@@ -18,6 +27,60 @@ void usage(char *name)
 }
 
 
+/* This is a comparator made for the heap.
+   added by LC */
+static int32_t monster_cmp(const void *key, const void *with) {
+  return ((player_t *) key)->turn - ((player_t *) with)->turn;
+}
+
+
+/* This is a heap added by LC */
+void movePlayers(dungeon_t *d){
+  heap_t character;
+  uint8_t pholder = 0;
+  uint8_t x, y;
+  uint8_t i;
+  struct player players[numMonster];
+
+  //For testing
+  struct player *temp;
+  d->pc.turn = 0;
+  players[pholder].turn = d->pc.turn;
+  players[pholder].id = pholder;
+
+  //gives the player an id
+  d->pc.id = pholder;
+ 
+ 
+  heap_init(&character,monster_cmp,  NULL);
+  heap_insert(&character, &players[pholder]);
+
+  pholder++;
+  
+  for(y = 0; y < DUNGEON_Y; y++){
+    for(x = 0; x < DUNGEON_X; x++){
+      if(d->monster[y][x].x != 0){
+	d->monster[y][x].id = pholder;
+	players[pholder].turn = d->monster[y][x].turn;
+	players[pholder].id = pholder;
+	heap_insert(&character, &players[pholder]);
+	pholder++;
+      }
+    }
+  }
+  
+  printf("ID:\n");
+  for(i = 0; i < numMonster; i++){
+    temp = heap_remove_min(&character);
+    printf("%u  ", temp->id);
+  }
+  //Testing the print
+  /*
+  temp = (uint8_t)heap_peek_min(&character);
+  printf("%u", temp);
+    printf("/n");
+  */
+}
 
 
 int main(int argc, char *argv[])
@@ -31,9 +94,6 @@ int main(int argc, char *argv[])
   char *save_file;
   char *load_file;
   char *pgm_file;
-
-  /* Variables added by Lorenzo Chavarria*/
-  uint32_t  numMonster;
 
 
   /* Quiet a false positive from valgrind. */
@@ -124,17 +184,14 @@ int main(int argc, char *argv[])
           break;
 	  /* Case added by LC */
         case 'n':
-          if ((!long_arg && argv[i][2]) ||
-              (long_arg && strcmp(argv[i], "-nummon"))) {
-            usage(argv[0]);
-          }
-	  // do_save = 1;
-          if ((argc > i + 1) && argv[i + 1][0] != '-') {
-	    sscanf(argv[i+1], "%u", &numMonster);
+	  if ((argc > i + 1) && argv[i + 1][0] != '-') {
+	    sscanf(argv[++i], "%u", &numMonster);
 	    printf("%u", numMonster);
 	    printf("\n");
-
           }
+	  else{
+	    numMonster = 10;
+	  }
           break;
         default:
           usage(argv[0]);
@@ -181,13 +238,15 @@ int main(int argc, char *argv[])
 
 
  /* This is added by LC */
-  //place_monster(&d, 10);
+  d.pc.speed = 10; 
+  d.pc.turn = 1000/d.pc.speed;
+
   int mon;
   uint8_t id;
 
   uint8_t x2, y2;
 
-  for (mon = 0; mon < 11; mon++){
+  for (mon = 0; mon < numMonster; mon++){
     x2 = rand() % 80;
     y2 = rand() % 21;
     while (d.map[y2][x2] != ter_floor_room){
@@ -195,11 +254,12 @@ int main(int argc, char *argv[])
      y2 = rand() % 21;
     }
 
-    id = rand() % 16;
+    id = (rand() % 16)+1;
 
     d.monster[y2][x2].x = x2;
     d.monster[y2][x2].y = y2;
     d.monster[y2][x2].speed = 5 + (rand() % 15);
+    d.monster[y2][x2].turn = 1000/d.monster[y2][x2].speed;
     d.monster[y2][x2].type = id;
 
     switch (id) {
@@ -256,9 +316,11 @@ int main(int argc, char *argv[])
 
   }
 
-
-
+  movePlayers(&d);
   render_dungeon(&d);
+
+
+
 
 
   dijkstra(&d);

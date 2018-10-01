@@ -39,7 +39,9 @@ typedef struct room {
 
 typedef struct pc {
   pair_t position;
-  int speed; //Was added by LC
+  uint8_t speed; //Was added by LC
+  uint32_t turn; //Added by LC
+  uint8_t id; //added by LC
 } pc_t;
 
 /* This was added by Lorenzo Chavarria */
@@ -49,7 +51,15 @@ typedef struct monster {
   int speed;
   uint8_t type;
   char pic;
+  uint32_t turn;
+  uint8_t id;
 } monster_t;
+
+typedef struct player{
+  uint8_t turn;
+  uint8_t id;
+  uint8_t speed;
+}player_t;
 
 typedef struct dungeon {
   uint32_t num_rooms;
