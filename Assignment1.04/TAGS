@@ -205,7 +205,7 @@ rlg327.c,128
 void usage(19,245
 static int32_t monster_cmp(32,517
 void movePlayers(38,681
-int main(86,1656
+int main(90,1767
 
 utils.c,25
 int makedirectory(9,124

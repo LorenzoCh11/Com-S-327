@@ -35,21 +35,20 @@ static int32_t monster_cmp(const void *key, const void *with) {
 
 
 /* This is a heap added by LC */
-void movePlayers(dungeon_t *d){
-  heap_t character;
+void movePlayers(dungeon_t *d, heap_t character){
   uint8_t pholder = 0;
   uint8_t x, y;
   uint8_t i;
-  struct player players[numMonster];
+  struct player players[numMonster+1];
 
   //For testing
   struct player *temp;
-  d->pc.turn = 0;
+  // d->pc.turn = 0;
   players[pholder].turn = d->pc.turn;
   players[pholder].id = pholder;
 
   //gives the player an id
-  d->pc.id = pholder;
+  //d->pc.id = pholder;
  
  
   heap_init(&character,monster_cmp,  NULL);
@@ -59,21 +58,26 @@ void movePlayers(dungeon_t *d){
   
   for(y = 0; y < DUNGEON_Y; y++){
     for(x = 0; x < DUNGEON_X; x++){
-      if(d->monster[y][x].x != 0){
-	d->monster[y][x].id = pholder;
+      if(d->monster[y][x].id > 0){
+	//	d->monster[y][x].id = pholder;
 	players[pholder].turn = d->monster[y][x].turn;
-	players[pholder].id = pholder;
+	players[pholder].id = d->monster[y][x].id;
 	heap_insert(&character, &players[pholder]);
 	pholder++;
       }
     }
   }
   
+
+ 
   printf("ID:\n");
-  for(i = 0; i < numMonster; i++){
+  for(i = 0; i < numMonster+1; i++){
     temp = heap_remove_min(&character);
+    d->pc.turn = 1000/d->pc.speed;
+    // d->pc.position[0] = d->pc.position[0] + 1;
     printf("%u  ", temp->id);
   }
+
   //Testing the print
   /*
   temp = (uint8_t)heap_peek_min(&character);
@@ -239,12 +243,16 @@ int main(int argc, char *argv[])
 
  /* This is added by LC */
   d.pc.speed = 10; 
-  d.pc.turn = 1000/d.pc.speed;
+  d.pc.turn = 0;
+  d.pc.id = 0;
 
   int mon;
-  uint8_t id;
+  uint8_t type;
+  uint8_t id = 1;
 
   uint8_t x2, y2;
+
+ heap_t character;
 
   for (mon = 0; mon < numMonster; mon++){
     x2 = rand() % 80;
@@ -254,15 +262,16 @@ int main(int argc, char *argv[])
      y2 = rand() % 21;
     }
 
-    id = (rand() % 16)+1;
+    type = (rand() % 16)+1;
 
     d.monster[y2][x2].x = x2;
     d.monster[y2][x2].y = y2;
     d.monster[y2][x2].speed = 5 + (rand() % 15);
-    d.monster[y2][x2].turn = 1000/d.monster[y2][x2].speed;
-    d.monster[y2][x2].type = id;
+    d.monster[y2][x2].turn = 0;
+    d.monster[y2][x2].id = id;
+    d.monster[y2][x2].type = type;
 
-    switch (id) {
+    switch (type) {
     case 1:
       d.monster[y2][x2].pic = 'a';
       break;
@@ -314,12 +323,11 @@ int main(int argc, char *argv[])
     }
 
 
+    id++;
   }
 
-  movePlayers(&d);
-  render_dungeon(&d);
-
-
+  // movePlayers(&d);
+  int c;
 
 
 
@@ -329,6 +337,15 @@ int main(int argc, char *argv[])
   render_tunnel_distance_map(&d);
   render_hardness_map(&d);
   render_movement_cost_map(&d);
+
+  for(c = 0; c<2;c++){
+
+  render_dungeon(&d);
+  movePlayers(&d, character);
+
+  }
+
+  
 
   if (do_save) {
     if (do_save_seed) {
