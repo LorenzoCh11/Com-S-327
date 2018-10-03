@@ -58,7 +58,6 @@ typedef struct monster {
 typedef struct player{
   uint8_t turn;
   uint8_t id;
-  uint8_t speed;
 }player_t;
 
 typedef struct dungeon {

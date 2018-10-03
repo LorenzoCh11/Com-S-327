@@ -34,15 +34,15 @@ static int32_t monster_cmp(const void *key, const void *with) {
 }
 
 
-/* This is a heap added by LC */
+/* This is a heap added by LC */ /*
 void movePlayers(dungeon_t *d, heap_t character){
   uint8_t pholder = 0;
   uint8_t x, y;
-  uint8_t i;
+  // uint8_t i;
   struct player players[numMonster+1];
 
   //For testing
-  struct player *temp;
+  // struct player *temp;
   // d->pc.turn = 0;
   players[pholder].turn = d->pc.turn;
   players[pholder].id = pholder;
@@ -62,7 +62,11 @@ void movePlayers(dungeon_t *d, heap_t character){
 	//	d->monster[y][x].id = pholder;
 	players[pholder].turn = d->monster[y][x].turn;
 	players[pholder].id = d->monster[y][x].id;
+
 	heap_insert(&character, &players[pholder]);
+
+	d->monster[y][x].turn = 1000 /d->monster[y][x].speed;
+	players[pholder].turn = d->monster[y][x].turn; 
 	pholder++;
       }
     }
@@ -70,21 +74,16 @@ void movePlayers(dungeon_t *d, heap_t character){
   
 
  
+  d->pc.turn = 1000/d->pc.speed;
+  
   printf("ID:\n");
   for(i = 0; i < numMonster+1; i++){
     temp = heap_remove_min(&character);
-    d->pc.turn = 1000/d->pc.speed;
-    // d->pc.position[0] = d->pc.position[0] + 1;
     printf("%u  ", temp->id);
   }
-
-  //Testing the print
-  /*
-  temp = (uint8_t)heap_peek_min(&character);
-  printf("%u", temp);
-    printf("/n");
   */
-}
+
+//}
 
 
 int main(int argc, char *argv[])
@@ -326,8 +325,9 @@ int main(int argc, char *argv[])
     id++;
   }
 
-  // movePlayers(&d);
-  int c;
+ 
+   int c;
+  
 
 
 
@@ -338,12 +338,54 @@ int main(int argc, char *argv[])
   render_hardness_map(&d);
   render_movement_cost_map(&d);
 
-  for(c = 0; c<2;c++){
+   for(c = 0; c<3;c++){
+  
+     uint8_t pholder = 0;
+     uint8_t x, y;
+     struct player players[numMonster+1];
 
-  render_dungeon(&d);
-  movePlayers(&d, character);
+ 
+     struct player *temp;
+     players[pholder].turn = d.pc.turn;
+     players[pholder].id = pholder;
 
-  }
+ 
+ 
+ 
+     heap_init(&character,monster_cmp,  NULL);
+     heap_insert(&character, &players[pholder]);
+
+     pholder++;
+  
+     for(y = 0; y < DUNGEON_Y; y++){
+       for(x = 0; x < DUNGEON_X; x++){
+	 if(d.monster[y][x].id > 0){
+	   players[pholder].turn = d.monster[y][x].turn;
+	   players[pholder].id = d.monster[y][x].id;
+
+	   heap_insert(&character, &players[pholder]);
+
+	   d.monster[y][x].turn = 1000 /d.monster[y][x].speed;
+	   players[pholder].turn = d.monster[y][x].turn; 
+	   pholder++;
+	 }
+       }
+     }
+  
+
+ 
+     d.pc.turn = 1000/d.pc.speed;
+  
+     printf("ID:\n");
+     for(i = 0; i < numMonster+1; i++){
+       temp = heap_remove_min(&character);
+       printf("%u  ", temp->id);
+     }
+
+     render_dungeon(&d);
+
+
+   }
 
   
 
