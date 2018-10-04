@@ -53,7 +53,7 @@ void render_movement_cost_map(1004,28689
 void render_distance_map(1026,29194
 void render_tunnel_distance_map(1062,30145
 
-dungeon.h,1570
+dungeon.h,1616
 # define DUNGEON_H2,18
 #define DUNGEON_X 8,98
 #define DUNGEON_Y 9,132
@@ -97,21 +97,23 @@ typedef struct monster 48,1156
   char pic;53,1236
   uint32_t turn;54,1248
   uint8_t id;55,1265
-} monster_t;56,1279
-typedef struct player{player58,1293
-  uint8_t turn;59,1316
-  uint8_t id;60,1332
-}player_t;player_t61,1346
-typedef struct dungeon 63,1358
-  uint32_t num_rooms;64,1383
-  room_t *rooms;rooms65,1405
-  terrain_type_t map[map66,1422
-  uint8_t hardness[hardness75,2075
-  uint8_t pc_distance[pc_distance76,2117
-  uint8_t pc_tunnel[pc_tunnel77,2162
-  pc_t pc;78,2205
-  monster_t monster[monster79,2216
-} dungeon_t;80,2282
+  uint8_t tun;56,1279
+} monster_t;57,1294
+typedef struct player{player59,1308
+  uint8_t turn;60,1331
+  uint8_t id;61,1347
+  uint8_t tun;62,1361
+}player_t;player_t63,1376
+typedef struct dungeon 65,1388
+  uint32_t num_rooms;66,1413
+  room_t *rooms;rooms67,1435
+  terrain_type_t map[map68,1452
+  uint8_t hardness[hardness77,2105
+  uint8_t pc_distance[pc_distance78,2147
+  uint8_t pc_tunnel[pc_tunnel79,2192
+  pc_t pc;80,2235
+  monster_t monster[monster81,2246
+} dungeon_t;82,2312
 
 heap.c,1009
 #undef min4,39
@@ -199,11 +201,13 @@ path.h,93
 # define HARDNESS_PER_TURN 4,32
 typedef struct dungeon dungeon_t;6,63
 
-rlg327.c,103
+rlg327.c,151
   uint32_t  numMonster 14,211
 void usage(19,245
 static int32_t monster_cmp(32,517
-int main(89,1723
+void moveMonster(39,734
+void movePC(119,2640
+int main(137,3280
 
 utils.c,25
 int makedirectory(9,124

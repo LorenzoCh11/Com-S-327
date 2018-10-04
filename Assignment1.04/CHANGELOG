@@ -1,0 +1,5 @@
+9/29:Decided to use the professors Solution from the last assignment, and have created a struct that represents monsters.
+9/30:Have successfully created the --nummon switch. Monsters are placed correctly with no known bugs. Have also started working on the heap that is in the Professors solution. This is going to be used for the PC and monsters. The heap had a few bugs.
+10/1:Got the heap to work, with no known bugs. Have also given each monster different charaacteristics.
+10/2:Attempted to make the PC move, and was unsuccessful.
+10/3: Was not able to get the monsters to move or the pc, kept getting segmentation errors.

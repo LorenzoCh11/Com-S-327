@@ -34,56 +34,104 @@ static int32_t monster_cmp(const void *key, const void *with) {
 }
 
 
-/* This is a heap added by LC */ /*
-void movePlayers(dungeon_t *d, heap_t character){
-  uint8_t pholder = 0;
-  uint8_t x, y;
-  // uint8_t i;
-  struct player players[numMonster+1];
+/* This changes the coordinates for a monster, allowing it to move.
+   Added by LC */
+void moveMonster(dungeon_t *d, uint8_t idnum){
+  uint8_t x2;
+  uint8_t y2;
+  uint8_t iny;
+  uint8_t inx;
+  int moved = 0;
+  int lowestplace = INT8_MAX;
 
-  //For testing
-  // struct player *temp;
-  // d->pc.turn = 0;
-  players[pholder].turn = d->pc.turn;
-  players[pholder].id = pholder;
 
-  //gives the player an id
-  //d->pc.id = pholder;
- 
- 
-  heap_init(&character,monster_cmp,  NULL);
-  heap_insert(&character, &players[pholder]);
+  //Find the monster that is going to move in the dungeon
+  for(y2 = 0; y2 < DUNGEON_Y; y2++){
+      for(x2 = 0; x2 < DUNGEON_X; x2++){
+	
 
-  pholder++;
-  
-  for(y = 0; y < DUNGEON_Y; y++){
-    for(x = 0; x < DUNGEON_X; x++){
-      if(d->monster[y][x].id > 0){
-	//	d->monster[y][x].id = pholder;
-	players[pholder].turn = d->monster[y][x].turn;
-	players[pholder].id = d->monster[y][x].id;
+	if(d->monster[y2][x2].id == idnum && moved == 0){
+        
+	  //checks left side
+	  if (d->pc_tunnel[y2][x2 - 1] < lowestplace){
+	    lowestplace = d->pc_tunnel[y2][x2 - 1];
+	    iny = 0;
+	    inx = -1;
+	  }
 
-	heap_insert(&character, &players[pholder]);
+	  // Checks top side 
+	  if (d->pc_tunnel[y2 - 1][x2] < lowestplace){
+	    lowestplace = d->pc_tunnel[y2 - 1][x2];
+	    iny = -1;
+	    inx = 0;
+	  }
 
-	d->monster[y][x].turn = 1000 /d->monster[y][x].speed;
-	players[pholder].turn = d->monster[y][x].turn; 
-	pholder++;
+	  // Checks right side 
+	  if (d->pc_tunnel[y2][x2 + 1] < lowestplace){
+	   lowestplace = d->pc_tunnel[y2][x2 + 1];
+	    iny = 0;
+	    inx = 1;
+	  }
+
+	  // Checks bot side 
+	  if (d->pc_tunnel[y2 + 1][x2] < lowestplace){
+	    lowestplace = d->pc_tunnel[y2 + 1][x2];
+	    iny = 1;
+	    inx = 0;
+	  }
+
+	  d->monster[y2 + iny][x2 + inx].y = d->monster[y2][x2].y;
+	  d->monster[y2 + iny][x2 + inx].x = d->monster[y2][x2].x;
+	  d->monster[y2 + iny][x2 + inx].speed = d->monster[y2][x2].speed;
+	  d->monster[y2 + iny][x2 + inx].turn = d->monster[y2][x2].turn;
+	  d->monster[y2 + iny][x2 + inx].id = d->monster[y2][x2].id;
+	  d->monster[y2 + iny][x2 + inx].type = d->monster[y2][x2].type;
+	  d->monster[y2 + iny][x2 + inx].tun = d->monster[y2][x2].tun; 
+	  d->monster[y2 + iny][x2 + inx].pic = d->monster[y2][x2].pic;
+
+	  d->monster[y2][x2].id = 0;
+	  d->monster[y2][x2].pic = '.';
+	  d->monster[y2][x2].x = 0;
+	  d->monster[y2][x2].y = 0;
+	  d->monster[y2][x2].speed = 0;
+	  d->monster[y2][x2].turn = 0;
+	  d->monster[y2][x2].tun = 0;
+	  d->monster[y2][x2].type = 0;
+	  //-------------------------------------------------
+	  
+	  moved = 1;
+	}
+
+	
+	
       }
+  
+  }
+  
+    
+
+}
+
+
+
+/* This changes the coordinates for pc, allowing it to move.
+   Added by LC */ 
+void movePC(dungeon_t *d){
+  
+    if(d->map[d->pc.position[dim_y] - 1][d->pc.position[dim_x]] == ter_floor_room){
+      d->pc.position[dim_y] = d->pc.position[dim_y] - 1;
     }
-  }
+    else if(d->map[d->pc.position[dim_y] + 1][d->pc.position[dim_x]] == ter_floor_room){
+      d->pc.position[dim_y] = d->pc.position[dim_y] + 1;
+    }
+    else if(d->map[d->pc.position[dim_y]][d->pc.position[dim_x] - 1] == ter_floor_room){
+      d->pc.position[dim_x] = d->pc.position[dim_x] - 1;
+    }
+    else if(d->map[d->pc.position[dim_y]][d->pc.position[dim_x] + 1] == ter_floor_room){
+      d->pc.position[dim_x] = d->pc.position[dim_x] + 1;
+    }
   
-
- 
-  d->pc.turn = 1000/d->pc.speed;
-  
-  printf("ID:\n");
-  for(i = 0; i < numMonster+1; i++){
-    temp = heap_remove_min(&character);
-    printf("%u  ", temp->id);
-  }
-  */
-
-//}
+}
 
 
 int main(int argc, char *argv[])
@@ -240,7 +288,7 @@ int main(int argc, char *argv[])
  
 
 
- /* This is added by LC */
+ /*----------- This is added by LC ---------------------------------------------------------------*/
   d.pc.speed = 10; 
   d.pc.turn = 0;
   d.pc.id = 0;
@@ -251,7 +299,7 @@ int main(int argc, char *argv[])
 
   uint8_t x2, y2;
 
- heap_t character;
+  heap_t character;
 
   for (mon = 0; mon < numMonster; mon++){
     x2 = rand() % 80;
@@ -269,6 +317,7 @@ int main(int argc, char *argv[])
     d.monster[y2][x2].turn = 0;
     d.monster[y2][x2].id = id;
     d.monster[y2][x2].type = type;
+    d.monster[y2][x2].tun = rand() % 1; ///debug
 
     switch (type) {
     case 1:
@@ -326,7 +375,7 @@ int main(int argc, char *argv[])
   }
 
  
-   int c;
+  //  int c;
   
 
 
@@ -338,7 +387,7 @@ int main(int argc, char *argv[])
   render_hardness_map(&d);
   render_movement_cost_map(&d);
 
-   for(c = 0; c<3;c++){
+  // for(c = 0; c<3;c++){
   
      uint8_t pholder = 0;
      uint8_t x, y;
@@ -362,6 +411,7 @@ int main(int argc, char *argv[])
 	 if(d.monster[y][x].id > 0){
 	   players[pholder].turn = d.monster[y][x].turn;
 	   players[pholder].id = d.monster[y][x].id;
+	   players[pholder].tun = d.monster[y][x].tun;
 
 	   heap_insert(&character, &players[pholder]);
 
@@ -376,14 +426,24 @@ int main(int argc, char *argv[])
  
      d.pc.turn = 1000/d.pc.speed;
   
-     printf("ID:\n");
+    
      for(i = 0; i < numMonster+1; i++){
        temp = heap_remove_min(&character);
+       printf("ID:\n");
        printf("%u  ", temp->id);
-     }
 
-     render_dungeon(&d);
+       if(temp->id == 0){
+	 movePC(&d);
+       }
+       // else{
+	 // moveMonster(&d, temp->id);
+	 // }
 
+
+       render_dungeon(&d);
+       // }
+
+   
 
    }
 
@@ -417,4 +477,5 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
 

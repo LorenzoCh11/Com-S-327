@@ -1,0 +1,3 @@
+Assignment 1.04- Lorenzo Chavarria
+
+For this assignment monsters were added to the dungeon. These monsters were placed in random spots thoough out rooms. The number of monsters was determined by a switch that was added called --nummon. I nummon was called by itself then 10 monsters would be place else the number inputted next to --nummon would determine the number of monsters. My attempt to make the monsters move, as well as the PC, was by inserting each one into a heap that was available through the Professors past solution. Each time a monster would pop out then it would move, and the process would repeat.

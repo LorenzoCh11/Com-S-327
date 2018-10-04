@@ -53,11 +53,13 @@ typedef struct monster {
   char pic;
   uint32_t turn;
   uint8_t id;
+  uint8_t tun;
 } monster_t;
 
 typedef struct player{
   uint8_t turn;
   uint8_t id;
+  uint8_t tun;
 }player_t;
 
 typedef struct dungeon {
