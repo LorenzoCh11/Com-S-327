@@ -198,9 +198,51 @@ uint32_t in_corner(dungeon_t *d, character_t *c)
 //Changed by LC uint32_t to void
 void move_pc(dungeon_t *d, character_t *c, int incry, int incrx)
 {
+  
+  pair_t next;
+  next[dim_y] = c->position[dim_y] + incry;
+  next[dim_x] = c->position[dim_x] + incrx;
+
+  if (charpair(next) &&
+      ((next[dim_y] != c->position[dim_y]) ||
+       (next[dim_x] != c->position[dim_x]))) {
+    do_combat(d, c, charpair(next));
+  } else {
+     
+
   d->character[c->position[dim_y]][c->position[dim_x]] = NULL;
-  c->position[dim_y] += incry;
-  c->position[dim_x] += incrx;
+  if(d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_debug && 
+     d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_wall &&
+     d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_wall_immutable){
+    c->position[dim_y] += incry;
+    c->position[dim_x] += incrx;
+  }
+  else{
+    c->position[dim_y] = c->position[dim_y];
+    c->position[dim_x] = c->position[dim_x];
+  }
+
   d->character[c->position[dim_y]][c->position[dim_x]] = c;
+
+  }
+
+  /*
+  //This makes sure that it stays in a room or hall
+  d->character[c->position[dim_y]][c->position[dim_x]] = NULL;
+  if(d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_debug && 
+     d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_wall &&
+     d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_wall_immutable &&
+     d->map[c->position[dim_y ] +incry][c->position[dim_x] + incrx] != ter_floor){
+    c->position[dim_y] += incry;
+    c->position[dim_x] += incrx;
+  }
+  else{
+    c->position[dim_y] = c->position[dim_y];
+    c->position[dim_x] = c->position[dim_x];
+  }
+
+  d->character[c->position[dim_y]][c->position[dim_x]] = c;
+
+  */
   
 }
