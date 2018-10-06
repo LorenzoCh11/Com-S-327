@@ -12,6 +12,30 @@
 #include "npc.h"
 #include "move.h"
 
+
+/* Added by LC */
+void makeStairs(dungeon_t *d){
+  uint8_t x, y;
+  uint8_t x2,y2;
+    x = rand() % 80;
+    y = rand() % 21;
+    while (d->map[y][x] != ter_floor_room){
+     x = rand() % 80;
+     y = rand() % 21;
+    }
+    d->map[y][x] = ter_stair_up;
+
+    x2 = rand() % 80;
+    y2 = rand() % 21;
+    while (d->map[y2][x2] != ter_floor_room){
+     x2 = rand() % 80;
+     y2 = rand() % 21;
+    }
+
+    d->map[y2][x2] = ter_stair_down;
+
+}
+
 const char *victory =
   "\n                                       o\n"
   "                                      $\"\"$o\n"
@@ -219,6 +243,31 @@ int main(int argc, char *argv[])
 
 
   /* This was added by Lorenzo Chavarria */
+
+
+  
+  /*
+  uint8_t x, y;
+  uint8_t x2,y2;
+    x = rand() % 80;
+    y = rand() % 21;
+    while (d.map[y][x] != ter_floor_room){
+     x = rand() % 80;
+     y = rand() % 21;
+    }
+    d.map[y][x] = ter_stair_up;
+
+    x2 = rand() % 80;
+    y2 = rand() % 21;
+    while (d.map[y2][x2] != ter_floor_room){
+     x2 = rand() % 80;
+     y2 = rand() % 21;
+    }
+
+    d.map[y2][x2] = ter_stair_down;
+  */
+   makeStairs(&d);
+
   initscr();
   noecho();
   refresh();
@@ -229,6 +278,25 @@ int main(int argc, char *argv[])
 
     render_dungeon(&d);
     key = getch();
+    if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_up && key == ','){ //without '<' being shifted
+      pc_delete(d.pc.pc);
+      delete_dungeon(&d);
+      init_dungeon(&d);
+      gen_dungeon(&d);
+      config_pc(&d);
+      gen_monsters(&d);
+      makeStairs(&d);
+    }
+    if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_down && key == '.'){//without '>'  being shifted
+      pc_delete(d.pc.pc);
+      delete_dungeon(&d);
+      init_dungeon(&d);
+      gen_dungeon(&d);
+      config_pc(&d);
+      gen_monsters(&d);
+      makeStairs(&d);
+    }
+		  
     do_moves(&d, key);
     // usleep(33000);
     //key = getch();

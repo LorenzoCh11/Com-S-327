@@ -611,6 +611,15 @@ void render_dungeon(dungeon_t *d){
 	  mvprintw(p[dim_y],p[dim_x],"*");
           fprintf(stderr, "Debug character at %d, %d\n", p[dim_y], p[dim_x]);
           break;
+	  //Added by LC 
+      	case ter_stair_down:
+	  // putchar('*');
+	  mvprintw(p[dim_y],p[dim_x],">");
+          break;
+	case ter_stair_up:
+	  // putchar('*');
+	  mvprintw(p[dim_y],p[dim_x],"<"); 
+          break;
         }
       }
     }
@@ -1061,6 +1070,12 @@ void render_distance_map(dungeon_t *d)
           fprintf(stderr, "Debug character at %d, %d\n", p[dim_y], p[dim_x]);
           putchar('*');
           break;
+	case ter_stair_up:
+	  putchar('<');
+	  break;
+	case ter_stair_down:
+	  putchar('>');
+	  break;
         }
       }
     }
@@ -1097,6 +1112,12 @@ void render_tunnel_distance_map(dungeon_t *d)
           fprintf(stderr, "Debug character at %d, %d\n", p[dim_y], p[dim_x]);
           putchar('*');
           break;
+	case ter_stair_up:
+	  putchar('<');
+	  break;
+	case ter_stair_down:
+	  putchar('>');
+	  break;
         }
       }
     }
