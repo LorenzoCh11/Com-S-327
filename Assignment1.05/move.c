@@ -14,6 +14,8 @@
 #include "path.h"
 #include "event.h"
 
+#include "ncurses.h"
+
 void do_combat(dungeon_t *d, character_t *atk, character_t *def)
 {
   if (def->alive) {
@@ -43,7 +45,7 @@ void move_character(dungeon_t *d, character_t *c, pair_t next)
   }
 }
 
-void do_moves(dungeon_t *d)
+void do_moves(dungeon_t *d, int key)
 {
   pair_t next;
   character_t *c;
@@ -103,13 +105,47 @@ void do_moves(dungeon_t *d)
      * and recreated every time we leave and re-enter this function.    */
     e->c = NULL;
     event_delete(e);
-    pc_next_pos(d, next);
-    next[dim_x] += c->position[dim_x];
-    next[dim_y] += c->position[dim_y];
-    if (mappair(next) <= ter_floor) {
-      mappair(next) = ter_floor_hall;
+    // pc_next_pos(d, next);
+    // next[dim_x] += c->position[dim_x];
+    //next[dim_y] += c->position[dim_y];
+    // if (mappair(next) <= ter_floor) {
+    // mappair(next) = ter_floor_hall;
+    // }
+
+    //Added by LC
+    //Changed move_character(d, c, next);
+    // move_pc(d, c, key);
+    //top-left
+     if (key == 'y' || key == '7'){
+      move_pc(d, c, -1, -1);
     }
-    move_character(d, c, next);
+     else if (key == 'k' || key == '8'){
+      move_pc(d, c, -1, 0);
+    }
+    // top-right
+    else if (key == 'u' || key == '9'){
+      move_pc(d, c, -1, 1);
+    }
+    // right
+    else if (key == 'l' || key == '6'){
+      move_pc(d, c, 0, 1);
+    }
+    // bot-right
+    else if (key == 'n' || key == '3'){
+      move_pc(d, c, 1, 1);
+    }
+    // bot
+    else if (key == 'j' || key == '2'){
+      move_pc(d, c, 1, 0);
+    }
+    // bot-left
+    else if (key == 'b' || key == '1'){
+      move_pc(d, c, 1, -1);
+    }
+    // left
+    else if (key == 'h' || key == '4'){
+      move_pc(d, c, 0, -1);
+    }
 
     dijkstra(d);
     dijkstra_tunnel(d);
@@ -158,7 +194,13 @@ uint32_t in_corner(dungeon_t *d, character_t *c)
   return num_immutable > 1;
 }
 
-uint32_t move_pc(dungeon_t *d, uint32_t dir)
+
+//Changed by LC uint32_t to void
+void move_pc(dungeon_t *d, character_t *c, int incry, int incrx)
 {
-  return 1;
+  d->character[c->position[dim_y]][c->position[dim_x]] = NULL;
+  c->position[dim_y] += incry;
+  c->position[dim_x] += incrx;
+  d->character[c->position[dim_y]][c->position[dim_x]] = c;
+  
 }

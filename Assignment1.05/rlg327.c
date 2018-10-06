@@ -223,14 +223,15 @@ int main(int argc, char *argv[])
   noecho();
   refresh();
 
-  int key = NULL;
+  char key = 'a';
 
   while (pc_is_alive(&d) && dungeon_has_npcs(&d) && key != 'q') {
 
     render_dungeon(&d);
-    do_moves(&d);
-    // usleep(33000);
     key = getch();
+    do_moves(&d, key);
+    // usleep(33000);
+    //key = getch();
   }
 
   endwin();
