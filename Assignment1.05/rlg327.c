@@ -245,27 +245,7 @@ int main(int argc, char *argv[])
   /* This was added by Lorenzo Chavarria */
 
 
-  
-  /*
-  uint8_t x, y;
-  uint8_t x2,y2;
-    x = rand() % 80;
-    y = rand() % 21;
-    while (d.map[y][x] != ter_floor_room){
-     x = rand() % 80;
-     y = rand() % 21;
-    }
-    d.map[y][x] = ter_stair_up;
 
-    x2 = rand() % 80;
-    y2 = rand() % 21;
-    while (d.map[y2][x2] != ter_floor_room){
-     x2 = rand() % 80;
-     y2 = rand() % 21;
-    }
-
-    d.map[y2][x2] = ter_stair_down;
-  */
    makeStairs(&d);
 
   initscr();
@@ -287,7 +267,7 @@ int main(int argc, char *argv[])
       gen_monsters(&d);
       makeStairs(&d);
     }
-    if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_down && key == '.'){//without '>'  being shifted
+    else if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_down && key == '.'){//without '>'  being shifted
       pc_delete(d.pc.pc);
       delete_dungeon(&d);
       init_dungeon(&d);
@@ -296,13 +276,91 @@ int main(int argc, char *argv[])
       gen_monsters(&d);
       makeStairs(&d);
     }
-		  
+    else if(key == 'm'){
+
+
+      int row, col;
+      int monholder = 0;
+      character_t *mon[MAX_MONSTERS];
+      for(row = 0; row < DUNGEON_Y; row++){
+	  for(col = 0; col < DUNGEON_X; col++){
+	    if(d.character[row][col] != NULL && d.character[row][col]->symbol != '@')
+	      {
+		 mon[monholder] = d.character[row][col];
+	         monholder++;
+	      }
+	     
+	  }
+      }
+
+
+
+      while(key != 'q' && key != 27){
+	int i;
+	int pholder = 2; //this was 2
+	int distancey;
+      	int distancex;
+	char dirns;
+	char dirwe;
+	WINDOW * win = newwin(21, 80, 0, 0);
+	box(win, 0, 0);
+	mvwprintw(win, 1, 1, "You Know of these monsters:");
+	//wrefresh(win); //check placement of this code
+
+	for(i = 0; i < MAX_MONSTERS; i++){
+	 
+	  mvwprintw( win, pholder, 1,"%c", mon[i]->symbol);
+
+	  distancey = d.pc.position[dim_y] - mon[i]->position[dim_y];
+	  distancex = d.pc.position[dim_x] - mon[i]->position[dim_x];
+
+		 //checks for direction: north or south
+		 if(distancey < 0){
+		   distancey = abs(distancey);
+		   dirns = 'S';
+		 }
+		 else
+		 {
+		   distancey = distancey;
+		   dirns = 'N';
+		 }
+		 //checks for direction; west or east
+		 if(distancex < 0){
+		   distancex = abs(distancex);
+		   dirwe = 'E';
+		 }
+		 else
+		 {
+		   distancex = distancex;
+		   dirwe = 'W';
+		 }
+
+		 mvwprintw(win, pholder, 3, "%c", dirns);
+		 mvwprintw(win, pholder, 6,"%d", distancey);
+
+		 mvwprintw(win, pholder, 9, "%c", dirwe);
+		 mvwprintw(win, pholder, 12,"%d", distancex);
+
+		 pholder++;
+	     	      
+	      
+       }
+	wrefresh(win); //check placement of this code
+	
+	key = getch();
+      }
+      endwin();
+    }
+    else{		  
     do_moves(&d, key);
-    // usleep(33000);
-    //key = getch();
+    }
+
   }
 
   endwin();
+
+
+
 
   render_dungeon(&d);
 
