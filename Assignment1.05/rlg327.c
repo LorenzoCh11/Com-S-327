@@ -242,22 +242,59 @@ int main(int argc, char *argv[])
   gen_monsters(&d);
 
 
+//makes array of the monsters
+    int row, col;
+    int monholder = 0;
+    character_t *mon[d.max_monsters];
+    for(row = 0; row < DUNGEON_Y; row++){
+	for(col = 0; col < DUNGEON_X; col++){
+	  if(d.character[row][col] != NULL && d.character[row][col]->symbol != '@')
+	  {
+	    mon[monholder] = d.character[row][col];
+	    monholder++;
+	  }
+	     
+	}
+    }
+
+
+
   /* This was added by Lorenzo Chavarria */
 
 
 
-   makeStairs(&d);
+  makeStairs(&d);
+
 
   initscr();
   noecho();
   refresh();
 
+
+
+ 
+
+
+
+
+
+
   char key = 'a';
 
   while (pc_is_alive(&d) && dungeon_has_npcs(&d) && key != 'q') {
 
+   
+
+
+
     render_dungeon(&d);
     key = getch();
+
+
+   
+
+
+
     if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_up && key == ','){ //without '<' being shifted
       pc_delete(d.pc.pc);
       delete_dungeon(&d);
@@ -278,41 +315,26 @@ int main(int argc, char *argv[])
     }
     else if(key == 'm'){
 
-
-      int row, col;
-      int monholder = 0;
-      character_t *mon[MAX_MONSTERS];
-      for(row = 0; row < DUNGEON_Y; row++){
-	  for(col = 0; col < DUNGEON_X; col++){
-	    if(d.character[row][col] != NULL && d.character[row][col]->symbol != '@')
-	      {
-		 mon[monholder] = d.character[row][col];
-	         monholder++;
-	      }
-	     
-	  }
-      }
-
-
-
-      while(key != 'q' && key != 27){
-	int i;
-	int pholder = 2; //this was 2
-	int distancey;
-      	int distancex;
-	char dirns;
-	char dirwe;
 	WINDOW * win = newwin(21, 80, 0, 0);
 	box(win, 0, 0);
 	mvwprintw(win, 1, 1, "You Know of these monsters:");
-	//wrefresh(win); //check placement of this code
 
-	for(i = 0; i < MAX_MONSTERS; i++){
+
+	//keeps track of which monsters to print
+	//	int scroll = 0;
+	int mnum;
+	int pholder = 2; //this was 2
+	int distancey;
+	int distancex;
+	char dirns = NULL;
+	char dirwe = NULL;
+
+
+	for(mnum = 0; mnum < d.max_monsters; mnum++){
 	 
-	  mvwprintw( win, pholder, 1,"%c", mon[i]->symbol);
-
-	  distancey = d.pc.position[dim_y] - mon[i]->position[dim_y];
-	  distancex = d.pc.position[dim_x] - mon[i]->position[dim_x];
+	         mvwprintw( win, pholder, 1,"%c", mon[mnum]->symbol);
+	         distancey = d.pc.position[dim_y] - mon[mnum]->position[dim_y];
+	         distancex = d.pc.position[dim_x] - mon[mnum]->position[dim_x];
 
 		 //checks for direction: north or south
 		 if(distancey < 0){
@@ -341,15 +363,16 @@ int main(int argc, char *argv[])
 		 mvwprintw(win, pholder, 9, "%c", dirwe);
 		 mvwprintw(win, pholder, 12,"%d", distancex);
 
-		 pholder++;
-	     	      
-	      
-       }
+		 pholder++;  
+	        
+	}
 	wrefresh(win); //check placement of this code
-	
-	key = getch();
-      }
-      endwin();
+
+	while(key != 27 && key != 'q'){
+	  key = getch();
+	}
+
+
     }
     else{		  
     do_moves(&d, key);
