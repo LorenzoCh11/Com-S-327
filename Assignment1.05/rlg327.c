@@ -272,8 +272,8 @@ int main(int argc, char *argv[])
 
 
 
- 
-
+  //keeps track of which monsters to print
+  int scroll = 0;
 
 
 
@@ -284,16 +284,8 @@ int main(int argc, char *argv[])
   while (pc_is_alive(&d) && dungeon_has_npcs(&d) && key != 'q') {
 
    
-
-
-
     render_dungeon(&d);
     key = getch();
-
-
-   
-
-
 
     if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_up && key == ','){ //without '<' being shifted
       pc_delete(d.pc.pc);
@@ -315,22 +307,37 @@ int main(int argc, char *argv[])
     }
     else if(key == 'm'){
 
+      while( key != 27 && key != 'q'){
+
 	WINDOW * win = newwin(21, 80, 0, 0);
 	box(win, 0, 0);
 	mvwprintw(win, 1, 1, "You Know of these monsters:");
 
+	//Enables arrows
+	keypad(win, TRUE);
 
-	//keeps track of which monsters to print
-	//	int scroll = 0;
 	int mnum;
-	int pholder = 2; //this was 2
+	int pholder = 2; 
 	int distancey;
 	int distancex;
 	char dirns = NULL;
 	char dirwe = NULL;
 
+	if(d.max_monsters > 19){
 
-	for(mnum = 0; mnum < d.max_monsters; mnum++){
+	  if(key == 258 && scroll + 19 < d.max_monsters){
+	    scroll++;
+	  }
+
+	  if(key == 259 && scroll > 0){
+	    scroll--;
+	  }
+
+
+	}
+
+
+	for(mnum = scroll; mnum < d.max_monsters; mnum++){
 	 
 	         mvwprintw( win, pholder, 1,"%c", mon[mnum]->symbol);
 	         distancey = d.pc.position[dim_y] - mon[mnum]->position[dim_y];
@@ -366,12 +373,12 @@ int main(int argc, char *argv[])
 		 pholder++;  
 	        
 	}
+
 	wrefresh(win); //check placement of this code
-
-	while(key != 27 && key != 'q'){
-	  key = getch();
-	}
-
+	key = wgetch(win);
+      }
+     
+      endwin();
 
     }
     else{		  
