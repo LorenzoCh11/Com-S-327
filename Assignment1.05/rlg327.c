@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <ncurses.h>
+#include <curses.h>
 
 /* Very slow seed: 686846853 */
 
@@ -35,6 +36,24 @@ void makeStairs(dungeon_t *d){
     d->map[y2][x2] = ter_stair_down;
 
 }
+
+
+int isValidKey(int key){
+  char validChar[] = {'y','7','k','8','u','9','l','6','n','3','j','2','b','1','h','4',32,'5'};
+  int i;
+
+  for (i = 0; i < 18; i++){
+    if (validChar[i] == key){
+      return 1;
+    }
+  }
+   
+    return 0;
+  
+}
+
+/* Added by LC */
+
 
 const char *victory =
   "\n                                       o\n"
@@ -241,14 +260,14 @@ int main(int argc, char *argv[])
   config_pc(&d);
   gen_monsters(&d);
 
-
+  
 //makes array of the monsters
     int row, col;
     int monholder = 0;
     character_t *mon[d.max_monsters];
     for(row = 0; row < DUNGEON_Y; row++){
 	for(col = 0; col < DUNGEON_X; col++){
-	  if(d.character[row][col] != NULL && d.character[row][col]->symbol != '@')
+	  if(d.character[row][col] != NULL && d.character[row][col] != &d.pc)
 	  {
 	    mon[monholder] = d.character[row][col];
 	    monholder++;
@@ -256,7 +275,7 @@ int main(int argc, char *argv[])
 	     
 	}
     }
-
+ 
 
 
   /* This was added by Lorenzo Chavarria */
@@ -316,20 +335,27 @@ int main(int argc, char *argv[])
 	//Enables arrows
 	keypad(win, TRUE);
 
+
+
+
+
+
+
+
 	int mnum;
 	int pholder = 2; 
-	int distancey;
-	int distancex;
+	int distancey = 0;
+	int distancex = 0;
 	char dirns = NULL;
 	char dirwe = NULL;
 
 	if(d.max_monsters > 19){
 
-	  if(key == 258 && scroll + 19 < d.max_monsters){
+	  if(key == 3 && scroll + 19 < d.max_monsters){
 	    scroll++;
 	  }
 
-	  if(key == 259 && scroll > 0){
+	  if(key == 2 && scroll > 0){
 	    scroll--;
 	  }
 
@@ -376,13 +402,16 @@ int main(int argc, char *argv[])
 
 	wrefresh(win); //check placement of this code
 	key = wgetch(win);
+  
       }
      
       endwin();
 
     }
-    else{		  
-    do_moves(&d, key);
+    else{
+      if( isValidKey(key) == 1){		  
+	do_moves(&d, key);
+      }
     }
 
   }
@@ -417,12 +446,16 @@ int main(int argc, char *argv[])
       free(save_file);
     }
   }
-
-  printf("%s", pc_is_alive(&d) ? victory : tombstone);
-  printf("You defended your life in the face of %u deadly beasts.\n"
-         "You avenged the cruel and untimely murders of %u "
-         "peaceful dungeon residents.\n",
-         d.pc.kills[kill_direct], d.pc.kills[kill_avenged]);
+  if( key != 'q'){
+    printf("%s", pc_is_alive(&d) ? victory : tombstone);
+    printf("You defended your life in the face of %u deadly beasts.\n"
+	   "You avenged the cruel and untimely murders of %u "
+	   "peaceful dungeon residents.\n",
+	   d.pc.kills[kill_direct], d.pc.kills[kill_avenged]);
+  }
+  else{
+    printf("You quit. Game Over. \n");
+  }
 
   pc_delete(d.pc.pc);
 
