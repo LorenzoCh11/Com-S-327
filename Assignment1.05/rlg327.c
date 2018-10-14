@@ -261,7 +261,8 @@ int main(int argc, char *argv[])
   gen_monsters(&d);
 
   
-//makes array of the monsters
+  /*
+  //makes array of the monsters
     int row, col;
     int monholder = 0;
     character_t *mon[d.max_monsters];
@@ -276,7 +277,7 @@ int main(int argc, char *argv[])
 	}
     }
  
-
+  */
 
   /* This was added by Lorenzo Chavarria */
 
@@ -336,7 +337,20 @@ int main(int argc, char *argv[])
 	keypad(win, TRUE);
 
 
-
+	//Creates a temporary array that holds each monster
+	int row, col;
+	int monholder = 0;
+	character_t *mon[d.num_monsters];
+	for(row = 0; row < DUNGEON_Y; row++){
+	  for(col = 0; col < DUNGEON_X; col++){
+	    if(d.character[row][col] != NULL && d.character[row][col] != &d.pc)
+	      {
+		mon[monholder] = d.character[row][col];
+		monholder++;
+	      }
+	     
+	  }
+	}
 
 
 
@@ -351,7 +365,7 @@ int main(int argc, char *argv[])
 
 	if(d.max_monsters > 19){
 
-	  if(key == 3 && scroll + 19 < d.max_monsters){
+	  if(key == 3 && scroll + 19 < d.num_monsters){
 	    scroll++;
 	  }
 
@@ -363,7 +377,7 @@ int main(int argc, char *argv[])
 	}
 
 
-	for(mnum = scroll; mnum < d.max_monsters; mnum++){
+	for(mnum = scroll; mnum < d.num_monsters; mnum++){
 	 
 	         mvwprintw( win, pholder, 1,"%c", mon[mnum]->symbol);
 	         distancey = d.pc.position[dim_y] - mon[mnum]->position[dim_y];
