@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
     render_dungeon(&d);
     key = getch();
 
-    if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_up && key == ','){ //without '<' being shifted
+    if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_up && key == '<'){ //without '<' being shifted
       pc_delete(d.pc.pc);
       delete_dungeon(&d);
       init_dungeon(&d);
@@ -316,7 +316,7 @@ int main(int argc, char *argv[])
       gen_monsters(&d);
       makeStairs(&d);
     }
-    else if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_down && key == '.'){//without '>'  being shifted
+    else if(d.map[d.pc.position[dim_y]][d.pc.position[dim_x]] == ter_stair_down && key == '>'){//without '>'  being shifted
       pc_delete(d.pc.pc);
       delete_dungeon(&d);
       init_dungeon(&d);
@@ -379,7 +379,7 @@ int main(int argc, char *argv[])
 
 	for(mnum = scroll; mnum < d.num_monsters; mnum++){
 	 
-	         mvwprintw( win, pholder, 1,"%c", mon[mnum]->symbol);
+	         mvwprintw( win, pholder, 1,"%c :", mon[mnum]->symbol);
 	         distancey = d.pc.position[dim_y] - mon[mnum]->position[dim_y];
 	         distancex = d.pc.position[dim_x] - mon[mnum]->position[dim_x];
 
@@ -404,11 +404,25 @@ int main(int argc, char *argv[])
 		   dirwe = 'W';
 		 }
 
-		 mvwprintw(win, pholder, 3, "%c", dirns);
-		 mvwprintw(win, pholder, 6,"%d", distancey);
+		 //This prints out he direction(NORTH or SOUTH) in the menu
+		 if(dirns == 'N'){
+		   //mvwprintw(win, pholder, 6, "%c", dirns);
+		   mvwprintw(win, pholder, 6, "NORTH");
+		 }
+		 else{
+		   mvwprintw(win, pholder, 6, "SOUTH");
+		 }
+		 mvwprintw(win, pholder, 12,"%d", distancey);
 
-		 mvwprintw(win, pholder, 9, "%c", dirwe);
-		 mvwprintw(win, pholder, 12,"%d", distancex);
+		 //This prints out the direction(EAST or WEST) in the menu
+		 if(dirwe == 'E'){
+		   // mvwprintw(win, pholder, 18, "%c", dirwe);
+		   mvwprintw(win, pholder, 18, "EAST");
+		 }
+		 else{
+		   mvwprintw(win, pholder, 18, "WEST");
+		 }
+		 mvwprintw(win, pholder, 24,"%d", distancex);
 
 		 pholder++;  
 	        
