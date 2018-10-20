@@ -1,0 +1,81 @@
+commit 813ba2bd89afce610796f26d01b1483439893920
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Oct 16 13:31:35 2018 -0500
+
+    Assignment is complete.
+    
+     Assignment is compleate. Everything seems to be working correctly in the dungeon and each thing that the menu prints is correct with no known bugs.
+
+commit a1caa3b142c8e928bd3e68c19c672c0a6c4f5606
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 14 11:40:31 2018 -0500
+
+    Have finished the scrolling in the menu
+    
+    Am able to scroll through the monster list when it is a bigger size then can be shown in the window. There are no known bugs.
+
+commit e6acf4743e98a1221ebaa6ff562296cd18bf37b1
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 14 11:23:32 2018 -0500
+
+    Finished the scrolling
+
+commit 3f3586021c08c9fd91aeac16064f4fa4884d426c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 13 13:36:53 2018 -0500
+
+    Progress on the scroll
+    
+    Was able to get the scroll in my monster box to work with different keys than the arrow keys. Just need to fix that.
+
+commit 4c9a05c426dee84f9e366b3512895d8d5604fdcf
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 8 16:39:42 2018 -0500
+
+    Got the character arrays fixed
+    
+    was able to fix the way that the menu prints out characters when the 'm' key is pressed with no known bugs. Just need to add the scroll to the menu.
+
+commit e90f8ac0745e5be75e99318dd936987af2f9767c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 22:47:09 2018 -0500
+
+    Got the monster list to work
+    
+    Was able to get the monster log to work. Just need to add the scrool method.
+
+commit 729e85c2da6fca73b70db68e7ad2f32f7bf0503b
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 18:38:55 2018 -0500
+
+    Made Stairs
+    
+    Was able to generate random stairs and the PC was able to generate random dungeon when on top of either one
+
+commit 00c1c1b79f82df447db1ddeeca75bc5276e97b91
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 17:35:51 2018 -0500
+
+     Can move pc
+    
+    Can move the pc correctly. PC statys in room or corridor and PC can kill monsters.
+
+commit d6b34e58a8d80e7a9a4720648792aa9365afedb7
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 16:05:30 2018 -0500
+
+    PC can move with keys
+    
+     Was able to make the pc move when the correct key is press. There is a bug where the PC can go outside corridors or room and another bug is that the pc cannot kill monsters.
+
+commit 0852ac34a1a73454f413a810bf4eb4743df5a194
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 12:20:01 2018 -0500
+
+    Printed map with ncurses
+    
+    Was able to print out the map when a key was pressed
+
+commit df7bfc99cc34cf2b6d5b1d4636dfa19805cc4426
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 3 21:43:21 2018 -0500

@@ -1,0 +1,3 @@
+Assignment 1.05- Lorenzo Chavarria
+
+For this assignment only one grid is printed out instead of many. Each time it is the pc turns, it can only move by a user input. Stairs were also implemented in the dungeon by shown by '<' and '>'. Whenever the pc is on top of one of these and those keys are used by the user a new dungeon will be generated. The user can also hit the 'q' key which would allow him to quit the current game. Another feature that was added was the menu. A user can press the 'm' key and a menu will pop up in top of the dungeon that shows the direction and the number of units that each monster is compared to the pc.
