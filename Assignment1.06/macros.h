@@ -86,7 +86,7 @@ extern "C" {
    }                                                                       \
 /*   dmalloc(_tmp);*/                                                      \
    bzero(_tmp, size);                                                      \
-   _tmp;                                                                   \
+   (char*)_tmp;								\
 })
 
 #  define calloc(nmemb, size) ({                                           \
@@ -101,7 +101,7 @@ extern "C" {
      exit(1);                                                              \
    }                                                                       \
 /*   dmalloc(_tmp);*/                                                      \
-   _tmp;                                                                   \
+   (heap_node_t*) _tmp;							\
 })
 
 #  define strdup(s) ({                                                     \
