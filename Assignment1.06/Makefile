@@ -15,7 +15,7 @@ all: $(BIN) etags
 
 $(BIN): $(OBJS)
 	@$(ECHO) Linking $@
-	@$(CC) $^ -o $@ $(LDFLAGS)
+	@$(CCXX) $^ -o $@ $(LDFLAGS)
 
 -include $(OBJS:.o=.d)
 
