@@ -158,8 +158,8 @@ void io_display_hardness(dungeon_t *d)
 
 static int compare_monster_distance(const void *v1, const void *v2)
 {
-  const character_t *const *c1 = (const character_t* const*)v1;
-  const character_t *const *c2 = (const character_t* const*)v2;
+  const character_t *const *c1 = (const Character* const*)v1;
+  const character_t *const *c2 = (const Character* const*)v2;
 
   return (dungeon->pc_distance[(*c1)->position[dim_y]][(*c1)->position[dim_x]] -
           dungeon->pc_distance[(*c2)->position[dim_y]][(*c2)->position[dim_x]]);

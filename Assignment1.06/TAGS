@@ -1,5 +1,5 @@
 
-character.h,553
+character.h,663
 # define CHARACTER_H2,20
 typedef struct dungeon dungeon_t;8,84
 typedef struct npc npc_t;9,118
@@ -10,16 +10,15 @@ typedef enum kill_type 13,199
   kill_avenged,15,239
   num_kill_types16,255
 } kill_type_t;17,272
-typedef struct character 19,288
-  char symbol;20,315
-  pair_t position;21,330
-  int32_t speed;22,349
-  uint32_t alive;23,366
-  uint32_t sequence_number;31,931
-  npc_t *npc;npc32,959
-  pc_t *pc;pc33,973
-  uint32_t kills[kills34,985
-} character_t;35,1019
+class Character 51,1308
+   char symbol;Character::symbol53,1335
+  pair_t position;Character::position54,1351
+  int32_t speed;Character::speed55,1370
+  uint32_t alive;Character::alive56,1387
+  uint32_t sequence_number;Character::sequence_number64,1952
+  npc_t *npc;Character::npc65,1980
+  pc_t *pc;Character::pc66,1994
+  uint32_t kills[Character::kills67,2006
 
 dims.h,147
 # define DIMS_H2,15
@@ -30,7 +29,7 @@ typedef enum dim 7,190
 } dim_t;11,238
 typedef int16_t pair_t[pair_t13,248
 
-dungeon.h,1556
+dungeon.h,1552
 # define DUNGEON_H2,18
 #define DUNGEON_X 9,122
 #define DUNGEON_Y 10,156
@@ -75,20 +74,20 @@ typedef struct dungeon 49,1253
   uint8_t hardness[hardness61,1970
   uint8_t pc_distance[pc_distance62,2012
   uint8_t pc_tunnel[pc_tunnel63,2057
-  character_t *character[character64,2100
-  character_t pc;65,2148
-  heap_t events;66,2166
-  uint16_t num_monsters;67,2183
-  uint16_t max_monsters;68,2208
-  uint32_t character_sequence_number;69,2233
-  uint32_t time;75,2657
-  uint32_t is_new;76,2674
-  uint32_t quit;77,2693
-} dungeon_t;78,2710
+  Character *character[character64,2100
+  Character pc;65,2146
+  heap_t events;66,2162
+  uint16_t num_monsters;67,2179
+  uint16_t max_monsters;68,2204
+  uint32_t character_sequence_number;69,2229
+  uint32_t time;75,2653
+  uint32_t is_new;76,2670
+  uint32_t quit;77,2689
+} dungeon_t;78,2706
 
 event.h,307
 # define EVENT_H2,16
-typedef struct character character_t;8,79
+typedef struct Character character_t;8,79
 typedef enum event_type 10,118
   event_character_turn,11,144
 } event_type_t;12,168
@@ -142,7 +141,7 @@ macros.h,611
 move.h,104
 # define MOVE_H2,15
 typedef struct dungeon dungeon_t;8,74
-typedef struct character character_t;9,108
+typedef struct Character character_t;9,108
 
 npc.h,1235
 # define NPC_H2,14
@@ -180,7 +179,7 @@ npc.h,1235
 # define NPC_BIT31 39,1250
 # define has_characteristic(41,1289
 typedef struct dungeon dungeon_t;44,1399
-typedef struct character character_t;45,1433
+typedef struct Character character_t;45,1433
 typedef uint32_t npc_characteristics_t;46,1471
 typedef struct npc 48,1512
   npc_characteristics_t characteristics;49,1533
