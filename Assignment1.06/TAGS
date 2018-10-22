@@ -1,0 +1,205 @@
+
+character.h,553
+# define CHARACTER_H2,20
+typedef struct dungeon dungeon_t;8,84
+typedef struct npc npc_t;9,118
+typedef struct pc pc_t;10,144
+typedef struct dice_t dice_t;11,168
+typedef enum kill_type 13,199
+  kill_direct,14,224
+  kill_avenged,15,239
+  num_kill_types16,255
+} kill_type_t;17,272
+typedef struct character 19,288
+  char symbol;20,315
+  pair_t position;21,330
+  int32_t speed;22,349
+  uint32_t alive;23,366
+  uint32_t sequence_number;31,931
+  npc_t *npc;npc32,959
+  pc_t *pc;pc33,973
+  uint32_t kills[kills34,985
+} character_t;35,1019
+
+dims.h,147
+# define DIMS_H2,15
+typedef enum dim 7,190
+  dim_x,8,209
+  dim_y,9,218
+  num_dims10,227
+} dim_t;11,238
+typedef int16_t pair_t[pair_t13,248
+
+dungeon.h,1556
+# define DUNGEON_H2,18
+#define DUNGEON_X 9,122
+#define DUNGEON_Y 10,156
+#define MIN_ROOMS 11,190
+#define MAX_ROOMS 12,223
+#define ROOM_MIN_X 13,256
+#define ROOM_MIN_Y 14,289
+#define ROOM_MAX_X 15,322
+#define ROOM_MAX_Y 16,356
+#define VISUAL_RANGE 17,389
+#define PC_SPEED 18,423
+#define MAX_MONSTERS 19,457
+#define SAVE_DIR 20,491
+#define DUNGEON_SAVE_FILE 21,532
+#define DUNGEON_SAVE_SEMANTIC 22,573
+#define DUNGEON_SAVE_VERSION 23,619
+#define mappair(25,654
+#define mapxy(26,711
+#define hardnesspair(27,746
+#define hardnessxy(28,813
+#define charpair(29,858
+#define charxy(30,922
+typedef enum __attribute__ ((__packed__)) terrain_type 32,965
+  ter_debug,33,1022
+  ter_wall,34,1035
+  ter_wall_immutable,35,1047
+  ter_floor,36,1069
+  ter_floor_room,37,1082
+  ter_floor_hall,38,1100
+  ter_stairs,39,1118
+  ter_stairs_up,40,1132
+  ter_stairs_down41,1149
+} terrain_type_t;42,1167
+typedef struct room 44,1186
+  pair_t position;45,1208
+  pair_t size;46,1227
+} room_t;47,1242
+typedef struct dungeon 49,1253
+  uint32_t num_rooms;50,1278
+  room_t *rooms;rooms51,1300
+  terrain_type_t map[map52,1317
+  uint8_t hardness[hardness61,1970
+  uint8_t pc_distance[pc_distance62,2012
+  uint8_t pc_tunnel[pc_tunnel63,2057
+  character_t *character[character64,2100
+  character_t pc;65,2148
+  heap_t events;66,2166
+  uint16_t num_monsters;67,2183
+  uint16_t max_monsters;68,2208
+  uint32_t character_sequence_number;69,2233
+  uint32_t time;75,2657
+  uint32_t is_new;76,2674
+  uint32_t quit;77,2693
+} dungeon_t;78,2710
+
+event.h,307
+# define EVENT_H2,16
+typedef struct character character_t;8,79
+typedef enum event_type 10,118
+  event_character_turn,11,144
+} event_type_t;12,168
+typedef struct event 14,185
+  event_type_t type;15,208
+  uint32_t time;16,229
+  uint32_t sequence;17,246
+    character_t *c;c19,277
+} event_t;21,302
+
+heap.h,245
+# define HEAP_H2,15
+typedef struct heap_node heap_node_t;11,114
+typedef struct heap 13,153
+  heap_node_t *min;min14,175
+  uint32_t size;15,195
+  int32_t (*compare)compare16,212
+  void (*datum_delete)datum_delete17,269
+} heap_t;18,301
+
+io.h,58
+# define IO_H2,13
+typedef struct dungeon dungeon_t;4,28
+
+macros.h,611
+# define MACROS_H2,17
+#  define dprintf(16,213
+#  define dfprintf(17,256
+#  define dprintf(19,320
+#  define dfprintf(20,343
+# define fieldwidth(23,382
+# define exit(37,1201
+# define fopen(42,1441
+#  define malloc(76,3348
+#  define calloc(92,4378
+#  define strdup(107,5338
+#  define free(117,5958
+# define swap(125,6206
+# define memswap(131,6318
+# define structdup(137,6446
+# define datacmp(144,6830
+# define max2(153,7303
+# define min2(160,7479
+# define max 167,7655
+# define min 168,7673
+# define max3(170,7692
+# define min3(171,7733
+# define frand(173,7775
+# define structdup(180,7887
+
+move.h,104
+# define MOVE_H2,15
+typedef struct dungeon dungeon_t;8,74
+typedef struct character character_t;9,108
+
+npc.h,1235
+# define NPC_H2,14
+# define NPC_SMART 8,72
+# define NPC_TELEPATH 9,110
+# define NPC_TUNNEL 10,148
+# define NPC_ERRATIC 11,186
+# define NPC_BIT04 12,224
+# define NPC_BIT05 13,262
+# define NPC_BIT06 14,300
+# define NPC_BIT07 15,338
+# define NPC_BIT08 16,376
+# define NPC_BIT09 17,414
+# define NPC_BIT10 18,452
+# define NPC_BIT11 19,490
+# define NPC_BIT12 20,528
+# define NPC_BIT13 21,566
+# define NPC_BIT14 22,604
+# define NPC_BIT15 23,642
+# define NPC_BIT16 24,680
+# define NPC_BIT17 25,718
+# define NPC_BIT18 26,756
+# define NPC_BIT19 27,794
+# define NPC_BIT20 28,832
+# define NPC_BIT21 29,870
+# define NPC_BIT22 30,908
+# define NPC_BIT23 31,946
+# define NPC_BIT24 32,984
+# define NPC_BIT25 33,1022
+# define NPC_BIT26 34,1060
+# define NPC_BIT27 35,1098
+# define NPC_BIT28 36,1136
+# define NPC_BIT29 37,1174
+# define NPC_BIT30 38,1212
+# define NPC_BIT31 39,1250
+# define has_characteristic(41,1289
+typedef struct dungeon dungeon_t;44,1399
+typedef struct character character_t;45,1433
+typedef uint32_t npc_characteristics_t;46,1471
+typedef struct npc 48,1512
+  npc_characteristics_t characteristics;49,1533
+  uint32_t have_seen_pc;50,1574
+  pair_t pc_last_known_position;51,1599
+} npc_t;53,1633
+
+path.h,93
+# define PATH_H2,15
+# define HARDNESS_PER_TURN 4,32
+typedef struct dungeon dungeon_t;6,63
+
+pc.h,99
+# define PC_H2,13
+typedef struct dungeon dungeon_t;8,70
+typedef struct pc 10,105
+} pc_t;11,125
+
+utils.h,77
+# define UTILS_H2,16
+# define rand_under(6,147
+# define rand_range(10,290
