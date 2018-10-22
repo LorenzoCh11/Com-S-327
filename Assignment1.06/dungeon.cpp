@@ -16,12 +16,22 @@
 
 #define DUMP_HARDNESS_IMAGES 0
 
+
+
 typedef struct corridor_path {
   heap_node_t *hn;
   uint8_t pos[2];
   uint8_t from[2];
   int32_t cost;
 } corridor_path_t;
+
+
+
+
+
+
+
+
 
 static uint32_t adjacent_to_room(dungeon_t *d, int16_t y, int16_t x)
 {
@@ -242,7 +252,7 @@ static void dijkstra_corridor_inv(dungeon_t *d, pair_t from, pair_t to)
 /* Chooses a random point inside each room and connects them with a *
  * corridor.  Random internal points prevent corridors from exiting *
  * rooms in predictable locations.                                  */
-static int connect_two_rooms(dungeon_t *d, room_t *r1, room_t *r2)
+static int connect_two_rooms(dungeon_t *d, Room *r1, Room *r2)
 {
   pair_t e1, e2;
 
@@ -515,7 +525,7 @@ static int place_rooms(dungeon_t *d)
   pair_t p;
   uint32_t i;
   int success;
-  room_t *r;
+  Room *r;
 
   for (success = 0; !success; ) {
     success = 1;
@@ -576,7 +586,7 @@ static int make_rooms(dungeon_t *d)
   for (i = MIN_ROOMS; i < MAX_ROOMS && rand_under(6, 8); i++)
     ;
   d->num_rooms = i;
-  d->rooms = (room_t*)malloc(sizeof (*d->rooms) * d->num_rooms);
+  d->rooms = (Room*)malloc(sizeof (*d->rooms) * d->num_rooms);
 
   for (i = 0; i < d->num_rooms; i++) {
     d->rooms[i].size[dim_x] = ROOM_MIN_X;
@@ -878,7 +888,7 @@ int read_dungeon(dungeon_t *d, char *file)
   
   read_dungeon_map(d, f);
   d->num_rooms = calculate_num_rooms(buf.st_size);
-  d->rooms = (room_t*)malloc(sizeof (*d->rooms) * d->num_rooms);
+  d->rooms = (Room*)malloc(sizeof (*d->rooms) * d->num_rooms);
   read_rooms(d, f);
 
   fclose(f);
@@ -933,7 +943,7 @@ int read_pgm(dungeon_t *d, char *pgm)
       }
     }
   }
-  d->rooms = (room_t*)malloc(sizeof (*d->rooms) * d->num_rooms);
+  d->rooms = (Room*)malloc(sizeof (*d->rooms) * d->num_rooms);
 
   for (i = 0, y = 0; y < DUNGEON_Y - 2; y++) {
     for (x = 0; x < DUNGEON_X - 2; x++) {

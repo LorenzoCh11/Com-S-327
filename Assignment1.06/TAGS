@@ -29,7 +29,7 @@ typedef enum dim 7,190
 } dim_t;11,238
 typedef int16_t pair_t[pair_t13,248
 
-dungeon.h,1552
+dungeon.h,1778
 # define DUNGEON_H2,18
 #define DUNGEON_X 9,122
 #define DUNGEON_Y 10,156
@@ -63,27 +63,26 @@ typedef enum __attribute__ ((__packed__)) terrain_type 32,965
   ter_stairs_up,40,1132
   ter_stairs_down41,1149
 } terrain_type_t;42,1167
-typedef struct room 44,1186
-  pair_t position;45,1208
-  pair_t size;46,1227
-} room_t;47,1242
-typedef struct dungeon 49,1253
-  uint32_t num_rooms;50,1278
-  room_t *rooms;rooms51,1300
-  terrain_type_t map[map52,1317
-  uint8_t hardness[hardness61,1970
-  uint8_t pc_distance[pc_distance62,2012
-  uint8_t pc_tunnel[pc_tunnel63,2057
-  Character *character[character64,2100
-  Character pc;65,2146
-  heap_t events;66,2162
-  uint16_t num_monsters;67,2179
-  uint16_t max_monsters;68,2204
-  uint32_t character_sequence_number;69,2229
-  uint32_t time;75,2653
-  uint32_t is_new;76,2670
-  uint32_t quit;77,2689
-} dungeon_t;78,2706
+class Room{Room51,1259
+  pair_t position;Room::position53,1280
+  pair_t size;Room::size54,1299
+typedef struct dungeon 57,1318
+  uint32_t num_rooms;dungeon::num_rooms58,1343
+  Room *rooms;dungeon::rooms59,1365
+  terrain_type_t map[dungeon::map60,1380
+  uint8_t hardness[dungeon::hardness69,2033
+  uint8_t pc_distance[dungeon::pc_distance70,2075
+  uint8_t pc_tunnel[dungeon::pc_tunnel71,2120
+  Character *character[dungeon::character72,2163
+  Character pc;dungeon::pc73,2209
+  heap_t events;dungeon::events74,2225
+  uint16_t num_monsters;dungeon::num_monsters75,2242
+  uint16_t max_monsters;dungeon::max_monsters76,2267
+  uint32_t character_sequence_number;dungeon::character_sequence_number77,2292
+  uint32_t time;dungeon::time83,2716
+  uint32_t is_new;dungeon::is_new84,2733
+  uint32_t quit;dungeon::quit85,2752
+} dungeon_t;86,2769
 
 event.h,307
 # define EVENT_H2,16

@@ -41,14 +41,22 @@ typedef enum __attribute__ ((__packed__)) terrain_type {
   ter_stairs_down
 } terrain_type_t;
 
+/*
 typedef struct room {
   pair_t position;
   pair_t size;
 } room_t;
+*/
+
+class Room{
+ public:
+  pair_t position;
+  pair_t size;
+};
 
 typedef struct dungeon {
   uint32_t num_rooms;
-  room_t *rooms;
+  Room *rooms;
   terrain_type_t map[DUNGEON_Y][DUNGEON_X];
   /* Since hardness is usually not used, it would be expensive to pull it *
    * into cache every time we need a map cell, so we store it in a        *
