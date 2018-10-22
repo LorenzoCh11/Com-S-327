@@ -18,7 +18,7 @@
 void do_combat(dungeon_t *d, character_t *atk, character_t *def)
 {
   int can_see_atk, can_see_def;
-  char *organs[] = {
+  const char *organs[] = {
     "liver",                   /*  0 */
     "pancreas",                /*  1 */
     "heart",                   /*  2 */
@@ -130,7 +130,7 @@ void do_moves(dungeon_t *d)
     /* The PC always goes first one a tie, so we don't use new_event().  *
      * We generate one manually so that we can set the PC sequence       *
      * number to zero.                                                   */
-    e = malloc(sizeof (*e));
+    e = (event_t*)malloc(sizeof (*e));
     e->type = event_character_turn;
     /* Hack: New dungeons are marked.  Unmark and ensure PC goes at d->time, *
      * otherwise, monsters get a turn before the PC.                         */
@@ -146,7 +146,7 @@ void do_moves(dungeon_t *d)
   }
 
   while (pc_is_alive(d) &&
-         (e = heap_remove_min(&d->events)) &&
+         (e = (event_t*)heap_remove_min(&d->events)) &&
          ((e->type != event_character_turn) || (e->c != &d->pc))) {
     d->time = e->time;
     if (e->type == event_character_turn) {
@@ -243,7 +243,7 @@ uint32_t move_pc(dungeon_t *d, uint32_t dir)
 {
   pair_t next;
   uint32_t was_stairs = 0;
-  char *wallmsg[] = {
+ const char *wallmsg[] = {
     "There's a wall in the way.",
     "BUMP!",
     "Ouch!",
