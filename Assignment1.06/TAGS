@@ -95,15 +95,12 @@ class event_t 25,320
   uint32_t sequence;event_t::sequence29,383
     character_t *c;event_t::c31,414
 
-heap.h,245
+heap.h,163
 # define HEAP_H2,15
 typedef struct heap_node heap_node_t;11,114
-typedef struct heap 13,153
-  heap_node_t *min;min14,175
-  uint32_t size;15,195
-  int32_t (*compare)compare16,212
-  void (*datum_delete)datum_delete17,269
-} heap_t;18,301
+class heap_t 23,323
+  heap_node_t *min;heap_t::min25,347
+  uint32_t size;heap_t::size26,367
 
 io.h,58
 # define IO_H2,13
@@ -178,11 +175,11 @@ npc.h,1235
 typedef struct dungeon dungeon_t;44,1399
 typedef struct Character character_t;45,1433
 typedef uint32_t npc_characteristics_t;46,1471
-typedef struct npc 48,1512
-  npc_characteristics_t characteristics;49,1533
-  uint32_t have_seen_pc;50,1574
-  pair_t pc_last_known_position;51,1599
-} npc_t;53,1633
+typedef struct npc 49,1513
+  npc_characteristics_t characteristics;50,1534
+  uint32_t have_seen_pc;51,1575
+  pair_t pc_last_known_position;52,1600
+} npc_t;54,1634
 
 path.h,93
 # define PATH_H2,15

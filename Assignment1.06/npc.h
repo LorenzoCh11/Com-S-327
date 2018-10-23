@@ -45,12 +45,15 @@ typedef struct dungeon dungeon_t;
 typedef struct Character character_t;
 typedef uint32_t npc_characteristics_t;
 
+
 typedef struct npc {
   npc_characteristics_t characteristics;
   uint32_t have_seen_pc;
   pair_t pc_last_known_position;
 
 } npc_t;
+
+
 
 void gen_monsters(dungeon_t *d);
 void npc_delete(npc_t *n);
