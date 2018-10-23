@@ -1,2 +1,2 @@
-io.o: io.cpp io.h move.h dims.h path.h pc.h utils.h dungeon.h heap.h \
- macros.h character.h
+io.o: io.cpp io.h move.h dims.h path.h pc.h character.h utils.h dungeon.h \
+ heap.h macros.h

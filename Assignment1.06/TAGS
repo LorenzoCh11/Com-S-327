@@ -185,11 +185,10 @@ path.h,93
 # define HARDNESS_PER_TURN 4,32
 typedef struct dungeon dungeon_t;6,63
 
-pc.h,99
+pc.h,76
 # define PC_H2,13
-typedef struct dungeon dungeon_t;8,70
-typedef struct pc 10,105
-} pc_t;11,125
+typedef struct dungeon dungeon_t;9,107
+class pc 17,178
 
 utils.h,77
 # define UTILS_H2,16
