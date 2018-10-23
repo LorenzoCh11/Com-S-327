@@ -137,49 +137,48 @@ move.h,104
 typedef struct dungeon dungeon_t;8,74
 typedef struct Character character_t;9,108
 
-npc.h,1235
+npc.h,1278
 # define NPC_H2,14
-# define NPC_SMART 8,72
-# define NPC_TELEPATH 9,110
-# define NPC_TUNNEL 10,148
-# define NPC_ERRATIC 11,186
-# define NPC_BIT04 12,224
-# define NPC_BIT05 13,262
-# define NPC_BIT06 14,300
-# define NPC_BIT07 15,338
-# define NPC_BIT08 16,376
-# define NPC_BIT09 17,414
-# define NPC_BIT10 18,452
-# define NPC_BIT11 19,490
-# define NPC_BIT12 20,528
-# define NPC_BIT13 21,566
-# define NPC_BIT14 22,604
-# define NPC_BIT15 23,642
-# define NPC_BIT16 24,680
-# define NPC_BIT17 25,718
-# define NPC_BIT18 26,756
-# define NPC_BIT19 27,794
-# define NPC_BIT20 28,832
-# define NPC_BIT21 29,870
-# define NPC_BIT22 30,908
-# define NPC_BIT23 31,946
-# define NPC_BIT24 32,984
-# define NPC_BIT25 33,1022
-# define NPC_BIT26 34,1060
-# define NPC_BIT27 35,1098
-# define NPC_BIT28 36,1136
-# define NPC_BIT29 37,1174
-# define NPC_BIT30 38,1212
-# define NPC_BIT31 39,1250
-# define has_characteristic(41,1289
-typedef struct dungeon dungeon_t;44,1399
-typedef struct Character character_t;45,1433
-typedef uint32_t npc_characteristics_t;46,1471
-typedef struct npc 49,1513
-  npc_characteristics_t characteristics;50,1534
-  uint32_t have_seen_pc;51,1575
-  pair_t pc_last_known_position;52,1600
-} npc_t;54,1634
+# define NPC_SMART 9,96
+# define NPC_TELEPATH 10,134
+# define NPC_TUNNEL 11,172
+# define NPC_ERRATIC 12,210
+# define NPC_BIT04 13,248
+# define NPC_BIT05 14,286
+# define NPC_BIT06 15,324
+# define NPC_BIT07 16,362
+# define NPC_BIT08 17,400
+# define NPC_BIT09 18,438
+# define NPC_BIT10 19,476
+# define NPC_BIT11 20,514
+# define NPC_BIT12 21,552
+# define NPC_BIT13 22,590
+# define NPC_BIT14 23,628
+# define NPC_BIT15 24,666
+# define NPC_BIT16 25,704
+# define NPC_BIT17 26,742
+# define NPC_BIT18 27,780
+# define NPC_BIT19 28,818
+# define NPC_BIT20 29,856
+# define NPC_BIT21 30,894
+# define NPC_BIT22 31,932
+# define NPC_BIT23 32,970
+# define NPC_BIT24 33,1008
+# define NPC_BIT25 34,1046
+# define NPC_BIT26 35,1084
+# define NPC_BIT27 36,1122
+# define NPC_BIT28 37,1160
+# define NPC_BIT29 38,1198
+# define NPC_BIT30 39,1236
+# define NPC_BIT31 40,1274
+# define has_characteristic(42,1313
+typedef struct dungeon dungeon_t;45,1423
+typedef struct Character character_t;46,1457
+typedef uint32_t npc_characteristics_t;47,1495
+class npc 59,1674
+  npc_characteristics_t characteristics;npc::characteristics61,1714
+  uint32_t have_seen_pc;npc::have_seen_pc62,1755
+  pair_t pc_last_known_position;npc::pc_last_known_position63,1780
 
 path.h,93
 # define PATH_H2,15
