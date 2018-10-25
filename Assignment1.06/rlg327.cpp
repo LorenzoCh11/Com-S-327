@@ -85,6 +85,8 @@ int main(int argc, char *argv[])
   char *save_file;
   char *load_file;
   char *pgm_file;
+  //added by LC
+  pc pd;
 
   /* Quiet a false positive from valgrind. */
   memset(&d, 0, sizeof (d));
@@ -213,15 +215,19 @@ int main(int argc, char *argv[])
   /* Ignoring PC position in saved dungeons.  Not a bug. */
   config_pc(&d);
   gen_monsters(&d);
-
-  io_display(&d);
+  //added by LC
+  init_pc_dungeon(&pd, &d);
+  //edited by LC
+  io_display(&pd,&d);
   if (!do_load && !do_image) {
     io_queue_message("Seed is %u.", seed);
   }
   while (pc_is_alive(&d) && dungeon_has_npcs(&d) && !d.quit) {
-    do_moves(&d);
+    //edited by LC
+    do_moves(&pd, &d);
   }
-  io_display(&d);
+  //edited by LC
+  io_display(&pd, &d);
 
   io_reset_terminal();
 

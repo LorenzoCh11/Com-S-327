@@ -1043,3 +1043,28 @@ void new_dungeon(dungeon_t *d)
 
   gen_monsters(d);
 }
+
+void init_pc_dungeon(pc *pd, dungeon_t *d){
+  int row, col;
+  for(row=0; row < 21; row++){
+    for(col=0; col < 80; col++){
+      if(row <= d->pc.position[dim_y] + 2 && row >= d->pc.position[dim_y] - 2 &&
+	 col <= d->pc.position[dim_x] + 2 && col >= d->pc.position[dim_x] - 2){
+	pd->pc_dungeon[row][col] = d->map[row][col];
+      }
+      else{
+	pd->pc_dungeon[row][col] = ter_wall_immutable;
+      }
+    }
+  }
+}
+
+
+void update_pc_dungeon(pc *pd, dungeon_t *d){
+  int row, col;
+  for(row=d->pc.position[dim_y] - 2; row < d->pc.position[dim_y] + 2; row++){
+    for(col=d->pc.position[dim_x] - 2; col < d->pc.position[dim_x] + 2; col++){
+      pd->pc_dungeon[row][col] = d->map[row][col];
+    }
+  }   
+}

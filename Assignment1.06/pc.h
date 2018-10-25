@@ -4,6 +4,9 @@
 # include <stdint.h>
 //Added By LC
 # include "character.h"
+#include "dungeon.h"
+
+
 # include "dims.h"
 
 typedef struct dungeon dungeon_t;
@@ -15,6 +18,8 @@ typedef struct pc {
 */
 
 class pc : public Character{
+ public:
+  terrain_type pc_dungeon[21][80];
 };
 
 

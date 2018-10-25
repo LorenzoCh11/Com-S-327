@@ -133,6 +133,9 @@ void render_dungeon(dungeon_t *d);
 int write_dungeon(dungeon_t *d, char *file);
 int read_dungeon(dungeon_t *d, char *file);
 int read_pgm(dungeon_t *d, char *pgm);
+//added by LC 
+void init_pc_dungeon(pc *pd, dungeon_t *d);
+void update_pc_dungeon(pc *pd, dungeon_t *d);
 
 
 

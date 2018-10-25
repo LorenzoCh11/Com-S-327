@@ -102,9 +102,10 @@ class heap_t 23,323
   heap_node_t *min;heap_t::min25,347
   uint32_t size;heap_t::size26,367
 
-io.h,58
+io.h,87
 # define IO_H2,13
 typedef struct dungeon dungeon_t;4,28
+typedef struct pc pc_t;5,62
 
 macros.h,611
 # define MACROS_H2,17
@@ -132,10 +133,11 @@ macros.h,611
 # define frand(173,7775
 # define structdup(180,7887
 
-move.h,104
+move.h,135
 # define MOVE_H2,15
 typedef struct dungeon dungeon_t;8,74
 typedef struct Character character_t;9,108
+typedef struct pc pc_t;11,160
 
 npc.h,1278
 # define NPC_H2,14
@@ -185,10 +187,11 @@ path.h,93
 # define HARDNESS_PER_TURN 4,32
 typedef struct dungeon dungeon_t;6,63
 
-pc.h,76
+pc.h,126
 # define PC_H2,13
-typedef struct dungeon dungeon_t;9,107
-class pc 17,178
+typedef struct dungeon dungeon_t;12,130
+class pc 20,201
+  terrain_type pc_dungeon[pc::pc_dungeon22,239
 
 utils.h,77
 # define UTILS_H2,16

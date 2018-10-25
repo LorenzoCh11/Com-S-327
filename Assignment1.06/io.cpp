@@ -13,6 +13,9 @@
 /* Same ugly hack we did in path.c */
 static dungeon_t *dungeon;
 
+//edded by lc
+int fog = 1;
+
 typedef struct io_message {
   /* Will print " --more-- " at end of line when another message follows. *
    * Leave 10 extra spaces for that.                                      */
@@ -197,11 +200,13 @@ static character_t *io_nearest_visible_monster(dungeon_t *d)
   return n;
 }
 
-void io_display(dungeon_t *d)
+//Edited by LC
+void io_display(pc_t *pd, dungeon_t *d)
 {
   uint32_t y, x;
   character_t *c;
-
+  //added by LC
+  if(fog == 0){
   clear();
   for (y = 0; y < 21; y++) {
     for (x = 0; x < 80; x++) {
@@ -234,6 +239,49 @@ void io_display(dungeon_t *d)
   * not otherwise used.                                                 */
           mvaddch(y + 1, x, '0');
         }
+      }
+    }
+  }
+  }
+  else
+  {
+    clear();
+    for (y = 0; y < 21; y++) {
+      for (x = 0; x < 80; x++) {
+	if (d->character[y][x] && (signed)y == d->pc.position[dim_y] && (signed)x == d->pc.position[dim_x]) {
+	  mvaddch(y + 1, x, d->character[y][x]->symbol);
+	} else {
+
+	  switch (pd->pc_dungeon[y][x]) {
+	  case ter_wall:
+	  case ter_wall_immutable:
+	    mvaddch(y + 1, x, ' ');
+	    break;
+	  case ter_floor:
+	  case ter_floor_room:
+	    mvaddch(y + 1, x, '.');
+	    break;
+	  case ter_floor_hall:
+	    mvaddch(y + 1, x, '#');
+	    break;
+	  case ter_debug:
+	    mvaddch(y + 1, x, '*');
+	    break;
+	  case ter_stairs_up:
+	    mvaddch(y + 1, x, '<');
+	    break;
+	  case ter_stairs_down:
+	    mvaddch(y + 1, x, '>');
+	    break;
+	  default:
+	    /* Use zero as an error symbol, since it stands out somewhat, and it's *
+	     * not otherwise used.                                                 */
+	    mvaddch(y + 1, x, '0');
+	  }
+
+
+
+	}
       }
     }
   }
@@ -275,11 +323,112 @@ void io_display_monster_list(dungeon_t *d)
   getch();
 }
 
-uint32_t io_teleport_pc(dungeon_t *d)
+uint32_t io_teleport_pc(pc_t *pd, dungeon_t *d)
 {
   /* Just for fun. */
   pair_t dest;
 
+  int done = 0;
+  int key;
+  dest[dim_y] = d->pc.position[dim_y] +1;
+  dest[dim_x] = d->pc.position[dim_x];
+
+  while(done == 0){
+//places the cursor on the map 
+    mvaddch(dest[dim_y], dest[dim_x], '*');
+    
+    key = getch();
+    switch (key) {
+    case '7':
+    case 'y':
+    case KEY_HOME:
+      dest[dim_y]--;
+      dest[dim_x]--;
+      break;
+    case '8':
+    case 'k':
+    case KEY_UP:
+      dest[dim_y]--;
+      break;
+    case '9':
+    case 'u':
+    case KEY_PPAGE:
+      dest[dim_y]--;
+      dest[dim_x]++;
+      break;
+    case '6':
+    case 'l':
+    case KEY_RIGHT:
+      dest[dim_x]++;
+      break;
+    case '3':
+    case 'n':
+    case KEY_NPAGE:
+      dest[dim_y]++;
+      dest[dim_x]++;
+      break;
+    case '2':
+    case 'j':
+    case KEY_DOWN:
+      dest[dim_y]++;
+      break;
+    case '1':
+    case 'b':
+    case KEY_END:
+      dest[dim_y]++;
+      dest[dim_x]--;
+      break;
+    case '4':
+    case 'h':
+    case KEY_LEFT:
+      dest[dim_x]--;
+      break;
+    case 'g':
+      d->character[d->pc.position[dim_y]][d->pc.position[dim_x]] = NULL;
+      //updates the position of the player
+      d->pc.position[dim_y] = dest[dim_y] -1;
+      d->pc.position[dim_x] = dest[dim_x];
+      d->character[d->pc.position[dim_y]][d->pc.position[dim_x]] = &d->pc;
+      done = 1;
+      break;
+    case 'r'://teleports the player
+      do {
+	dest[dim_x] = rand_range(1, DUNGEON_X - 2);
+	dest[dim_y] = rand_range(1, DUNGEON_Y - 2);
+      } while (charpair(dest));
+
+      d->character[d->pc.position[dim_y]][d->pc.position[dim_x]] = NULL;
+      d->character[dest[dim_y]][dest[dim_x]] = &d->pc;
+
+      d->pc.position[dim_y] = dest[dim_y];
+      d->pc.position[dim_x] = dest[dim_x];
+
+      if (mappair(dest) < ter_floor) {
+	mappair(dest) = ter_floor;
+      }
+
+      dijkstra(d);
+      done = 1;
+      break;
+    case 'Q':
+      d->quit = 1;
+      break;
+    default:
+      /* Also not in the spec.  It's not always easy to figure out what *
+       * key code corresponds with a given keystroke.  Print out any    *
+       * unhandled key here.  Not only does it give a visual error      *
+       * indicator, but it also gives an integer value that can be used *
+       * for that key in this (or other) switch statements.  Printed in *
+       * octal, with the leading zero, because ncurses.h lists codes in *
+       * octal, thus allowing us to do reverse lookups.  If a key has a *
+       * name defined in the header, you can use the name here, else    *
+       * you can directly use the octal value.                          */
+      mvprintw(0, 0, "Unbound key: %#o ", key);
+    }
+    io_display(pd,d);
+  }
+
+  /*
   do {
     dest[dim_x] = rand_range(1, DUNGEON_X - 2);
     dest[dim_y] = rand_range(1, DUNGEON_Y - 2);
@@ -297,7 +446,7 @@ uint32_t io_teleport_pc(dungeon_t *d)
 
   dijkstra(d);
   dijkstra_tunnel(d);
-
+  */
   return 0;
 }
 /* Adjectives to describe our monsters */
@@ -411,8 +560,8 @@ static void io_list_monsters_display(dungeon_t *d,
 
   free(s);
 }
-
-static void io_list_monsters(dungeon_t *d)
+//edited by LC
+static void io_list_monsters(pc_t *pd,dungeon_t *d)
 {
   character_t **c;
   uint32_t x, y, count;
@@ -437,55 +586,58 @@ static void io_list_monsters(dungeon_t *d)
   free(c);
 
   /* And redraw the dungeon */
-  io_display(d);
+  //Edited by LC
+  // io_display(d);
+  io_display(pd,d); //changed
 }
-
-void io_handle_input(dungeon_t *d)
+//edited by LC
+void io_handle_input(pc_t *pd, dungeon_t *d)
 {
   uint32_t fail_code;
   int key;
+  
 
   do {
     switch (key = getch()) {
     case '7':
     case 'y':
     case KEY_HOME:
-      fail_code = move_pc(d, 7);
+      fail_code = move_pc(pd,d, 7);
       break;
     case '8':
     case 'k':
     case KEY_UP:
-      fail_code = move_pc(d, 8);
+      fail_code = move_pc(pd,d, 8);
       break;
     case '9':
     case 'u':
     case KEY_PPAGE:
-      fail_code = move_pc(d, 9);
+      fail_code = move_pc(pd,d, 9);
       break;
     case '6':
     case 'l':
     case KEY_RIGHT:
-      fail_code = move_pc(d, 6);
+      fail_code = move_pc(pd,d, 6);
       break;
     case '3':
     case 'n':
     case KEY_NPAGE:
-      fail_code = move_pc(d, 3);
+      fail_code = move_pc(pd,d, 3);
       break;
     case '2':
     case 'j':
     case KEY_DOWN:
-      fail_code = move_pc(d, 2);
+      fail_code = move_pc(pd,d, 2);
       break;
     case '1':
     case 'b':
     case KEY_END:
-      fail_code = move_pc(d, 1);
+      fail_code = move_pc(pd,d, 1);
       break;
     case '4':
     case 'h':
     case KEY_LEFT:
-      fail_code = move_pc(d, 4);
+      fail_code = move_pc(pd,d, 4);
       break;
     case '5':
     case ' ':
@@ -494,10 +646,14 @@ void io_handle_input(dungeon_t *d)
       fail_code = 0;
       break;
     case '>':
-      fail_code = move_pc(d, '>');
+      fail_code = move_pc(pd,d, '>');
+      //added by lc
+      init_pc_dungeon(pd,d);
       break;
     case '<':
-      fail_code = move_pc(d, '<');
+      fail_code = move_pc(pd,d, '<');
+      //added by lc
+      init_pc_dungeon(pd, d);
       break;
     case 'Q':
       d->quit = 1;
@@ -521,19 +677,35 @@ void io_handle_input(dungeon_t *d)
     case 's':
       /* New command.  Return to normal display after displaying some   *
        * special screen.                                                */
-      io_display(d);
+      //edited by LC
+      fog = 0;     
+      io_display(pd, d);
       fail_code = 1;
       break;
     case 'L':
       fail_code = 1;
       break;
     case 'g':
+      fog = 0;
       /* Teleport the PC to a random place in the dungeon.              */
-      io_teleport_pc(d);
+      io_display(pd, d);
+      io_teleport_pc(pd, d);
       fail_code = 0;
       break;
     case 'm':
-      io_list_monsters(d);
+      //edited by LC
+      io_list_monsters(pd,d);
+      fail_code = 1;
+      break;
+      //added by LC
+    case 'f':
+      if(fog == 0){
+	fog = 1;
+      }
+      else{
+	fog = 0;
+      }
+      io_display(pd, d);
       fail_code = 1;
       break;
     case 'q':
