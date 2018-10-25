@@ -1,0 +1,3 @@
+Assignment 1.06- Lorenzo Chavarria
+
+For this assignment I decided to use the Professor Scheaffer's solution from Assignment 1.05. the first thing that I did for this assignment was to convert all of the code from c to c++. To this I ran it and fixed each error that came up in the compiler. After I did this I added the fog of war function, which shows only the map that is aroung the pc. To this I created a dungeon for the pc that would only show the area that is in the radius of the pc and would also save the areas that it had already visited. The map of the pc can also be turned off by pressing the f key. Another function that was implemented was the teleport function. This function turned off the fog of war and allows the user to move the pc to where ever they want.
