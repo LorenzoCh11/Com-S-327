@@ -311,14 +311,26 @@ int main(int argc, char *argv[])
        string hp = "";
        string dam = "";
        string rrty = "";
+       //makes sure that there is no duplicate of each field
+       int duplicate = 0;
       if(line == "BEGIN MONSTER") {
 	while(line != "END"){
 	  getline(myfile,line);
-	  if(line.find("NAME") == 0){
+	    if(line.find("NAME") == 0){
+	      if(name != "")
+	      {
+	        duplicate = 1;
+	      }
+
 	      line.erase(0,5);
 	      name = line;
 	    }
 	    else if(line.find("DESC") == 0){
+	      if(desc != "")
+	      {
+	        duplicate = 1;
+	      }
+
 	      while(line != "."){
 		getline(myfile,line);
 		if(line.length() >= 77)
@@ -333,30 +345,58 @@ int main(int argc, char *argv[])
 	      }
 	    }
 	    else if(line.find("SYMB") == 0){
+	      if(symbol != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,5);
 	      symbol = line;
 	    }
 	    else if(line.find("COLOR") == 0){
+	      if(color != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,6);
 	      color = line;
 	    }
 	    else if(line.find("SPEED") == 0){
+	      if(speed != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,6);
 	      speed = line;
 	    }
 	    else if(line.find("ABIL") == 0){
+	      if(abil != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,5);
 	      abil = line;
 	    }
 	    else if(line.find("HP") == 0){
+	      if(hp != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,3);
 	      hp = line;
 	    }
 	    else if(line.find("DAM") == 0){
+	      if(dam != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,4);
 	      dam = line;
 	    }
 	    else if(line.find("RRTY") == 0){
+	      if(rrty != "")
+	      {
+	        duplicate = 1;
+	      }
 	      line.erase(0,5);
 	      rrty = line;
 	    }
@@ -367,7 +407,7 @@ int main(int argc, char *argv[])
       }
 
       if(name!="" && desc != "" && symbol != "" && color != "" && speed != "" && abil != "" && hp != ""
-	 && dam != "" && rrty != "") {
+	 && dam != "" && rrty != "" && duplicate == 0) {
 	lines.push_back(name);
 	lines.push_back(desc);
 	lines.push_back(symbol);
