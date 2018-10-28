@@ -284,7 +284,6 @@ int main(int argc, char *argv[])
   
   vector<string> lines;
   string line;
-  //ifstream myfile ("~/.rlg327/monster_desc.txt");
 
   string home = getenv("HOME");
   string fpath = "/.rlg327/monster_desc.txt";
@@ -303,16 +302,89 @@ int main(int argc, char *argv[])
       //	it++;
       //      }
 
+       string name = "";
+       string desc = "";
+       string symbol = "";
+       string color = "";
+       string speed = "";
+       string abil = "";
+       string hp = "";
+       string dam = "";
+       string rrty = "";
+      if(line == "BEGIN MONSTER") {
+	while(line != "END"){
+	  getline(myfile,line);
+	  if(line.find("NAME") == 0){
+	      line.erase(0,5);
+	      name = line;
+	    }
+	    else if(line.find("DESC") == 0){
+	      while(line != "."){
+		getline(myfile,line);
+		if(line.length() >= 77)
+		{
+		  desc += "\n"; 
+		}
+		//checks if it is the last line that is a period
+		if(line != ".")
+		{
+		  desc += line;
+		}
+	      }
+	    }
+	    else if(line.find("SYMB") == 0){
+	      line.erase(0,5);
+	      symbol = line;
+	    }
+	    else if(line.find("COLOR") == 0){
+	      line.erase(0,6);
+	      color = line;
+	    }
+	    else if(line.find("SPEED") == 0){
+	      line.erase(0,6);
+	      speed = line;
+	    }
+	    else if(line.find("ABIL") == 0){
+	      line.erase(0,5);
+	      abil = line;
+	    }
+	    else if(line.find("HP") == 0){
+	      line.erase(0,3);
+	      hp = line;
+	    }
+	    else if(line.find("DAM") == 0){
+	      line.erase(0,4);
+	      dam = line;
+	    }
+	    else if(line.find("RRTY") == 0){
+	      line.erase(0,5);
+	      rrty = line;
+	    }
+	    else {
+		continue;
+	    }
+	}	
+      }
 
+      if(name!="" && desc != "" && symbol != "" && color != "" && speed != "" && abil != "" && hp != ""
+	 && dam != "" && rrty != "") {
+	lines.push_back(name);
+	lines.push_back(desc);
+	lines.push_back(symbol);
+	lines.push_back(color);
+	lines.push_back(speed);
+	lines.push_back(abil);
+	lines.push_back(hp);
+	lines.push_back(dam);
+	lines.push_back(rrty);
+	lines.push_back("\n");
+      }
 
-      //line.erase(0,counter);
-
-
-      lines.push_back(line);
-    }
+      }
     myfile.close();
   }
-  else{
+   
+ else {
     cout << "Unable to open\n";
   }
 
