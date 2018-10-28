@@ -288,11 +288,18 @@ int main(int argc, char *argv[])
   string home = getenv("HOME");
   string fpath = "/.rlg327/monster_desc.txt";
   string path = home + fpath;
-  string begin = "BEGIN";
 
   ifstream myfile (path.c_str());
 
+
+
+
   if (myfile.is_open()){
+    //checks to make sure the first line is correct
+    getline(myfile,line);
+    //first line has to be "RLG327 MONSTER DESCRIPTION 1"
+    if(line ==  "RLG327 MONSTER DESCRIPTION 1"){
+
     while(getline(myfile,line)){
       // std::string::iterator it = line.begin();
       // int counter = 0;
@@ -421,9 +428,14 @@ int main(int argc, char *argv[])
       }
 
       }
+    //checks metadata
+    }
+    else{
+      lines.push_back("Incorrect file, does not have RLG327 MONSTER DESCRIPTION 1 on the first line.");
+    }
+
     myfile.close();
-  }
-   
+  }   
  else {
     cout << "Unable to open\n";
   }
