@@ -3,12 +3,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-//added by LC
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-
 /* Very slow seed: 686846853 */
 
 #include "dungeon.h"
@@ -16,9 +10,6 @@
 #include "npc.h"
 #include "move.h"
 #include "io.h"
-
-using namespace std;
-
 
 const char *victory =
   "\n                                       o\n"
@@ -207,11 +198,10 @@ int main(int argc, char *argv[])
   }
 
   srand(seed);
-  //edited by LC
-  /*
+
   io_init_terminal();
   init_dungeon(&d);
-  */
+
   if (do_load) {
     read_dungeon(&d, load_file);
   } else if (do_image) {
@@ -221,11 +211,9 @@ int main(int argc, char *argv[])
   }
 
   /* Ignoring PC position in saved dungeons.  Not a bug. */
-  //edited by LC
-  // config_pc(&d);
-   //   gen_monsters(&d);
-   //editded by LC
-   /*
+  config_pc(&d);
+  gen_monsters(&d);
+
   io_display(&d);
   if (!do_load && !do_image) {
     io_queue_message("Seed is %u.", seed);
@@ -236,7 +224,7 @@ int main(int argc, char *argv[])
   io_display(&d);
 
   io_reset_terminal();
-   */
+
   if (do_save) {
     if (do_save_seed) {
        /* 10 bytes for number, please dot, extention and null terminator. */
@@ -260,70 +248,21 @@ int main(int argc, char *argv[])
       free(save_file);
     }
   }
-  //edited by LC
-  /*
+
   printf("%s", pc_is_alive(&d) ? victory : tombstone);
   printf("You defended your life in the face of %u deadly beasts.\n"
          "You avenged the cruel and untimely murders of %u "
          "peaceful dungeon residents.\n",
          d.PC->kills[kill_direct], d.PC->kills[kill_avenged]);
-  */
-  //edited by LC
-  // if (pc_is_alive(&d)) {
+
+  if (pc_is_alive(&d)) {
     /* If the PC is dead, it's in the move heap and will get automatically *
      * deleted when the heap destructs.  In that case, we can't call       *
      * delete_pc(), because it will lead to a double delete.               */
-  // character_delete(d.PC);
-  // }
-
-  // delete_dungeon(&d);
-
-
-
-  /*--------------------------------Added by LC ----------------------------------*/
-  
-  vector<string> lines;
-  string line;
-  //ifstream myfile ("~/.rlg327/monster_desc.txt");
-
-  string home = getenv("HOME");
-  string fpath = "/.rlg327/monster_desc.txt";
-  string path = home + fpath;
-  string begin = "BEGIN";
-
-  ifstream myfile (path.c_str());
-
-  if (myfile.is_open()){
-    while(getline(myfile,line)){
-      // std::string::iterator it = line.begin();
-      // int counter = 0;
-
-      // while(it != line.end()){
-      //	counter++;
-      //	it++;
-      //      }
-
-
-
-      //line.erase(0,counter);
-
-
-      lines.push_back(line);
-    }
-    myfile.close();
-  }
-  else{
-    cout << "Unable to open\n";
+    character_delete(d.PC);
   }
 
-  std::vector<string>::iterator iter;
-
-  for( iter = lines.begin(); iter != lines.end(); iter++)
-  {
-    // std::cout << *iter << endl;
-    cout<< *iter << endl;
-    
-  }
+  delete_dungeon(&d);
 
   return 0;
 }
