@@ -316,10 +316,10 @@ int main(int argc, char *argv[])
 
 
 
-  /*--------------------------------Added by LC ----------------------------------*/
+  /*--------------------------------Added by Lorenzo Chavarria ----------------------------------*/
   
-  vector<string> lines;
-  vector<monsterDesc> mons;
+  vector<string> lines; //is used to print out the information of the monsters
+  vector<monsterDesc> mons; //Stores the information of each monster from the file
   string line;
   Dice dice;
 
@@ -482,7 +482,8 @@ int main(int argc, char *argv[])
 
 
       //Makes sure that there is no errors
-      //This then stores all of the information in a vector named lines
+      //This then stores all of the information in a vector named lines so that it can be printed
+      //This also stores the information of each monster in a vector named mons
       if(name!="" && desc != "" && symbol != "" && color != "" && speed != "" && abil != "" && hp != ""
 	 && dam != "" && rrty != "" && duplicate == 0) {
 	lines.push_back(name);
