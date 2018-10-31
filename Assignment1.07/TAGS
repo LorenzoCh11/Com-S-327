@@ -161,11 +161,26 @@ void pc_init_known_terrain(189,6254
 void pc_observe_terrain(201,6467
 int32_t is_illuminated(238,7472
 
-rlg327.cpp,115
+rlg327.cpp,695
 const char *victory victory23,317
 const char *tombstone tombstone54,1888
 void usage(75,2939
-int main(86,3193
+class Dice{Dice88,3287
+ int base;Dice::base90,3307
+ int dices;Dice::dices91,3318
+ int sides;Dice::sides92,3330
+ int getVal(Dice::getVal94,3343
+class monsterDesc{monsterDesc106,3546
+    string name;monsterDesc::name108,3573
+    string desc;monsterDesc::desc109,3590
+    string symbol;monsterDesc::symbol110,3607
+    string color;monsterDesc::color111,3626
+    int speed;monsterDesc::speed112,3644
+    string abil;monsterDesc::abil113,3659
+    int hp;monsterDesc::hp114,3676
+    int dam;monsterDesc::dam115,3688
+    int rrty;monsterDesc::rrty116,3701
+int main(122,3722
 
 utils.cpp,25
 int makedirectory(9,124

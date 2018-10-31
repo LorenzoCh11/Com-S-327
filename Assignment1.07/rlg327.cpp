@@ -83,6 +83,42 @@ void usage(char *name)
   exit(-1);
 }
 
+
+//A Dice class that outputs 3 different integers: base, number of dices, and number of sides
+class Dice{
+public:
+ int base;
+ int dices;
+ int sides;
+
+ int getVal(){
+  int total = 0;
+  int i;
+  for(i=0;i<dices;i++){
+   total += rand() % sides;
+  }
+  return total + base;
+ }
+
+};
+
+//A mononster description class that keeps the information of each monster
+class monsterDesc{
+public:
+    string name;
+    string desc;
+    string symbol;
+    string color;
+    int speed;
+    string abil;
+    int hp;
+    int dam;
+    int rrty;
+
+};
+
+
+
 int main(int argc, char *argv[])
 {
   dungeon d;
@@ -283,7 +319,9 @@ int main(int argc, char *argv[])
   /*--------------------------------Added by LC ----------------------------------*/
   
   vector<string> lines;
+  vector<monsterDesc> mons;
   string line;
+  Dice dice;
 
   string home = getenv("HOME");
   string fpath = "/.rlg327/monster_desc.txt";
@@ -301,13 +339,6 @@ int main(int argc, char *argv[])
     if(line ==  "RLG327 MONSTER DESCRIPTION 1"){
 
     while(getline(myfile,line)){
-      // std::string::iterator it = line.begin();
-      // int counter = 0;
-
-      // while(it != line.end()){
-      //	counter++;
-      //	it++;
-      //      }
 
        string name = "";
        string desc = "";
@@ -318,7 +349,8 @@ int main(int argc, char *argv[])
        string hp = "";
        string dam = "";
        string rrty = "";
-       //makes sure that there is no duplicate of each field
+       monsterDesc tmon;
+       //makes sure that there is no duplicate of each field or any other error
        int duplicate = 0;
       if(line == "BEGIN MONSTER") {
 	while(line != "END"){
@@ -331,6 +363,7 @@ int main(int argc, char *argv[])
 
 	      line.erase(0,5);
 	      name = line;
+	      tmon.name = name;
 	    }
 	    else if(line.find("DESC") == 0){
 	      if(desc != "")
@@ -342,13 +375,21 @@ int main(int argc, char *argv[])
 		getline(myfile,line);
 		if(line.length() >= 77)
 		{
-		  desc += "\n"; 
+		  duplicate = 1;
 		}
 		//checks if it is the last line that is a period
 		if(line != ".")
 		{
 		  desc += line;
+		  desc += "\n";
+		  tmon.desc += line;
+		  tmon.desc += "\n";
 		}
+		else
+		  {
+		    desc.erase(desc.size()-1, desc.size());
+		    tmon.desc.erase(desc.size()-1, desc.size());
+		  }
 	      }
 	    }
 	    else if(line.find("SYMB") == 0){
@@ -358,6 +399,7 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,5);
 	      symbol = line;
+	      tmon.symbol = symbol;
 	    }
 	    else if(line.find("COLOR") == 0){
 	      if(color != "")
@@ -366,6 +408,7 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,6);
 	      color = line;
+	      tmon.color = color;
 	    }
 	    else if(line.find("SPEED") == 0){
 	      if(speed != "")
@@ -374,6 +417,14 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,6);
 	      speed = line;
+	      int base  = atoi(speed.substr(0, speed.find("+")).c_str());
+	      int dices = atoi(speed.substr(speed.find("+") + 1, speed.find("d")).c_str());
+	      int sides = atoi(speed.substr(speed.find("d") + 1, speed.length()).c_str());
+	      dice.base = base;
+	      dice.dices = dices;
+	      dice.sides = sides;
+	      tmon.speed  = dice.getVal();
+	     
 	    }
 	    else if(line.find("ABIL") == 0){
 	      if(abil != "")
@@ -382,6 +433,7 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,5);
 	      abil = line;
+	      tmon.abil = abil;
 	    }
 	    else if(line.find("HP") == 0){
 	      if(hp != "")
@@ -390,6 +442,13 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,3);
 	      hp = line;
+	      int base  = atoi(hp.substr(0, hp.find("+")).c_str());
+	      int dices = atoi(hp.substr(hp.find("+") + 1, hp.find("d")).c_str());
+	      int sides = atoi(hp.substr(hp.find("d") + 1, hp.length()).c_str());
+	      dice.base = base;
+	      dice.dices = dices;
+	      dice.sides = sides;
+	      tmon.hp  = dice.getVal();
 	    }
 	    else if(line.find("DAM") == 0){
 	      if(dam != "")
@@ -398,6 +457,13 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,4);
 	      dam = line;
+	      int base  = atoi(dam.substr(0, dam.find("+")).c_str());
+	      int dices = atoi(dam.substr(dam.find("+") + 1, dam.find("d")).c_str());
+	      int sides = atoi(dam.substr(dam.find("d") + 1, dam.length()).c_str());
+	      dice.base = base;
+	      dice.dices = dices;
+	      dice.sides = sides;
+	      tmon.dam  = dice.getVal();
 	    }
 	    else if(line.find("RRTY") == 0){
 	      if(rrty != "")
@@ -406,6 +472,7 @@ int main(int argc, char *argv[])
 	      }
 	      line.erase(0,5);
 	      rrty = line;
+	      tmon.rrty = atoi(rrty.c_str());
 	    }
 	    else {
 		continue;
@@ -413,6 +480,9 @@ int main(int argc, char *argv[])
 	}	
       }
 
+
+      //Makes sure that there is no errors
+      //This then stores all of the information in a vector named lines
       if(name!="" && desc != "" && symbol != "" && color != "" && speed != "" && abil != "" && hp != ""
 	 && dam != "" && rrty != "" && duplicate == 0) {
 	lines.push_back(name);
@@ -425,10 +495,10 @@ int main(int argc, char *argv[])
 	lines.push_back(dam);
 	lines.push_back(rrty);
 	lines.push_back("\n");
+	mons.push_back(tmon);
       }
 
       }
-    //checks metadata
     }
     else{
       lines.push_back("Incorrect file, does not have RLG327 MONSTER DESCRIPTION 1 on the first line.");
@@ -444,10 +514,11 @@ int main(int argc, char *argv[])
 
   for( iter = lines.begin(); iter != lines.end(); iter++)
   {
-    // std::cout << *iter << endl;
     cout<< *iter << endl;
     
   }
+
+
 
   return 0;
 }
