@@ -1,0 +1,3 @@
+Assignment 1.07 - Lorenzo Chavarria
+
+For this assignment I decided to use Professor Scheaffer's solution from Assignment 1.06. For I read from the file monster_desc.txt and by parsing was able to get the information that I needed. To store the information I created a class called monsterDesc, which would store the information of a monster. To store each monster's information a vector made of MonsterDesc was created, here the information of each monster from the file would be kept. A dice class was also created and this would perform to perform its function.

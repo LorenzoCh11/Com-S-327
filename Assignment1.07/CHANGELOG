@@ -1,0 +1,51 @@
+commit 7b9ad79fc725125dccb63d7facb2f2f41286e5fc
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 31 17:51:51 2018 -0500
+
+    Have finished Assignment 1.07
+
+commit 62a10e9d6d26ae5e26190c2b4a647b738738ee07
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 31 17:41:58 2018 -0500
+
+    Have implemented a dice class and a monster description class
+    
+    The dice class is used to parse the values that are given from the file, and returns what that value is. The monster description class stores the information from the file of each monster.
+
+commit 3080429d081fd512190f55c0c0bb2c0d1568527f
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:49:24 2018 -0500
+
+    Added the metadata.
+    
+    Forgot to add the metadata condition to the start of the file. It is now done with no known bugs.
+
+commit 9abcd75bcb29ddc65c4ad1852ba02b1c49f10133
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:22:17 2018 -0500
+
+    Fixed a bug while parsing.
+    
+    Forgot to add conditions that would make sure that fields did not have duplicates. Reading and parsing should be done.
+
+commit 589edf9f196c5eddebe1ca09703c50a0cb1dbc23
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:08:43 2018 -0500
+
+    Have finished parsing.
+    
+    Am able to read from the monster_desc.txt file and print out the information that is required. Have done this with no known bugs.
+
+commit 4e460d7e198855266bc878a1e36a418d8ac7e553
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 27 19:02:11 2018 -0500
+
+    Have started parsing the file.
+
+commit 15abe114eaa1182a9683d75b4f46878fa9f0808c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 27 15:29:25 2018 -0500
+
+    First commit.
+    
+    This is the first commit for assignment1.07. I have also decided to use the professor's solution for the last assignment(assignment106).

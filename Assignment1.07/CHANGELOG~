@@ -1,0 +1,378 @@
+commit 7b9ad79fc725125dccb63d7facb2f2f41286e5fc
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 31 17:51:51 2018 -0500
+
+    Have finished Assignment 1.07
+
+commit 62a10e9d6d26ae5e26190c2b4a647b738738ee07
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 31 17:41:58 2018 -0500
+
+    Have implemented a dice class and a monster description class
+    
+    The dice class is used to parse the values that are given from the file, and returns what that value is. The monster description class stores the information from the file of each monster.
+
+commit 3080429d081fd512190f55c0c0bb2c0d1568527f
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:49:24 2018 -0500
+
+    Added the metadata.
+    
+    Forgot to add the metadata condition to the start of the file. It is now done with no known bugs.
+
+commit 9abcd75bcb29ddc65c4ad1852ba02b1c49f10133
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:22:17 2018 -0500
+
+    Fixed a bug while parsing.
+    
+    Forgot to add conditions that would make sure that fields did not have duplicates. Reading and parsing should be done.
+
+commit 589edf9f196c5eddebe1ca09703c50a0cb1dbc23
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 28 14:08:43 2018 -0500
+
+    Have finished parsing.
+    
+    Am able to read from the monster_desc.txt file and print out the information that is required. Have done this with no known bugs.
+
+commit 4e460d7e198855266bc878a1e36a418d8ac7e553
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 27 19:02:11 2018 -0500
+
+    Have started parsing the file.
+
+commit 15abe114eaa1182a9683d75b4f46878fa9f0808c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 27 15:29:25 2018 -0500
+
+    First commit.
+    
+    This is the first commit for assignment1.07. I have also decided to use the professor's solution for the last assignment(assignment106).
+
+commit ffe9e721a2195ccc9ef9c8be2d84530929f66f83
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 24 19:40:52 2018 -0500
+
+    Have finished Assignment1.06
+
+commit 72171597389465b5d696add97f707d3788714a78
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 24 19:25:28 2018 -0500
+
+    Have finished the fog and teleport.
+    
+    Have finished the fog and the teleport function with no known bugs.
+
+commit ab498170b026b446ea1984171696aaad60de534e
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Oct 23 13:39:54 2018 -0500
+
+    Changed  pc to a class.
+
+commit 942ef5b62aa0cc631e468405ccf7d5d558fe382a
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Oct 23 12:38:01 2018 -0500
+
+    Created class npc.
+
+commit 005728dc90016ef81ac62df587ed1486f66f88be
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Oct 23 00:22:45 2018 -0500
+
+    Changed the heap struct to a class.
+
+commit 07b82d8d008f4f63274b3f7eea350c2809d63188
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 22 23:56:01 2018 -0500
+
+    Changed the struct event to a class.
+
+commit 8883e06857c00a1eb801445b3cdea193435e0ad4
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 22 23:23:14 2018 -0500
+
+    Have changed the struct dungeon to a class.
+
+commit 03c85ef832e7d573a4746eb8245cf97216216f58
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 22 10:50:12 2018 -0500
+
+    Made changes to room struct to convert to class.
+
+commit eae4bb50f1a48434ae8d45670a281bce375baef2
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 22 01:10:18 2018 -0500
+
+    Have changed the struct character_t to class Character.
+
+commit 4147fb46a124ea2b4d92e39e2373eb6c58ef77e8
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 20:24:53 2018 -0500
+
+    Made changes to io.cpp to convert from c to c++.
+
+commit 1f66298d085328d2d64b19ac6f8c7e13f1dcf687
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 19:16:49 2018 -0500
+
+    Made changes to character.cpp to convert from c to c++.
+
+commit ec392fbb13107bee0efb479aded89df2224c0949
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 19:14:42 2018 -0500
+
+    Made changes to event.cpp to convert from c to c++.
+
+commit 74a5a1ca23cbd23fa95fc71e1806deb6efff3a87
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 19:11:16 2018 -0500
+
+    Mad changes to move.cpp to convert from c to c++
+
+commit 37278584c98bf5dd0abf785494750d7c8db2ea0c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 14:06:43 2018 -0500
+
+    Made changes to npc.cc to convert from c to c++.
+
+commit 1d07b6afac87d58c6c2cf51f6f7f6d84e8aac6ce
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 13:59:11 2018 -0500
+
+    Made changes to pc.cpp to convert from c to c++
+
+commit 72c9a1f5040bbbf86ade0ba387e992c85fa297e9
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 13:55:36 2018 -0500
+
+    Made changes to path.cpp to convert from c to c++.
+
+commit e4e726c222c204e87722a29847fa422c52524982
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 13:49:26 2018 -0500
+
+    Made changes to dungeon.cpp to convert from c to c++
+
+commit a357eb061e349bd93f0120e0a949503602655a9e
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 13:09:23 2018 -0500
+
+    Made changes in macros.h.
+
+commit 86e1c7180d282b771019ca2fe1c9061a29fbe960
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 21 13:03:13 2018 -0500
+
+    Edited the rlg327 file, and changed the extension of all files to .cpp.
+
+commit c55b11b096b0dddb366ba071993f2719bbb98294
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 20 18:47:15 2018 -0500
+
+    First commit for assignment1.06
+    
+    Have decided to use the professor's latest solution to begin this assignment.
+
+commit 813ba2bd89afce610796f26d01b1483439893920
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Oct 16 13:31:35 2018 -0500
+
+    Assignment is complete.
+    
+     Was able to implement the scroll in the menu. Each thing that the menu prints is correct with no known bugs.
+
+commit a1caa3b142c8e928bd3e68c19c672c0a6c4f5606
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 14 11:40:31 2018 -0500
+
+    Have finished the scrolling in the menu
+    
+    Am able to scroll through the monster list when it is a bigger size then can be shown in the window. There are no known bugs.
+
+commit e6acf4743e98a1221ebaa6ff562296cd18bf37b1
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Oct 14 11:23:32 2018 -0500
+
+    Finished the scrolling
+
+commit 3f3586021c08c9fd91aeac16064f4fa4884d426c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 13 13:36:53 2018 -0500
+
+    Progress on the scroll
+    
+    Was able to get the scroll in my monster box to work with different keys than the arrow keys. Just need to fix that.
+
+commit 4c9a05c426dee84f9e366b3512895d8d5604fdcf
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 8 16:39:42 2018 -0500
+
+    Got the character arrays fixed
+    
+    was able to fix the way that the menu prints out characters when the 'm' key is pressed with no known bugs. Just need to add the scroll to the menu.
+
+commit e90f8ac0745e5be75e99318dd936987af2f9767c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 22:47:09 2018 -0500
+
+    Got the monster list to work
+    
+    Was able to get the monster log to work. Just need to add the scrool method.
+
+commit 729e85c2da6fca73b70db68e7ad2f32f7bf0503b
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 18:38:55 2018 -0500
+
+    Made Stairs
+    
+    Was able to generate random stairs and the PC was able to generate random dungeon when on top of either one
+
+commit 00c1c1b79f82df447db1ddeeca75bc5276e97b91
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 17:35:51 2018 -0500
+
+     Can move pc
+    
+    Can move the pc correctly. PC statys in room or corridor and PC can kill monsters.
+
+commit d6b34e58a8d80e7a9a4720648792aa9365afedb7
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 16:05:30 2018 -0500
+
+    PC can move with keys
+    
+     Was able to make the pc move when the correct key is press. There is a bug where the PC can go outside corridors or room and another bug is that the pc cannot kill monsters.
+
+commit 0852ac34a1a73454f413a810bf4eb4743df5a194
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Oct 6 12:20:01 2018 -0500
+
+    Printed map with ncurses
+    
+    Was able to print out the map when a key was pressed
+
+commit df7bfc99cc34cf2b6d5b1d4636dfa19805cc4426
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 3 21:43:21 2018 -0500
+
+    Last push for the Assignment1.04
+    
+    Unfortunately, I was not able to finish this assignment and have decided to take an L. I will comeback stronger and more prepared for the next assignment.
+
+commit f2ecb09b2f09983730de8d47104e688c32a6412a
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 3 03:33:59 2018 -0500
+
+    Made some minor changes to the heap
+    
+    Pc is now first on the first turn
+
+commit 95ddf86b3fcbecc87bd119cab62b90e026124617
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Oct 1 21:42:27 2018 -0500
+
+    Few changes to the Heap
+
+commit 485b0e1a1a584d1bffef3f20557d91849c9d9fe7
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Sep 30 22:52:06 2018 -0500
+
+    Have placed random monster in heap.
+    
+    Have created random monsters and placed them in random rooms througout the dungeon. Have also added the monsters and pc to a heap.
+
+commit a7d67dbb11d9bcecb2008fe62c2786aa9ecc2e4e
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Sep 30 03:49:05 2018 -0500
+
+    Placed Random Monsters with  Bugs
+    
+    There are a few bugs with the placed monsters, for example one is that monsters are placed where the pc is, and this is not suppose to happen
+
+commit 6e1cf115fa18dec82ed574c1cf30cab181df53b4
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 29 11:29:19 2018 -0500
+
+    First Assignment 1.04 Commit
+    
+    This is the first commit for Assignment 1.04. The professors solution for 1.03 has been added.
+
+commit 073ea5c9e9b796d0bd9b02311bc60350d449e16e
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 29 11:14:31 2018 -0500
+
+    This is final commit for Assignment1.03
+    
+    This is the final commit for Assignment1.03, this records the removed tesfiles and the result of run clean.
+
+commit 355e77c2f78865217fc0ebc56e9d6ca0ed24d98f
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Sep 25 23:51:48 2018 -0500
+
+    Have completed the assignment
+
+commit 1ea2eb4f4c88a5f7bd252d4ea0fe7b8b9de673c5
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Sep 16 18:33:52 2018 -0500
+
+    Added README file
+    
+     Added a README file, that describes the assignment.
+
+commit b233e276249f906d576f4b9adede3d074753baa0
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Sep 16 18:02:15 2018 -0500
+
+    Dijkstra for non-tunneling
+    
+    Have started working in the dijkstra for non-tunneling monsters.
+
+commit 95854ef6dcbb544bac50a1cf9dc64e123d948769
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Sep 16 16:16:51 2018 -0500
+
+    Added the Dijkstra For Tunneling
+    
+    Was able to add and print the dijkstra for player characters that are able go through walls. This works well so far with no known bugs.
+
+commit ac4dbc579d0ef67ac4677a488f9736e81b2f1218
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 15 18:38:38 2018 -0500
+
+    Have decided to use the professors solution
+
+commit 0bffde8d702e55928dc76059d76d3433f97d0201
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 15 11:55:43 2018 -0500
+
+    Adding all previous assignments.
+
+commit d0f1423f555d141b487f4287f3bebb43e5695504
+Merge: 9343962 9b87776
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 15 11:53:51 2018 -0500
+
+    Merge branch 'master' of github.com:LorenzoCh11/Com-S-327
+    
+    This is first commit.
+
+commit 9343962780f2ac412c29d79255600b748ecbebf8
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Sep 15 11:39:46 2018 -0500
+
+    First Commit
+
+commit 9b87776fdf211dabc558ae8511fc3e264ae375e6
+Author: LorenzoCh11 <42705807+LorenzoCh11@users.noreply.github.com>
+Date:   Fri Sep 14 21:13:46 2018 -0500
+
+    This is a test
+    
+    test commit
+
+commit 119f9e11b39152c0daa4519150aeeefdd88ca046
+Author: LorenzoCh11 <42705807+LorenzoCh11@users.noreply.github.com>
+Date:   Sat Sep 1 15:28:24 2018 -0500
+
+    Create README.md
