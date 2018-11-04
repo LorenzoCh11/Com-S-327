@@ -13,6 +13,8 @@
 #include "pc.h"
 #include "npc.h"
 #include "io.h"
+//added by LC
+#include "descriptions.h"
 
 #define DUMP_HARDNESS_IMAGES 0
 
@@ -28,14 +30,21 @@ typedef struct corridor_path {
 //added by LC
 static void place_items(dungeon *d){
     pair_t p;
+    //int random;
     int counter = 0;
+    object temp;
+    int x,y;
   do {
-    while ((p[dim_y] = rand_range(1, DUNGEON_Y - 2)) &&
-           (p[dim_x] = rand_range(1, DUNGEON_X - 2)) &&
+    while ((p[dim_y] = y = rand_range(1, DUNGEON_Y - 2)) &&
+           (p[dim_x] = x = rand_range(1, DUNGEON_X - 2)) &&
            ((mappair(p) < ter_floor)                 ||
             (mappair(p) > ter_stairs)))
       ;
     mappair(p) = ter_item;
+    //addeds the char to the item array
+    //random = rand() % d->object_descriptions.size();
+    temp = d->object_descriptions.at(counter).get_object();
+    d->items[y][x] = temp.get_symbol();
     counter++;
   } while (counter < 11);
  

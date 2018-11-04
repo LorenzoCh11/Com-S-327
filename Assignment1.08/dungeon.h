@@ -86,6 +86,8 @@ class dungeon {
   uint32_t quit;
   std::vector<monster_description> monster_descriptions;
   std::vector<object_description> object_descriptions;
+  //added by LC
+  char items[DUNGEON_Y][DUNGEON_X];
 };
 
 void init_dungeon(dungeon *d);
