@@ -1033,6 +1033,39 @@ void object_description::set(const std::string &name,
   this->rarity = rrty;
 }
 
+void object::set(const std::string &name,
+	      const std::string &description,
+	      const object_type_t type,
+	      const uint32_t color,
+	      const uint32_t hit,
+	      const dice &damage,
+	      const uint32_t dodge,
+	      const uint32_t defence,
+	      const uint32_t weight,
+	      const uint32_t speed,
+	      const uint32_t attribute,
+	      const uint32_t value,
+	      const bool artifact,
+	      const uint32_t rarity)
+{
+  this->name = name;
+  this->description = description;
+  this->type = type;
+  this->color = color;
+  this->hit = hit;
+  this->damage = damage;
+  this->dodge = dodge;
+  this->defence = defence;
+  this->weight = weight;
+  this->speed = speed;
+  this->attribute = attribute;
+  this->value = value;
+  this->artifact = artifact;
+  this->rarity = rarity;
+}
+
+
+
 std::ostream &object_description::print(std::ostream &o)
 {
   uint32_t i;

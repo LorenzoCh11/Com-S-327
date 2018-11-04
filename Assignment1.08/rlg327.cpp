@@ -86,18 +86,21 @@ int main(int argc, char *argv[])
   char *load_file;
   char *pgm_file;
   
+  memset(&d, 0, sizeof (d));
+
   parse_descriptions(&d);
   print_descriptions(&d);
-  destroy_descriptions(&d);
+  
+  // destroy_descriptions(&d);
 
-
+  //return 0;
 
 
   //to run the description
   // return 0;
 
   /* Quiet a false positive from valgrind. */
-  memset(&d, 0, sizeof (d));
+  //memset(&d, 0, sizeof (d));
   
   /* Default behavior: Seed with the time, generate a new dungeon, *
    * and don't write to disk.                                      */
@@ -271,6 +274,8 @@ int main(int argc, char *argv[])
      * delete_pc(), because it will lead to a double delete.               */
     character_delete(d.PC);
   }
+
+  destroy_descriptions(&d);
 
   delete_dungeon(&d);
 

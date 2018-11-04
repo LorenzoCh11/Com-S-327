@@ -49,7 +49,7 @@ uint32_t character_increment_dkills(69,1008
 uint32_t character_increment_ikills(74,1097
 uint32_t can_see(79,1202
 
-descriptions.cpp,2804
+descriptions.cpp,2833
 #define MONSTER_FILE_SEMANTIC 19,317
 #define MONSTER_FILE_VERSION 20,385
 #define NUM_MONSTER_DESCRIPTION_FIELDS 21,427
@@ -109,15 +109,16 @@ std::ostream &monster_description::print(monster_description::print958,26467
 std::ostream &operator<<(operator<<992,27344
 uint32_t destroy_descriptions(997,27436
 void object_description::set(1005,27567
-std::ostream &object_description::print(object_description::print1036,28621
-std::ostream &operator<<(operator<<1061,29335
+void object::set(1036,28621
+std::ostream &object_description::print(object_description::print1069,29414
+std::ostream &operator<<(operator<<1094,30128
 
 dice.cpp,115
 int32_t dice::roll(6,58
 std::ostream &dice::print(dice::print22,257
 std::ostream &operator<<(operator<<27,358
 
-dungeon.cpp,1484
+dungeon.cpp,1520
 #define DUMP_HARDNESS_IMAGES 17,270
 typedef struct corridor_path 19,302
   heap_node_t *hn;corridor_path::hn20,333
@@ -125,41 +126,42 @@ typedef struct corridor_path 19,302
   uint8_t from[corridor_path::from22,370
   int32_t cost;corridor_path::cost23,389
 } corridor_path_t;24,405
-static uint32_t adjacent_to_room(26,425
-static uint32_t is_open_space(34,684
-static int32_t corridor_path_cmp(39,781
-static void dijkstra_corridor(43,931
-static void dijkstra_corridor_inv(142,4685
-#define hardnesspair_inv(195,6024
-static int connect_two_rooms(245,8695
-static int create_cycle(264,9345
-static int connect_rooms(306,10909
-int gaussian[gaussian319,11100
-typedef struct queue_node 327,11256
-  int x,queue_node::x328,11284
-  int x, y;queue_node::y328,11284
-  struct queue_node *next;queue_node::next329,11296
-} queue_node_t;330,11323
-static int smooth_hardness(332,11340
-static int empty_dungeon(491,15777
-static int place_rooms(513,16196
-static void place_stairs(550,17381
-static int make_rooms(572,18014
-int gen_dungeon(595,18584
-void delete_dungeon(608,18744
-void init_dungeon(615,18884
-int write_dungeon_map(622,19039
-int write_rooms(635,19266
-uint32_t calculate_dungeon_size(655,19683
-int write_dungeon(662,19928
-int read_dungeon_map(728,21490
-int read_rooms(751,22086
-int calculate_num_rooms(805,23900
-int read_dungeon(813,24140
-int read_pgm(895,26102
-void render_hardness_map(980,28514
-void render_movement_cost_map(1003,29039
-void new_dungeon(1025,29544
+static void place_items(29,441
+static uint32_t adjacent_to_room(47,812
+static uint32_t is_open_space(55,1071
+static int32_t corridor_path_cmp(60,1168
+static void dijkstra_corridor(64,1318
+static void dijkstra_corridor_inv(163,5072
+#define hardnesspair_inv(216,6411
+static int connect_two_rooms(266,9082
+static int create_cycle(285,9732
+static int connect_rooms(327,11296
+int gaussian[gaussian340,11487
+typedef struct queue_node 348,11643
+  int x,queue_node::x349,11671
+  int x, y;queue_node::y349,11671
+  struct queue_node *next;queue_node::next350,11683
+} queue_node_t;351,11710
+static int smooth_hardness(353,11727
+static int empty_dungeon(512,16164
+static int place_rooms(534,16583
+static void place_stairs(571,17768
+static int make_rooms(593,18401
+int gen_dungeon(616,18971
+void delete_dungeon(631,19165
+void init_dungeon(638,19305
+int write_dungeon_map(645,19460
+int write_rooms(658,19687
+uint32_t calculate_dungeon_size(678,20104
+int write_dungeon(685,20349
+int read_dungeon_map(751,21911
+int read_rooms(774,22507
+int calculate_num_rooms(828,24321
+int read_dungeon(836,24561
+int read_pgm(918,26523
+void render_hardness_map(1003,28935
+void render_movement_cost_map(1026,29460
+void new_dungeon(1048,29965
 
 event.cpp,174
 static uint32_t next_event_number(4,43
@@ -169,32 +171,32 @@ event *update_event(update_event42,973
 void event_delete(50,1115
 
 io.cpp,1063
-static dungeon *thedungeon;thedungeon14,228
-typedef struct io_message 16,257
-  char msg[io_message::msg19,438
-  struct io_message *next;io_message::next20,454
-} io_message_t;21,481
-static io_message_t *io_head,io_head23,498
-static io_message_t *io_head, *io_tail;io_tail23,498
-void io_init_terminal(25,539
-void io_reset_terminal(42,1024
-void io_queue_message(54,1184
-static void io_print_message_queue(80,1591
-void io_display_tunnel(100,2067
-void io_display_distance(118,2475
-static char hardness_to_char[hardness_to_char136,2876
-void io_display_hardness(139,2978
-static int compare_monster_distance(159,3807
-static character *io_nearest_visible_monster(io_nearest_visible_monster170,4241
-void io_display(202,4977
-void io_display_no_fog(285,7424
-void io_display_monster_list(351,9377
-uint32_t io_teleport_pc(360,9573
-static const char *adjectives[adjectives512,12703
-static void io_scroll_monster_list(545,13485
-static void io_list_monsters_display(574,13939
-static void io_list_monsters(623,15617
-void io_handle_input(653,16382
+static dungeon *thedungeon;thedungeon15,268
+typedef struct io_message 17,297
+  char msg[io_message::msg20,478
+  struct io_message *next;io_message::next21,494
+} io_message_t;22,521
+static io_message_t *io_head,io_head24,538
+static io_message_t *io_head, *io_tail;io_tail24,538
+void io_init_terminal(26,579
+void io_reset_terminal(43,1064
+void io_queue_message(55,1224
+static void io_print_message_queue(81,1631
+void io_display_tunnel(101,2107
+void io_display_distance(119,2515
+static char hardness_to_char[hardness_to_char137,2916
+void io_display_hardness(140,3018
+static int compare_monster_distance(160,3847
+static character *io_nearest_visible_monster(io_nearest_visible_monster171,4281
+void io_display(203,5017
+void io_display_no_fog(293,7642
+void io_display_monster_list(367,9773
+uint32_t io_teleport_pc(376,9969
+static const char *adjectives[adjectives528,13099
+static void io_scroll_monster_list(561,13881
+static void io_list_monsters_display(590,14335
+static void io_list_monsters(639,16013
+void io_handle_input(669,16778
 
 move.cpp,237
 void do_combat(18,266
@@ -409,7 +411,7 @@ typedef enum dim 7,190
 } dim_t;11,238
 typedef int16_t pair_t[pair_t13,248
 
-dungeon.h,2029
+dungeon.h,2049
 # define DUNGEON_H2,18
 #define DUNGEON_X 10,149
 #define DUNGEON_Y 11,183
@@ -445,29 +447,30 @@ enum __attribute__ ((__packed__)) terrain_type 36,1132
   ter_floor_hall,43,1274
   ter_stairs,44,1292
   ter_stairs_up,45,1306
-  ter_stairs_down46,1323
-typedef struct room 49,1345
-  pair_t position;50,1367
-  pair_t size;51,1386
-} room_t;52,1401
-class dungeon 56,1423
-  uint32_t num_rooms;dungeon::num_rooms58,1448
-  room_t *rooms;dungeon::rooms59,1470
-  terrain_type map[dungeon::map60,1487
-  uint8_t hardness[dungeon::hardness69,2138
-  uint8_t pc_distance[dungeon::pc_distance70,2180
-  uint8_t pc_tunnel[dungeon::pc_tunnel71,2225
-  character *character_map[dungeon::character_map72,2268
-  pc *PC;dungeon::PC73,2318
-  heap_t events;dungeon::events74,2328
-  uint16_t num_monsters;dungeon::num_monsters75,2345
-  uint16_t max_monsters;dungeon::max_monsters76,2370
-  uint32_t character_sequence_number;dungeon::character_sequence_number77,2395
-  uint32_t time;dungeon::time83,2819
-  uint32_t is_new;dungeon::is_new84,2836
-  uint32_t quit;dungeon::quit85,2855
-  std::vector<monster_description> monster_descriptions;dungeon::monster_descriptions86,2872
-  std::vector<object_description> object_descriptions;dungeon::object_descriptions87,2929
+  ter_stairs_down,46,1323
+  ter_item47,1342
+typedef struct room 50,1357
+  pair_t position;51,1379
+  pair_t size;52,1398
+} room_t;53,1413
+class dungeon 57,1435
+  uint32_t num_rooms;dungeon::num_rooms59,1460
+  room_t *rooms;dungeon::rooms60,1482
+  terrain_type map[dungeon::map61,1499
+  uint8_t hardness[dungeon::hardness70,2150
+  uint8_t pc_distance[dungeon::pc_distance71,2192
+  uint8_t pc_tunnel[dungeon::pc_tunnel72,2237
+  character *character_map[dungeon::character_map73,2280
+  pc *PC;dungeon::PC74,2330
+  heap_t events;dungeon::events75,2340
+  uint16_t num_monsters;dungeon::num_monsters76,2357
+  uint16_t max_monsters;dungeon::max_monsters77,2382
+  uint32_t character_sequence_number;dungeon::character_sequence_number78,2407
+  uint32_t time;dungeon::time84,2831
+  uint32_t is_new;dungeon::is_new85,2848
+  uint32_t quit;dungeon::quit86,2867
+  std::vector<monster_description> monster_descriptions;dungeon::monster_descriptions87,2884
+  std::vector<object_description> object_descriptions;dungeon::object_descriptions88,2941
 
 event.h,225
 # define EVENT_H2,16

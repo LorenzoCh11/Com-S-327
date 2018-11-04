@@ -23,6 +23,27 @@ typedef struct corridor_path {
   int32_t cost;
 } corridor_path_t;
 
+
+
+//added by LC
+static void place_items(dungeon *d){
+    pair_t p;
+    int counter = 0;
+  do {
+    while ((p[dim_y] = rand_range(1, DUNGEON_Y - 2)) &&
+           (p[dim_x] = rand_range(1, DUNGEON_X - 2)) &&
+           ((mappair(p) < ter_floor)                 ||
+            (mappair(p) > ter_stairs)))
+      ;
+    mappair(p) = ter_item;
+    counter++;
+  } while (counter < 11);
+ 
+}
+
+
+
+
 static uint32_t adjacent_to_room(dungeon *d, int16_t y, int16_t x)
 {
   return (mapxy(x - 1, y) == ter_floor_room ||
@@ -601,6 +622,8 @@ int gen_dungeon(dungeon *d)
   } while (place_rooms(d));
   connect_rooms(d);
   place_stairs(d);
+  //added by LC
+  place_items(d);
 
   return 0;
 }
