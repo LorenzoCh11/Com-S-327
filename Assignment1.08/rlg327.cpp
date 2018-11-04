@@ -85,12 +85,16 @@ int main(int argc, char *argv[])
   char *save_file;
   char *load_file;
   char *pgm_file;
-
+  
   parse_descriptions(&d);
   print_descriptions(&d);
   destroy_descriptions(&d);
 
-  return 0;
+
+
+
+  //to run the description
+  // return 0;
 
   /* Quiet a false positive from valgrind. */
   memset(&d, 0, sizeof (d));

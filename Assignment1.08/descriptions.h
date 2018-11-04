@@ -52,6 +52,7 @@ class object{
     dice damage;
     bool artifact;
     uint32_t rarity;
+   
   public:
    object() : name(),    description(), type(objtype_no_type),
                          color(0),  hit(),         dodge(),
@@ -89,6 +90,76 @@ class object{
   inline const uint32_t get_speed() const { return speed; }
   inline const uint32_t get_attribute() const { return attribute; }
   inline const uint32_t get_value() const { return value; }
+  inline const char get_symbol() const { 
+    switch(type){
+    case objtype_no_type:
+      return  '*';
+      break;
+    case objtype_WEAPON :
+      return '|';
+      break;
+    case objtype_OFFHAND:
+      return ')';
+      break;
+    case objtype_RANGED:
+      return '}';
+      break;
+    case objtype_LIGHT:
+      return '_';
+      break;
+    case objtype_ARMOR:
+      return '[';
+      break;
+    case objtype_HELMET:
+      return ']';
+      break;
+    case objtype_CLOAK:
+      return '(';
+      break;
+    case objtype_GLOVES:
+      return '{';
+      break;
+    case objtype_BOOTS:
+      return '\\';
+      break;
+    case objtype_AMULET:
+      return '"';
+      break;
+    case objtype_RING:
+      return '=';
+      break;
+    case objtype_SCROLL:
+      return '~';
+      break;
+    case objtype_BOOK:
+      return '?';
+      break;
+    case objtype_FLASK:
+      return '!';
+      break;
+    case objtype_GOLD:
+      return '$';
+      break;
+    case objtype_AMMUNITION:
+      return '/';
+      break;
+    case objtype_FOOD:
+      return ',';
+      break;
+  case objtype_WAND:
+      return '-';
+      break;
+  case objtype_CONTAINER:
+      return '%';
+      break;
+  default:
+      return '*';
+    }
+
+  }
+
+
+
 
 };
 
