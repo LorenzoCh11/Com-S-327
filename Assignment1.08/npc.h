@@ -5,7 +5,6 @@
 
 # include "dims.h"
 # include "character.h"
-# include "descriptions.h"
 # include "dice.h"
 # include <string>
 # include <vector>

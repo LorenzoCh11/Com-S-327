@@ -9,6 +9,7 @@
 # include "npc.h"
 
 
+
 typedef struct dungeon dungeon_t;
 
 uint32_t parse_descriptions(dungeon_t *d);
