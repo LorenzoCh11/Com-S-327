@@ -26,6 +26,39 @@ class character {
    * characters have been created by the game.                              */
   uint32_t sequence_number;
   uint32_t kills[num_kill_types];
+  /*
+  public:
+   character() : symbol(0), position(), speed(), alive(), sequence_number(), kills()
+    {
+    }*/
+  /*
+  //added by LC
+  std::string name, description;
+  //char symbol;
+  std::vector<uint32_t> color;
+  uint32_t abilities;
+  //uint32_t speed;
+  uint32_t hitpoints, 
+  dice damage;
+  uint32_t rarity;
+ public:
+  character() : name(), description(), symbol(0), color(0),
+                abilities(0), speed(), hitpoints(), damage(),
+                rarity(0)
+  {
+  }
+  void set(const std::string &name,
+           const std::string &description,
+           const char symbol,
+           const std::vector<uint32_t> &color,
+           const dice &speed,
+           const uint32_t abilities,
+           const dice &hitpoints,
+           const dice &damage,
+           const uint32_t rarity);
+  std::ostream &print(std::ostream &o);
+  char get_symbol() { return symbol; }
+  */
 };
 
 class dungeon;

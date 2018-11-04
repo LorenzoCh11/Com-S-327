@@ -5,6 +5,11 @@
 
 # include "dims.h"
 # include "character.h"
+# include "descriptions.h"
+# include "dice.h"
+# include <string>
+# include <vector>
+
 
 # define NPC_SMART         0x00000001
 # define NPC_TELEPATH      0x00000002
@@ -49,6 +54,18 @@ class npc : public character {
   npc_characteristics_t characteristics;
   uint32_t have_seen_pc;
   pair_t pc_last_known_position;
+  //added by LC
+ public:
+  void set(const std::string &name,
+           const std::string &description,
+           const char symbol,
+           const std::vector<uint32_t> &color,
+           const uint32_t speed,
+           const uint32_t abilities,
+           const uint32_t hitpoints,
+           const dice &damage,
+           const uint32_t rarity);
+  
 };
 
 void gen_monsters(dungeon *d);

@@ -520,46 +520,46 @@ macros.h,611
 move.h,21
 # define MOVE_H2,15
 
-npc.h,1203
+npc.h,1205
 # define NPC_H2,14
-# define NPC_SMART 9,96
-# define NPC_TELEPATH 10,134
-# define NPC_TUNNEL 11,172
-# define NPC_ERRATIC 12,210
-# define NPC_PASS_WALL 13,248
-# define NPC_DESTROY_OBJ 14,286
-# define NPC_PICKUP_OBJ 15,324
-# define NPC_UNIQ 16,362
-# define NPC_BOSS 17,400
-# define NPC_BIT09 18,438
-# define NPC_BIT10 19,476
-# define NPC_BIT11 20,514
-# define NPC_BIT12 21,552
-# define NPC_BIT13 22,590
-# define NPC_BIT14 23,628
-# define NPC_BIT15 24,666
-# define NPC_BIT16 25,704
-# define NPC_BIT17 26,742
-# define NPC_BIT18 27,780
-# define NPC_BIT19 28,818
-# define NPC_BIT20 29,856
-# define NPC_BIT21 30,894
-# define NPC_BIT22 31,932
-# define NPC_BIT23 32,970
-# define NPC_BIT24 33,1008
-# define NPC_BIT25 34,1046
-# define NPC_BIT26 35,1084
-# define NPC_BIT27 36,1122
-# define NPC_BIT28 37,1160
-# define NPC_BIT29 38,1198
-# define NPC_BIT30 39,1236
-# define NPC_BIT31 40,1274
-# define has_characteristic(42,1313
-typedef uint32_t npc_characteristics_t;45,1423
-class npc 47,1464
-  npc_characteristics_t characteristics;npc::characteristics49,1504
-  uint32_t have_seen_pc;npc::have_seen_pc50,1545
-  pair_t pc_last_known_position;npc::pc_last_known_position51,1570
+# define NPC_SMART 10,123
+# define NPC_TELEPATH 11,161
+# define NPC_TUNNEL 12,199
+# define NPC_ERRATIC 13,237
+# define NPC_PASS_WALL 14,275
+# define NPC_DESTROY_OBJ 15,313
+# define NPC_PICKUP_OBJ 16,351
+# define NPC_UNIQ 17,389
+# define NPC_BOSS 18,427
+# define NPC_BIT09 19,465
+# define NPC_BIT10 20,503
+# define NPC_BIT11 21,541
+# define NPC_BIT12 22,579
+# define NPC_BIT13 23,617
+# define NPC_BIT14 24,655
+# define NPC_BIT15 25,693
+# define NPC_BIT16 26,731
+# define NPC_BIT17 27,769
+# define NPC_BIT18 28,807
+# define NPC_BIT19 29,845
+# define NPC_BIT20 30,883
+# define NPC_BIT21 31,921
+# define NPC_BIT22 32,959
+# define NPC_BIT23 33,997
+# define NPC_BIT24 34,1035
+# define NPC_BIT25 35,1073
+# define NPC_BIT26 36,1111
+# define NPC_BIT27 37,1149
+# define NPC_BIT28 38,1187
+# define NPC_BIT29 39,1225
+# define NPC_BIT30 40,1263
+# define NPC_BIT31 41,1301
+# define has_characteristic(43,1340
+typedef uint32_t npc_characteristics_t;46,1450
+class npc 48,1491
+  npc_characteristics_t characteristics;npc::characteristics50,1531
+  uint32_t have_seen_pc;npc::have_seen_pc51,1572
+  pair_t pc_last_known_position;npc::pc_last_known_position52,1597
 
 path.h,54
 # define PATH_H2,15

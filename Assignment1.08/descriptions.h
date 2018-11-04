@@ -6,6 +6,8 @@
 # include <vector>
 # include <string>
 # include "dice.h"
+# include "npc.h"
+
 
 typedef struct dungeon dungeon_t;
 
@@ -92,7 +94,7 @@ class object{
 
 
 
-class monster_description {
+class monster_description : public npc {
  private:
   std::string name, description;
   char symbol;
@@ -115,7 +117,26 @@ class monster_description {
            const dice &hitpoints,
            const dice &damage,
            const uint32_t rarity);
-  std::ostream &print(std::ostream &o);
+
+ std::ostream &print(std::ostream &o);
+  //Added by LC
+  npc get_npc(){
+    npc temp;
+    temp.set(name, 
+	     description,
+	     symbol,
+	     color,
+	     speed.roll(),
+	     abilities,
+	     hitpoints.roll(),
+	     damage,
+	     rarity);
+    return temp;
+
+  }
+
+
+ 
   char get_symbol() { return symbol; }
 };
 
@@ -155,19 +176,19 @@ class object_description {
   object get_object(){
     object temp;
     temp.set(name,  
-		description,
-		  type,
-		  color,
-		  hit.roll(),
-		  damage,
-		  dodge.roll(),
-		  defence.roll(),
-		  weight.roll(),
-		  speed.roll(),
-		  attribute.roll(),
-		  value.roll(),
-		  artifact,
-		  rarity);
+	       description,
+	       type,
+	       color,
+	       hit.roll(),
+	       damage,
+	       dodge.roll(),
+	       defence.roll(),
+	       weight.roll(),
+	       speed.roll(),
+	       attribute.roll(),
+	       value.roll(),
+	       artifact,
+	       rarity);
     return temp;
 
   };
