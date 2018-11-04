@@ -205,10 +205,7 @@ void io_display(dungeon *d)
   uint32_t illuminated;
   character *c;
   int32_t visible_monsters;
-  //added this
-  // object temp;
-  //char item;
-  //int random;
+
   clear();
   for (visible_monsters = -1, y = 0; y < 21; y++) {
     for (x = 0; x < 80; x++) {
@@ -247,10 +244,9 @@ void io_display(dungeon *d)
           mvaddch(y + 1, x, '>');
           break;
 	case ter_item:
-	  // random = rand() % d->object_descriptions.size();
-	  //temp = d->object_descriptions.at(random).get_object();
-	  //item = temp.get_symbol();
+	  attron(COLOR_PAIR(d->itemscolor[y][x]));
 	  mvaddch(y + 1, x, d->items[y][x]);
+	  attroff(COLOR_PAIR(d->itemscolor[y][x]));
 	  break;
         default:
  /* Use zero as an error symbol, since it stands out somewhat, and it's *
@@ -295,10 +291,7 @@ void io_display_no_fog(dungeon *d)
 {
   uint32_t y, x;
   character *c;
-  //added this
-  //object temp;
-  //char item;
-  //int random;
+ 
 
 
   clear();
@@ -329,10 +322,9 @@ void io_display_no_fog(dungeon *d)
           mvaddch(y + 1, x, '>');
           break;
 	case ter_item:
-	  // random = rand() % d->object_descriptions.size();
-	  //temp = d->object_descriptions.at(random).get_object();
-	  //item = temp.get_symbol();
+	  attron(COLOR_PAIR(d->itemscolor[y][x]));
 	  mvaddch(y + 1, x, d->items[y][x]);
+	  attroff(COLOR_PAIR(d->itemscolor[y][x]));
 	  break;
         default:
  /* Use zero as an error symbol, since it stands out somewhat, and it's *

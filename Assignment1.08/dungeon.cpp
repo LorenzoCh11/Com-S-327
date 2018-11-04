@@ -45,6 +45,7 @@ static void place_items(dungeon *d){
     //random = rand() % d->object_descriptions.size();
     temp = d->object_descriptions.at(counter).get_object();
     d->items[y][x] = temp.get_symbol();
+    d->itemscolor[y][x] = temp.get_color();
     counter++;
   } while (counter < 11);
  
