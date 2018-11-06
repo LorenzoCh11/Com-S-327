@@ -197,7 +197,7 @@ class monster_description : public npc {
     temp.set(name, 
 	     description,
 	     symbol,
-	     color,
+	     color.at(0),
 	     speed.roll(),
 	     abilities,
 	     hitpoints.roll(),

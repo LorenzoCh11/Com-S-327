@@ -1033,6 +1033,8 @@ void object_description::set(const std::string &name,
   this->rarity = rrty;
 }
 
+
+//added By LC
 void object::set(const std::string &name,
 	      const std::string &description,
 	      const object_type_t type,
@@ -1063,6 +1065,7 @@ void object::set(const std::string &name,
   this->artifact = artifact;
   this->rarity = rarity;
 }
+
 
 
 

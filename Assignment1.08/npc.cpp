@@ -9,6 +9,18 @@
 #include "event.h"
 #include "pc.h"
 
+//added by LC
+#include "descriptions.h"
+
+/*
+//added by LC
+static void addMonsters(dungeon *d) {
+
+}
+*/
+
+//changed this by LC
+/*
 static uint32_t max_monster_cells(dungeon *d)
 {
   uint32_t i;
@@ -22,19 +34,22 @@ static uint32_t max_monster_cells(dungeon *d)
 
   return sum;
 }
-
+*/
 void gen_monsters(dungeon *d)
 {
   uint32_t i;
   npc *m;
   uint32_t room;
   pair_t p;
-  const static char symbol[] = "0123456789abcdef";
-  uint32_t num_cells;
+  // int x,y;
+  //const static char symbol[] = "0123456789abcdef";//changed by LC
+  //uint32_t num_cells; //Changed by LC
+  //added by LC
+  //int index = 0;
 
-  num_cells = max_monster_cells(d);
-  d->num_monsters = d->max_monsters < num_cells ? d->max_monsters : num_cells;
-
+  //num_cells = max_monster_cells(d); changed by LC
+  //d->num_monsters = d->max_monsters < num_cells ? d->max_monsters : num_cells; changed by LC
+  d->num_monsters = d->monster_descriptions.size();
   for (i = 0; i < d->num_monsters; i++) {
     m = new npc;
     memset(m, 0, sizeof (*m));
@@ -48,21 +63,27 @@ void gen_monsters(dungeon *d)
                             (d->rooms[room].position[dim_x] +
                              d->rooms[room].size[dim_x] - 1));
     } while (d->character_map[p[dim_y]][p[dim_x]]);
+    //added by LC
+    d->moncolor[p[dim_y]][p[dim_x]] = d->monster_descriptions.at(i).get_npc().get_color(); //added by LC
     m->position[dim_y] = p[dim_y];
     m->position[dim_x] = p[dim_x];
     d->character_map[p[dim_y]][p[dim_x]] = m;
     m->speed = rand_range(5, 20);
+    m->color = d->monster_descriptions.at(i).get_npc().get_color(); //added by LC
     m->alive = 1;
     m->sequence_number = ++d->character_sequence_number;
     m->characteristics = rand() & 0x0000000f;
     /*    m->npc->characteristics = 0xf;*/
-    m->symbol = symbol[m->characteristics];
+    //m->symbol = symbol[m->characteristics];
+    m->symbol = d->monster_descriptions.at(i).get_npc().get_symbol();
     m->have_seen_pc = 0;
     m->kills[kill_direct] = m->kills[kill_avenged] = 0;
 
     d->character_map[p[dim_y]][p[dim_x]] = m;
+    d->moncolor[p[dim_y]][p[dim_x]] = d->monster_descriptions.at(i).get_npc().get_color(); //added by LC
 
     heap_insert(&d->events, new_event(d, event_characterurn, m, 0));
+    //index++;
   }
 }
 
@@ -528,3 +549,23 @@ uint32_t dungeon_has_npcs(dungeon *d)
 {
   return d->num_monsters;
 }
+
+
+//added by LC
+void npc::set(const std::string &name,
+	      const std::string &description,
+	      const char symbol,
+	      const uint32_t color,
+	      const uint32_t speed,
+	      const uint32_t abilities,
+	      const uint32_t hitpoints,
+	      const dice &damage,
+	      const uint32_t rarity)
+{
+  this->symbol = symbol;
+  this->speed = speed;
+  this->color = color;
+  this->abilities = abilities;
+
+}
+

@@ -5,7 +5,7 @@
 # include "macros.h"
 # include "dims.h"
 # include "character.h"
-# include "descriptions.h"
+# include "descriptions.h"//added by LC
 
 #define DUNGEON_X              80
 #define DUNGEON_Y              21
@@ -89,6 +89,7 @@ class dungeon {
   //added by LC
   char items[DUNGEON_Y][DUNGEON_X];
   uint32_t itemscolor[DUNGEON_Y][DUNGEON_X];
+  uint32_t moncolor[DUNGEON_Y][DUNGEON_X];
 };
 
 void init_dungeon(dungeon *d);

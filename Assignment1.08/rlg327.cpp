@@ -89,9 +89,11 @@ int main(int argc, char *argv[])
   memset(&d, 0, sizeof (d));
 
   parse_descriptions(&d);
-  print_descriptions(&d);
+  // print_descriptions(&d);
   
   // destroy_descriptions(&d);
+  //To check the size of monser_descriptions
+  //printf("%lu\n",d.monster_descriptions.size());
 
   //return 0;
 
