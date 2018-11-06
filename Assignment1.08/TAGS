@@ -210,34 +210,34 @@ uint32_t move_pc(250,7780
 
 npc.cpp,1053
 void gen_monsters(38,547
-void npc_next_pos_rand_tunnel(90,2521
-    uint32_t i;::i94,2608
-    uint8_t a[::a95,2624
-void npc_next_pos_rand(135,3370
-    uint32_t i;::i139,3450
-    uint8_t a[::a140,3466
-void npc_next_pos_line_of_sight(167,3925
-void npc_next_pos_line_of_sight_tunnel(191,4617
-void npc_next_pos_gradient(226,5428
-static void npc_next_pos_00(349,10105
-static void npc_next_pos_01(361,10527
-static void npc_next_pos_02(379,11152
-static void npc_next_pos_03(387,11444
-static void npc_next_pos_04(393,11609
-static void npc_next_pos_05(405,12038
-static void npc_next_pos_06(423,12670
-static void npc_next_pos_07(431,12969
-static void npc_next_pos_08(437,13134
-static void npc_next_pos_09(447,13365
-static void npc_next_pos_0a(457,13596
-static void npc_next_pos_0b(467,13827
-static void npc_next_pos_0c(477,14058
-static void npc_next_pos_0d(487,14296
-static void npc_next_pos_0e(497,14534
-static void npc_next_pos_0f(507,14772
-void npc_next_pos(540,15652
-uint32_t dungeon_has_npcs(548,15843
-void npc::set(555,15927
+void npc_next_pos_rand_tunnel(92,2716
+    uint32_t i;::i96,2803
+    uint8_t a[::a97,2819
+void npc_next_pos_rand(137,3565
+    uint32_t i;::i141,3645
+    uint8_t a[::a142,3661
+void npc_next_pos_line_of_sight(169,4120
+void npc_next_pos_line_of_sight_tunnel(193,4812
+void npc_next_pos_gradient(228,5623
+static void npc_next_pos_00(351,10300
+static void npc_next_pos_01(363,10722
+static void npc_next_pos_02(381,11347
+static void npc_next_pos_03(389,11639
+static void npc_next_pos_04(395,11804
+static void npc_next_pos_05(407,12233
+static void npc_next_pos_06(425,12865
+static void npc_next_pos_07(433,13164
+static void npc_next_pos_08(439,13329
+static void npc_next_pos_09(449,13560
+static void npc_next_pos_0a(459,13791
+static void npc_next_pos_0b(469,14022
+static void npc_next_pos_0c(479,14253
+static void npc_next_pos_0d(489,14491
+static void npc_next_pos_0e(499,14729
+static void npc_next_pos_0f(509,14967
+void npc_next_pos(542,15847
+uint32_t dungeon_has_npcs(550,16038
+void npc::set(557,16122
 
 path.cpp,318
 static dungeon *thedungeon;thedungeon13,649
