@@ -1,0 +1,3 @@
+Assignment 1.08 - Lorenzo Chavarria
+
+For this assignment instances were created for each tiem in the item_desc file and instances of monsters were generated from the monster_desc file. In order to place the items in the dungeon, a new terrain was created this terrain was called ter_item. 

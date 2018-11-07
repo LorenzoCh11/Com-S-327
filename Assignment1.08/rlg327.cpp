@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
   // destroy_descriptions(&d);
   //To check the size of monser_descriptions
   //printf("%lu\n",d.monster_descriptions.size());
-
+  //printf("%lu\n", d.object_descriptions.size());
   //return 0;
 
 

@@ -1,0 +1,73 @@
+commit db75aa62ba567de178765137dc64d7cbd01434f0
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Nov 6 14:38:54 2018 -0600
+
+    Have added the other characteristics to each monster.
+    
+    Have added the other things, like speed and abilities to each monster that is generated from the monster_description, instead of generating random ones.
+
+commit 11acd35b37cb2cc54bb9ecd304e7feb8b61393db
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Mon Nov 5 21:18:26 2018 -0600
+
+    Have placed monsters from the description.
+    
+    Am able to place the monsters from the monster description.
+
+commit 34ad7096e55edb11601fc38483643d6b2b3911c6
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Nov 4 16:22:56 2018 -0600
+
+    Finished intances of items.
+    
+    Am finishing placing random items on the dungeon. With no known bugs.
+
+commit a5bc11b9f5c71de576ce4b1ee4ee2a1fec88ee92
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Nov 4 15:42:27 2018 -0600
+
+    Finished placing random objects
+    
+    Have finished placing random instances of objects.
+
+commit 8a53878c8c3eb90db86c4947ffa16aee51e1dd8d
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Nov 4 13:12:54 2018 -0600
+
+    Placed items progress.
+    
+    Can place items randomly on the dungeon. Only bug is that it is the same item.
+
+commit 0343055cda37af483e85f0974466f2eeb249939e
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Nov 4 10:50:53 2018 -0600
+
+    Assigned symbols for each item type.
+
+commit d0976c54bf0421e6fd547dc3ec1bfeef950aa918
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sun Nov 4 09:42:06 2018 -0600
+
+    Fixed bug for monster instance
+    
+    The bug for instances of monsters has been fixed, and i have now created instances of monsters.
+
+commit b619c6272093f63f28c0d51992f674b5379eade2
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Nov 3 21:27:25 2018 -0500
+
+    Have started working on monster instance.
+    
+    Have started working on instance for a monster description. still have a few bugs.
+
+commit 1a3189a7c7f219fec2f32afe46103e68b7d29302
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Sat Nov 3 18:12:11 2018 -0500
+
+    First commit for Assignment1.08
+    
+    This is the first commit for Assignment1.08, I have decided to use Professor Jeremy's solution for assignment1.07 and have created the a class for the description of the items.
+
+commit 6c782669d047d07aec709045f15f4e3daed6152c
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Oct 31 18:09:18 2018 -0500
