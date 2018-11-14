@@ -293,15 +293,15 @@ pc.cpp,376
 uint32_t pc_is_alive(13,189
 void place_pc(18,250
 void config_pc(31,742
-uint32_t pc_next_pos(55,1230
-uint32_t pc_in_room(153,5289
-void pc_learn_terrain(168,5838
-void pc_reset_visibility(174,5994
-terrain_type pc_learned_terrain(185,6161
-void pc_init_known_terrain(194,6398
-void pc_observe_terrain(206,6611
-int32_t is_illuminated(243,7616
-void pc_see_object(248,7700
+uint32_t pc_next_pos(57,1265
+uint32_t pc_in_room(155,5324
+void pc_learn_terrain(170,5873
+void pc_reset_visibility(176,6029
+terrain_type pc_learned_terrain(187,6196
+void pc_init_known_terrain(196,6433
+void pc_observe_terrain(208,6646
+int32_t is_illuminated(245,7651
+void pc_see_object(250,7735
 
 rlg327.cpp,115
 const char *victory victory15,224

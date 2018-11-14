@@ -1077,6 +1077,8 @@ npc *monster_description::generate_monster(dungeon *d)
   monster_description &m = v[i];
 
   n = new npc(d, m);
+  //added by LC
+  n->hp = 100;
 
   heap_insert(&d->events, new_event(d, event_character_turn, n, 0));
 
