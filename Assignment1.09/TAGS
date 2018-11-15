@@ -204,13 +204,13 @@ void io_handle_input(867,26918
 
 move.cpp,237
 void do_combat(19,283
-void move_character(115,3994
-void do_moves(136,4570
-void dir_nearest_wall(202,6603
-uint32_t against_wall(214,7014
-uint32_t in_corner(226,7498
-static void new_dungeon_level(244,8122
-uint32_t move_pc(260,8412
+void move_character(156,5193
+void do_moves(181,5882
+void dir_nearest_wall(247,7915
+uint32_t against_wall(259,8326
+uint32_t in_corner(271,8810
+static void new_dungeon_level(289,9434
+uint32_t move_pc(305,9724
 
 npc.cpp,1822
 static uint32_t max_monster_cells(12,173
@@ -312,7 +312,7 @@ int main(78,3132
 utils.cpp,25
 int makedirectory(9,124
 
-character.h,793
+character.h,792
 # define CHARACTER_H2,20
 typedef enum kill_type 11,143
   kill_direct,12,168
@@ -326,13 +326,13 @@ class character 19,245
   int32_t speed;character::speed24,332
   uint32_t alive;character::alive25,349
   std::vector<uint32_t> color;character::color26,367
-  uint32_t hp;character::hp27,398
-  const dice *damage;character::damage28,413
-  const char *name;character::name29,435
-  uint32_t sequence_number;character::sequence_number37,1002
-  uint32_t kills[character::kills38,1030
-  inline uint32_t get_color(character::get_color39,1064
-  inline char get_symbol(character::get_symbol40,1145
+  int32_t hp;character::hp27,398
+  const dice *damage;character::damage28,428
+  const char *name;character::name29,450
+  uint32_t sequence_number;character::sequence_number37,1017
+  uint32_t kills[character::kills38,1045
+  inline uint32_t get_color(character::get_color39,1079
+  inline char get_symbol(character::get_symbol40,1160
 
 descriptions.h,4189
 # define DESCRIPTIONS_H2,23
