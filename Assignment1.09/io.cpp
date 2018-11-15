@@ -38,9 +38,9 @@ static void io_list_items(dungeon *d)
   mvprintw(y, 9, " %-60s ", "");
 
    y++;
-  mvprintw(y, 9, "Item Inventory. ESC to exit.");
+  mvprintw(y, 9, "Item Inventory: (ESC to Exit.)");
   uint32_t i;
-   if(d->items > 1){
+   if(d->items >= 1){
     for(i = 0; i < d->items; ++i){
       y++;
       mvprintw(y, 9, "Item %u: %c", i,d->item_slot[i]->get_symbol());
