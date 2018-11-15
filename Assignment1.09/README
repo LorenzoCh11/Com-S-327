@@ -1,0 +1,3 @@
+Assignment 1.09 - Lorenzo Chavarria
+
+For this assignment I used the professors solution from Assignment 1.08. For this assignment I was not able to iplement everything. The only things that I impplemented was the updated combat, where the monsters and PC have hp and their hp is decreased by monsters hitpoints when they do the combat function. I also implemented how the game can only be one if the PC kills Spongebob. Another thing that i implemented was the items and item slot. The PC can pick up items and each one takes a spot in the PC's item slot.
