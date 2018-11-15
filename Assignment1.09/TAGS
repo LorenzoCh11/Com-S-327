@@ -171,7 +171,7 @@ event *new_event(new_event25,681
 event *update_event(update_event42,975
 void event_delete(50,1117
 
-io.cpp,1199
+io.cpp,1235
 static dungeon *thedungeon;thedungeon16,265
 typedef struct io_message 18,294
   char msg[io_message::msg21,475
@@ -179,28 +179,29 @@ typedef struct io_message 18,294
 } io_message_t;23,518
 static io_message_t *io_head,io_head25,535
 static io_message_t *io_head, *io_tail;io_tail25,535
-void io_init_terminal(27,576
-void io_reset_terminal(44,1061
-void io_queue_message(56,1221
-static void io_print_message_queue(82,1628
-void io_display_tunnel(102,2104
-void io_display_distance(120,2512
-static char hardness_to_char[hardness_to_char138,2913
-void io_display_hardness(141,3015
-static void io_redisplay_visible_monsters(161,3844
-static int compare_monster_distance(276,9469
-static character *io_nearest_visible_monster(io_nearest_visible_monster287,9903
-void io_display(319,10639
-static void io_redisplay_non_terrain(426,14471
-void io_display_no_fog(461,15848
-void io_display_monster_list(536,18181
-uint32_t io_teleport_pc(545,18377
-static const char *adjectives[adjectives703,22122
-static void io_scroll_monster_list(736,22904
-static bool is_vowel(765,23357
-static void io_list_monsters_display(771,23536
-static void io_list_monsters(837,26153
-void io_handle_input(867,26918
+static void io_list_items(30,592
+void io_init_terminal(57,979
+void io_reset_terminal(74,1464
+void io_queue_message(86,1624
+static void io_print_message_queue(112,2031
+void io_display_tunnel(132,2507
+void io_display_distance(150,2915
+static char hardness_to_char[hardness_to_char168,3316
+void io_display_hardness(171,3418
+static void io_redisplay_visible_monsters(191,4247
+static int compare_monster_distance(306,9872
+static character *io_nearest_visible_monster(io_nearest_visible_monster317,10306
+void io_display(349,11042
+static void io_redisplay_non_terrain(456,14874
+void io_display_no_fog(491,16251
+void io_display_monster_list(566,18584
+uint32_t io_teleport_pc(575,18780
+static const char *adjectives[adjectives733,22525
+static void io_scroll_monster_list(766,23307
+static bool is_vowel(795,23760
+static void io_list_monsters_display(801,23939
+static void io_list_monsters(867,26556
+void io_handle_input(897,27321
 
 move.cpp,237
 void do_combat(19,283
@@ -439,7 +440,7 @@ typedef enum dim 7,190
 } dim_t;11,238
 typedef int16_t pair_t[pair_t13,248
 
-dungeon.h,3392
+dungeon.h,3902
 # define DUNGEON_H2,18
 #define DUNGEON_X 10,149
 #define DUNGEON_Y 11,183
@@ -518,9 +519,21 @@ class dungeon 60,1569
   uint32_t quit;dungeon::quit97,3403
   uint32_t bossAlive;dungeon::bossAlive99,3436
   object *item_slot[dungeon::item_slot100,3458
-  uint32_t items;dungeon::items101,3510
-  std::vector<monster_description> monster_descriptions;dungeon::monster_descriptions102,3528
-  std::vector<object_description> object_descriptions;dungeon::object_descriptions103,3585
+  uint32_t items;dungeon::items101,3483
+  object *helmet;dungeon::helmet102,3501
+  object *cloak;dungeon::cloak103,3519
+  object *gloves;dungeon::gloves104,3536
+  object *boots;dungeon::boots105,3554
+  object *amulet;dungeon::amulet106,3571
+  object *light;dungeon::light107,3589
+  object *ring_l;dungeon::ring_l108,3606
+  object *ring_r;dungeon::ring_r109,3624
+  object *weapon;dungeon::weapon110,3642
+  object *offhand;dungeon::offhand111,3660
+  object *ranged;dungeon::ranged112,3679
+  object *armor;dungeon::armor113,3697
+  std::vector<monster_description> monster_descriptions;dungeon::monster_descriptions114,3714
+  std::vector<object_description> object_descriptions;dungeon::object_descriptions115,3771
 
 event.h,199
 # define EVENT_H2,16

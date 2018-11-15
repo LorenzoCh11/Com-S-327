@@ -97,8 +97,20 @@ class dungeon {
   uint32_t quit;
   //added by LC
   uint32_t bossAlive;
-  object *item_slot[10];//the item slot of 10 items
+  object *item_slot[10];
   uint32_t items;
+  object *helmet;
+  object *cloak;
+  object *gloves;
+  object *boots;
+  object *amulet;
+  object *light;
+  object *ring_l;
+  object *ring_r;
+  object *weapon;
+  object *offhand;
+  object *ranged;
+  object *armor;
   std::vector<monster_description> monster_descriptions;
   std::vector<object_description> object_descriptions;
 };

@@ -24,6 +24,36 @@ typedef struct io_message {
 
 static io_message_t *io_head, *io_tail;
 
+
+
+//added by LC
+static void io_list_items(dungeon *d)
+{
+  uint32_t y = 3;
+ 
+ 
+
+  clear();
+
+  mvprintw(y, 9, " %-60s ", "");
+
+   y++;
+  mvprintw(y, 9, "Item Inventory. ESC to exit.");
+  uint32_t i;
+   if(d->items > 1){
+    for(i = 0; i < d->items; ++i){
+      y++;
+      mvprintw(y, 9, "Item %u: %c", i,d->item_slot[i]->get_symbol());
+    }
+  }
+   while (getch() != 27 ){
+   
+  }
+  
+  io_display(d);
+
+}
+
 void io_init_terminal(void)
 {
   initscr();
@@ -981,6 +1011,10 @@ void io_handle_input(dungeon *d)
       break;
     case 'm':
       io_list_monsters(d);
+      fail_code = 1;
+      break;
+    case 'i':
+      io_list_items(d);
       fail_code = 1;
       break;
     case 'q':

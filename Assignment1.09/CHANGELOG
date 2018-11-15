@@ -1,0 +1,38 @@
+commit 0c4edd62fe98dc57f7b21f52e4d2bfcd2c5b74bf
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Nov 14 20:08:47 2018 -0600
+
+    Added a README
+    
+    The PC can now pick up items and will take a spot in its item slot.
+
+commit 900b6ed451789f7791b7172e06e622de528d3b18
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Wed Nov 14 19:56:20 2018 -0600
+
+    The PC can now pick up monsters
+    
+    The PC can now pick up items and has an item slot with a max size of 10.
+
+commit cf4dcdd2dc747cc6cb03f40a7f318f70cadd9b7b
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Nov 14 19:04:24 2018 -0600
+
+    Have updated combat.
+    
+    Have now updated combat with hp and hitpoints.
+
+commit b1729624664927092760d0f9517bf1ea9a880040
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Nov 14 17:31:48 2018 -0600
+
+    Set up the hp for both monstrs and pc
+
+commit 7adc7ae67c5960ffcad7d4f47c41c0cae47faa2b
+Author: Lorenzo Chavarria <lorenzoc@iastate.edu>
+Date:   Tue Nov 14 13:40:16 2018 -0600
+
+    First commit for Assginment 1.09
+    
+    Have decided to use the professors last solution of Assignment 1.08
+
