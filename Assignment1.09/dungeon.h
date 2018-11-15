@@ -95,6 +95,10 @@ class dungeon {
   uint32_t time;
   uint32_t is_new;
   uint32_t quit;
+  //added by LC
+  uint32_t bossAlive;
+  object *item_slot[10];//the item slot of 10 items
+  uint32_t items;
   std::vector<monster_description> monster_descriptions;
   std::vector<object_description> object_descriptions;
 };

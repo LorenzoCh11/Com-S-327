@@ -74,8 +74,14 @@ void do_combat(dungeon *d, character *atk, character *def)
 	 */
     //added by LC
     if (def->hp < 1){
+
+      //added by LC
+      if(def->symbol == 'S'){
+	d->bossAlive = 1;
+      }
       def->alive = 0;
       charpair(def->position) = NULL;
+
        if (def != d->PC) {
 	d->num_monsters--;
       } else {/*
@@ -373,6 +379,12 @@ uint32_t move_pc(dungeon *d, uint32_t dir)
     move_character(d, d->PC, next);
     dijkstra(d);
     dijkstra_tunnel(d);
+    //added by LC
+    if (d->objmap[next[dim_y]][next[dim_x]] != NULL && d->items < 10) {
+      d->item_slot[d->items] = d->objmap[next[dim_y]][next[dim_x]];
+      d->items = d->items + 1;
+      d->objmap[next[dim_y]][next[dim_x]] = NULL;
+    }
 
     return 0;
   } else if (mappair(next) < ter_floor) {

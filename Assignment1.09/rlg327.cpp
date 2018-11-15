@@ -92,8 +92,11 @@ int main(int argc, char *argv[])
   do_load = do_save = do_image = do_save_seed = do_save_image = 0;
   do_seed = 1;
   save_file = load_file = NULL;
+  //added by LC
+  d.bossAlive = 0;
   d.max_monsters = MAX_MONSTERS;
   d.max_objects = MAX_OBJECTS;
+ 
 
   /* The project spec requires '--load' and '--save'.  It's common  *
    * to have short and long forms of most switches (assuming you    *
@@ -228,7 +231,7 @@ int main(int argc, char *argv[])
   if (!do_load && !do_image) {
     io_queue_message("Seed is %u.", seed);
   }
-  while (pc_is_alive(&d) && dungeon_has_npcs(&d) && !d.quit) {
+  while (pc_is_alive(&d) && !d.quit && d.bossAlive != 1) {//changed this
     do_moves(&d);
   }
   io_display(&d);
