@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int player = 0;
+int player;
 int gameState;
 char playerSymbol;
 
@@ -14,9 +14,32 @@ void display_Game(char board[9]);
 void display_Player(int player);
 void handle_Input(char board[9]);
 void change_Turn();
+void check_Win(char board[9]);
 
-//void check_Gameover();
-//void make_Move();
+void check_Win(char board[9]){
+  if(((board[0] == board[1]) && (board[0] == board[2])) ||
+     ((board[0] == board[3]) && (board[0] == board[6])) ||
+     ((board[8] == board[7]) && (board[8] == board[6])) ||
+     ((board[8] == board[5]) && (board[8] == board[2])) ||
+     ((board[4] == board[0]) && (board[4] == board[8])) ||
+     ((board[4] == board[1]) && (board[4] == board[7])) ||
+     ((board[4] == board[2]) && (board[4] == board[6])) ||
+     ((board[4] == board[5]) && (board[4] == board[3]))  ){
+    clear();
+    display_Game(board);
+    gameState = 1;
+
+    if(player == 0){
+      mvprintw(7, 0, "Player 2 Wins!");
+    }
+    else{
+      mvprintw(7, 0, "Player 1 Wins!");
+    }
+    mvprintw(8,0, "Press 'r' to play again");
+    mvprintw(9, 0, "or any key to exit out");
+    getch();
+  }
+}
 
 void change_Turn(){
   if (player == 0){
@@ -105,6 +128,9 @@ void display_Player(int player){
     mvprintw(7, 0, "Player 2 Turn: O");
   }
 
+  mvprintw(8,0,"Press any # key to place your symbol");
+  mvprintw(9,0,"where there is no 'X' or 'O'");
+
   refresh(); 
 }
 
@@ -155,6 +181,7 @@ int main(){
 
   char gameboard[9];
   gameState = 0;
+  player = 0;
   playerSymbol = 'X';
   
   initialize_Game(gameboard);
@@ -169,9 +196,10 @@ int main(){
    
     display_Game(gameboard);
     display_Player(player);
+    check_Win(gameboard);
     handle_Input(gameboard);
 
-    clear();//possible bug   
+    clear();   
   }
   endwin();
   
