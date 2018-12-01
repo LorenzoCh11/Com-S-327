@@ -7,6 +7,7 @@ using namespace std;
 int player;
 int gameState;
 char playerSymbol;
+char playAgain;
 
 //Functions
 void initialize_Game(char board[9]);
@@ -36,8 +37,7 @@ void check_Win(char board[9]){
       mvprintw(7, 0, "Player 1 Wins!");
     }
     mvprintw(8,0, "Press 'r' to play again");
-    mvprintw(9, 0, "or any key to exit out");
-    getch();
+    mvprintw(9, 0, "or 'q' to exit out");
   }
 }
 
@@ -114,7 +114,13 @@ void handle_Input(char board[9]){
   case 'q':
   case 'Q':
     gameState = 1;
+    playAgain = 'q';
     break;
+  case 'r':
+  case 'R':
+    if (gameState == 1){
+      playAgain = 'r';
+    }
   }
 
 }
@@ -180,26 +186,30 @@ void display_Game(char board[9]){
 int main(){
 
   char gameboard[9];
-  gameState = 0;
-  player = 0;
-  playerSymbol = 'X';
-  
-  initialize_Game(gameboard);
+ 
 
+  playAgain = 'r';
  
   
   initscr();
   noecho();
   refresh();
+  while (playAgain == 'r'){
+    gameState = 0;
+    player = 0;
+    playerSymbol = 'X';
+  
+    initialize_Game(gameboard);
 
-  while(gameState != 1){
+    while(gameState != 1){
    
-    display_Game(gameboard);
-    display_Player(player);
-    check_Win(gameboard);
-    handle_Input(gameboard);
+      display_Game(gameboard);
+      display_Player(player);
+      check_Win(gameboard);
+      handle_Input(gameboard);
 
-    clear();   
+      clear();   
+    }
   }
   endwin();
   
