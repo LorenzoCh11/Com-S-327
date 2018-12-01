@@ -36,8 +36,23 @@ void check_Win(char board[9]){
     else{
       mvprintw(7, 0, "Player 1 Wins!");
     }
-    mvprintw(8,0, "Press 'r' to play again");
-    mvprintw(9, 0, "or 'q' to exit out");
+    mvprintw(8,0, "Press 'q' to exit out");
+    mvprintw(9, 0, "or any other key to play again.");
+  }
+
+  if((board[0] != '1') && (board[1] != '2') &&
+     (board[2] != '3') && (board[3] != '4') &&
+     (board[4] != '5') && (board[5] != '6') &&
+     (board[6] != '7') && (board[7] != '8') &&
+     (board[8] != '9') && (gameState == 0) ){
+    clear();
+    display_Game(board);
+    gameState = 1;
+
+    mvprintw(7, 0, "It's a DRAW!");
+   
+    mvprintw(8,0, "Press 'q' to exit out");
+    mvprintw(9, 0, "or any other key to play again.");
   }
 }
 
@@ -116,11 +131,6 @@ void handle_Input(char board[9]){
     gameState = 1;
     playAgain = 'q';
     break;
-  case 'r':
-  case 'R':
-    if (gameState == 1){
-      playAgain = 'r';
-    }
   }
 
 }
@@ -193,7 +203,9 @@ int main(){
   
   initscr();
   noecho();
-  refresh();
+  //refresh();
+
+  
   while (playAgain == 'r'){
     gameState = 0;
     player = 0;
